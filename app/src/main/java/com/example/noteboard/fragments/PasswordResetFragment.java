@@ -1,4 +1,4 @@
-package com.example.noteboard;
+package com.example.noteboard.fragments;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -8,19 +8,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.noteboard.R;
+import com.example.noteboard.viewmodels.PasswordResetViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Objects;
 
 public class PasswordResetFragment extends Fragment {
 
-    private PasswordResetViewModel PasswordResetViewModel;
+    private com.example.noteboard.viewmodels.PasswordResetViewModel PasswordResetViewModel;
     private final String TAG= "";
     String email;
 
