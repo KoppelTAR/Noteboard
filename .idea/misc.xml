@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/fragment_password_reset.xml" value="0.358695652173913" />
         <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/password_reset_fragment.xml" value="0.358695652173913" />
       </map>
