@@ -51,6 +51,23 @@ public class AuthRepository {
                 });
     }
 
+    public void sendPasswordResetEmail(String email) {
+        firebaseAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(application,"Password reset email was successfully sent!",Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(application, application.getString(R.string.error, task.getException()
+                                            .getMessage())
+                                    , Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
 
     public MutableLiveData<FirebaseUser> getUserMutableLiveData() {
         return userMutableLiveData;

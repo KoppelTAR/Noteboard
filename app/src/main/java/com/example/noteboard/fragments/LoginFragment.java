@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,10 @@ public class LoginFragment extends Fragment {
                 loginViewModel.logIn(editTextEmail.getText().toString(),
                         editTextPassword.getText().toString());
             }
+        });
+
+        view.findViewById(R.id.btnForgotPassword).setOnClickListener(view1 -> {
+            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_passwordResetFragment);
         });
         return view;
     }
