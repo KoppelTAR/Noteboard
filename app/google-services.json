@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1001353407424",
+    "project_id": "aktsiaseltsnoteboard",
+    "storage_bucket": "aktsiaseltsnoteboard.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001353407424:android:810e6ddd1bf522e268f625",
+        "android_client_info": {
+          "package_name": "com.example.noteboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1001353407424-89rl9ngc6hl9o8140oncpja05ppoasn8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXe61dDz2vadcR8QPhkgYDbGukaPedq-U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1001353407424-89rl9ngc6hl9o8140oncpja05ppoasn8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NoteBoard</string>
+    <string name="error">Yeah uhh this: %s</string>
+    <string name="register_user">register_user</string>
 </resources>
