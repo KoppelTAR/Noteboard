@@ -21,7 +21,7 @@ Noteboard offers an extremely simple UI in 3 languages ( 🇪🇪, 🇷🇺, �
 
 [Back to content](#content)
 
-## Testing-with-Android-Studio
+## Testing with Android Studio
 
 ### Creating a virtual device
 
