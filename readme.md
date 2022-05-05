@@ -41,9 +41,13 @@ First of all, after opening android studio we need to create a virtual device. I
 
 6. Press next.
 
+![Image](readme_img_2.png)
+
 7. Name the device anything you'd like.
 
 8. Click finish.
+
+![Image](readme_img_3.png)
 
 Voilà! You now have a virtual device ready to run applications!
 
@@ -52,12 +56,15 @@ Voilà! You now have a virtual device ready to run applications!
 
 1. After opening the project, select the virtual device you would like to run the application on. Make sure that the API level of said device is over 28.
 
+![Image](readme_img_4.png)
+
 2. Make sure the run configuration is set to launch the application. This should be done by default, but it won't hurt to make sure.
 
 2. Click on "app", edit run configuration and make sure that the launch option is set to "Default Activity" and the deploy option is set to "Default APK"
 
-
 3. Press the "RUN" button or Shift+F10 to boot up the virtual device and launch the application.
+
+![Image](readme_img_5.png)
 
 
 [Back to content](#Content)
