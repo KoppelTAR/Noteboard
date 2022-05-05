@@ -81,7 +81,7 @@ public class RegistrationFragment extends Fragment {
                 }
                 Toast.makeText(getActivity(), "Registration failed, Returning to Login screen", Toast.LENGTH_SHORT).show();
             }
-            //TODO UNCOMMENT navController.navigate(R.id.action_registrationFragment_to_loginFragment);
+            navController.navigate(R.id.action_registrationFragment_to_loginFragment);
         });
 
         return view;

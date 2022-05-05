@@ -20,4 +20,5 @@
     <string name="enter_passwordRegFrag">Enter Password</string>
     <string name="enter_emailRegFrag">Enter Email</string>
     <string name="enter_usernameRegFrag">Enter Username</string>
+    <string name="passRezSuccess">Password reset email was successfully sent!</string>
 </resources>

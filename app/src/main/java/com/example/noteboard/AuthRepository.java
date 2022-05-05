@@ -57,7 +57,7 @@ public class AuthRepository {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(application,"Password reset email was successfully sent!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(application, R.string.passRezSuccess,Toast.LENGTH_SHORT).show();
                         }
                         else{
                             Toast.makeText(application, application.getString(R.string.error, task.getException()

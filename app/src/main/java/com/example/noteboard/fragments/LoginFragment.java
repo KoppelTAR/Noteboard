@@ -59,6 +59,10 @@ public class LoginFragment extends Fragment {
         view.findViewById(R.id.btnForgotPassword).setOnClickListener(view1 -> {
             Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_passwordResetFragment);
         });
+
+        view.findViewById(R.id.btnRegister).setOnClickListener(view1 -> {
+            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registrationFragment);
+        });
         return view;
     }
 }
