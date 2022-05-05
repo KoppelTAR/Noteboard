@@ -4,40 +4,30 @@ import android.app.Application;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.auth.User;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class AuthRepository {
 
     private static final String TAG = "Firebase: ";
-    private FirebaseAuth mAuth;
-
-    //firebase variables
     private final FirebaseAuth firebaseAuth;
-    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    //Mutable Livedata
-    private final MutableLiveData<FirebaseUser> userMutableLiveData;
     private final Application application;
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final MutableLiveData<FirebaseUser> userMutableLiveData;
 
-    public AuthRepository(Application application) {
+    public AuthRepository(Application application){
         this.application = application;
         firebaseAuth = FirebaseAuth.getInstance();
         userMutableLiveData = new MutableLiveData<>();
     }
-
 
     public void userRegistration(String username, String email, String password) {
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(application.getMainExecutor(),Registertask-> {
@@ -46,42 +36,28 @@ public class AuthRepository {
                 if (firebaseAuth.getCurrentUser() != null) {
                     //gets newly created users UID
                     String userId = firebaseAuth.getCurrentUser().getUid();
+                    long unixTime = System.currentTimeMillis() /1000;
 
-                    //creates new collection named users if one doesnt exist into it add a new document with UID reference
+                    //creates new collection named users if one doesn't exist into it add a new document with UID reference
                     DocumentReference documentReference = db.collection("users").document(userId);
                     Map<String,Object> user = new HashMap<>();
                     user.put("username",username);
                     user.put("email",email);
                     user.put("OwnedPosts", null);
+                    user.put("CreatedAt", unixTime);
                     documentReference.set(user).addOnSuccessListener(aVoid -> Log.i(TAG, "onSuccess: user data was saved"))
-                            .addOnFailureListener(e -> Log.e(TAG, "onFaliure: Error writing to DB document", e));
+                            .addOnFailureListener(e -> Log.e(TAG, "onFailure: Error writing to DB document", e));
                     userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
 
-                    mAuth = FirebaseAuth.getInstance();
-                    FirebaseUser VerUser = mAuth.getCurrentUser();
-
-                    VerUser.sendEmailVerification()
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Log.d(TAG, "Email sent.");
-                                        Toast.makeText(application, "Email sent. Please verify email", Toast.LENGTH_LONG).show();
-                                    }
-                                }
-                            });
+                    //TODO UNCOMMENT EmailVerification();
                 }
 
             } else {
-                Toast.makeText(application, application.getString(R.string.error, Registertask.getException().getMessage()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(application, application.getString(R.string.error, Objects.requireNonNull(Registertask.getException()).getMessage()), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
 
-
-    public MutableLiveData<FirebaseUser> getUserMutableLiveData() {
-        return userMutableLiveData;
-    }
 
 }
