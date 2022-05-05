@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AuthRepository {
-    private final FirebaseAuth firebaseAuth;
+    private FirebaseAuth firebaseAuth;
     private final Application application;
     private final MutableLiveData<Boolean> loggedOutMutableLiveData;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -67,6 +67,24 @@ public class AuthRepository {
                     }
                 });
     }
+
+    public void EmailVerification() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser VerUser = firebaseAuth.getCurrentUser();
+
+        VerUser.sendEmailVerification()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "Email sent.");
+                            Toast.makeText(application, "Email sent. Please verify email", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+
+
 
     public void logOut(){
         firebaseAuth.signOut();
