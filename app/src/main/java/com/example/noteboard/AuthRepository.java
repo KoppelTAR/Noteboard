@@ -76,7 +76,7 @@ public class AuthRepository {
                 if (firebaseAuth.getCurrentUser() != null) {
                     //gets newly created users UID
                     String userId = firebaseAuth.getCurrentUser().getUid();
-                    long unixTime = System.currentTimeMillis() /1000;
+                    long unixTime = (System.currentTimeMillis() /1000) + 600;
 
                     //creates new collection named users if one doesn't exist into it add a new document with UID reference
                     DocumentReference documentReference = db.collection("users").document(userId);
@@ -84,7 +84,7 @@ public class AuthRepository {
                     user.put("username",username);
                     user.put("email",email);
                     user.put("OwnedPosts", null);
-                    user.put("CreatedAt", unixTime);
+                    user.put("DeletedAt", unixTime);
                     documentReference.set(user).addOnSuccessListener(aVoid -> Log.i(TAG, "onSuccess: user data was saved"))
                             .addOnFailureListener(e -> Log.e(TAG, "onFailure: Error writing to DB document", e));
                     userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
