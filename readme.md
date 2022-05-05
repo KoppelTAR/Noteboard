@@ -25,7 +25,7 @@ Noteboard offers an extremely simple UI in 3 languages ( 🇪🇪, 🇷🇺, �
 
 ### Creating a virtual device
 
-First of all, after opening android studio we need to create a virtual device. If you already have a virtual device with an API level of over 28 set up, click [here](#running-the-application-on-a-virtual-device)
+First of all, after opening android studio we need to create a virtual device. If you already have a virtual device with an API level of over 28 set up, click [here](#markdown-header-running-the-application-on-a-virtual-device)
 
 1. Click on device manager.
 
