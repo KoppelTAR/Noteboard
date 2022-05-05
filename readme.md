@@ -3,9 +3,9 @@
 
 ## Content
 
-[What is Noteboard?](#what-is-noteboard)
+[What is Noteboard?](#markdown-header-what-is-noteboard)
 
-[Testing the app with Android Studio](#testing-with-android-studio)
+[Testing the app with Android Studio](#markdown-header-testing-with-android-studio)
 
 
 ## What is Noteboard?
@@ -19,7 +19,7 @@ Noteboard is here to fix all those issues.
 Noteboard offers an extremely simple UI in 3 languages ( 🇪🇪, 🇷🇺, 🇬🇧 ) and 2 easy on the eye layouts (night layout, day layout) in the form of a bulletin board/noteboard to help you communicate with coworkers, friends or anyone else.
 
 
-[Back to content](#content)
+[Back to content](#markdown-header-content)
 
 ## Testing with Android Studio
 
@@ -67,4 +67,4 @@ Voilà! You now have a virtual device ready to run applications!
 ![Image](readme_img_5.png)
 
 
-[Back to content](#content)
+[Back to content](#markdown-header-content)
