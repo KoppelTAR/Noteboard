@@ -1,5 +1,6 @@
 package com.example.noteboard.fragments;
 
+import android.app.Application;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,28 +59,29 @@ public class RegistrationFragment extends Fragment {
             String password = Objects.requireNonNull(Objects.requireNonNull(PasswordEditText).getText()).toString().trim();
             String confPassword = Objects.requireNonNull(Objects.requireNonNull(PasswordConfirmEditText).getText()).toString().trim();
             String Username = Objects.requireNonNull(Objects.requireNonNull(UsernameEditText).getText()).toString().trim();
-
+            Application var = getActivity().getApplication();
 
             if (email.matches(emailPattern)
                     && password.length() >= 6
                     && confPassword.equals(password)
                     && Username.length() > 0) {
-                Toast.makeText(getActivity(), "Registration Successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), var.getString(R.string.RegiSuccess), Toast.LENGTH_SHORT).show();
 
                 //creates user and saves data by default firebase logs the user in after creating account
                 userRegistration.userRegistration(Username,email,password);
                 //TODO LOG THE USER OUT
             }else {
+
                 if (Username.equals("")) {
-                    Toast.makeText(getActivity(), "Fill out first name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), var.getString(R.string.FillFirstNameToast), Toast.LENGTH_SHORT).show();
                 }if (!email.matches(emailPattern)) {
-                    Toast.makeText(getActivity(), "Must be a valid email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), var.getString(R.string.ValidEmailToast), Toast.LENGTH_SHORT).show();
                 }if ( password.length() < 6) { //&& !password.matches(PasswordPattern)
-                    Toast.makeText(getActivity(), "A password must at least 6 characters", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), var.getString(R.string.PassLenghtToast), Toast.LENGTH_LONG).show();
                 }if (!confPassword.equals(password)) {
-                    Toast.makeText(getActivity(), "Confirm password must match the password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), var.getString(R.string.ConfPasstToast), Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(getActivity(), "Registration failed, Returning to Login screen", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), var.getString(R.string.ToastRegiFailed), Toast.LENGTH_SHORT).show();
             }
             navController.navigate(R.id.action_registrationFragment_to_loginFragment);
         });

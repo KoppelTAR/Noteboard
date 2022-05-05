@@ -21,4 +21,12 @@
     <string name="enter_emailRegFrag">Enter Email</string>
     <string name="enter_usernameRegFrag">Enter Username</string>
     <string name="passRezSuccess">Password reset email was successfully sent!</string>
+    <string name="ToastRegiFailed">Registration failed, Returning to Login screen</string>
+    <string name="ConfPasstToast">Confirm password must match the password</string>
+    <string name="PassLenghtToast">A password must at least 6 characters</string>
+    <string name="ValidEmailToast">Must be a valid email</string>
+    <string name="FillFirstNameToast">Fill out first name</string>
+    <string name="RegiSuccess">Registration Successful</string>
+    <string name="LoginFailedToast">Login failed, please verify email.</string>
+    <string name="EnterEmailToast">Please enter your email.</string>
 </resources>

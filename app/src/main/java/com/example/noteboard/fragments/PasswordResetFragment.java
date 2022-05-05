@@ -2,6 +2,7 @@ package com.example.noteboard.fragments;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Application;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,7 @@ public class PasswordResetFragment extends Fragment {
                 return true;
         return false;
     }
+    Application var = getActivity().getApplication();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,7 @@ public class PasswordResetFragment extends Fragment {
         view.findViewById(R.id.btnResetPassword).setOnClickListener(view1 -> {
             email = Objects.requireNonNull(oldEmail.getText()).toString().trim();
             if (isAnyStringNullOrEmpty(email)) {
-                Toast.makeText(getContext(),"Please enter your email.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), var.getString(R.string.EnterEmailToast),Toast.LENGTH_SHORT).show();
             }
             else{
                 PasswordResetViewModel.resetPassword(email);

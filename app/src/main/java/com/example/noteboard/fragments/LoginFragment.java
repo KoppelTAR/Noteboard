@@ -1,5 +1,6 @@
 package com.example.noteboard.fragments;
 
+import android.app.Application;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -23,9 +24,11 @@ import java.util.Objects;
 public class LoginFragment extends Fragment {
     private LoginViewModel loginViewModel;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Application var = getActivity().getApplication();
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         loginViewModel.getUserMutableLiveData().observe(this, firebaseUser -> {
             if (firebaseUser != null && firebaseUser.isEmailVerified()) {
@@ -35,7 +38,7 @@ public class LoginFragment extends Fragment {
                     //Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_userFragment);
                 }
                 else {
-                    Toast.makeText(getActivity(), "Login failed, please verify email.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), var.getString(R.string.LoginFailedToast), Toast.LENGTH_SHORT).show();
                 }
             }
         });
