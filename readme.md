@@ -3,9 +3,9 @@
 
 ## Content
 
-[What is Noteboard?](#what-is-noteboard?)
+[What is Noteboard?](#what-is-noteboard)
 
-[Testing the app with Android Studio virtual devices](#testing-with-android-studio)
+[Testing the app with Android Studio](#testing-with-android-studio)
 
 
 ## What is Noteboard?
