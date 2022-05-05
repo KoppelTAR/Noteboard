@@ -17,7 +17,7 @@ public class RegistrationViewModel extends AndroidViewModel {
     }
 
     public void userRegistration(String username, String email, String password) {
-        authRepository.userRegistration(username,email,password);
+        /*authRepository.userRegistration(username,email,password);*/
     }
 
 }
