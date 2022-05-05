@@ -15,4 +15,9 @@
     <string name="forgotPassword">forgot password?</string>
     <string name="enter_email">Enter email</string>
     <string name="reset_password">reset password</string>
+    <string name="registerFragBtn">Register</string>
+    <string name="confirm_passwordRegFrag">Confirm Password</string>
+    <string name="enter_passwordRegFrag">Enter Password</string>
+    <string name="enter_emailRegFrag">Enter Email</string>
+    <string name="enter_usernameRegFrag">Enter Username</string>
 </resources>
