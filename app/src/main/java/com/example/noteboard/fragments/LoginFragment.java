@@ -6,14 +6,18 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.noteboard.R;
 import com.example.noteboard.Utils;
 import com.example.noteboard.viewmodels.LoginViewModel;
+
+import java.util.Objects;
 
 
 public class LoginFragment extends Fragment {
@@ -26,7 +30,11 @@ public class LoginFragment extends Fragment {
         loginViewModel.getUserMutableLiveData().observe(this, firebaseUser -> {
             if (firebaseUser != null && firebaseUser.isEmailVerified()) {
                 if(getView()!=null){
-
+                    //TODO this needs to be added back in once we get the main page done -- kaspar
+                    //Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_userFragment);
+                }
+                else {
+                    Toast.makeText(getActivity(), "Login failed, please verify email.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

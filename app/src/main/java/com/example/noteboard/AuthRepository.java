@@ -68,6 +68,11 @@ public class AuthRepository {
                 });
     }
 
+    public void logOut(){
+        firebaseAuth.signOut();
+        loggedOutMutableLiveData.postValue(true);
+    }
+
 
     public MutableLiveData<FirebaseUser> getUserMutableLiveData() {
         return userMutableLiveData;
