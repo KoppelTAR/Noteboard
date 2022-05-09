@@ -29,13 +29,13 @@ public class RegistrationFragment extends Fragment {
     TextInputEditText UsernameEditText;
     TextInputEditText PasswordConfirmEditText;
 
-    private RegistrationViewModel userRegistration;
+    private RegistrationViewModel RegistrationView;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        userRegistration = new ViewModelProvider(this).get(RegistrationViewModel.class);
+        RegistrationView = new ViewModelProvider(this).get(RegistrationViewModel.class);
     }
 
 
@@ -68,15 +68,15 @@ public class RegistrationFragment extends Fragment {
                 Toast.makeText(getActivity(), var.getString(R.string.RegiSuccess), Toast.LENGTH_SHORT).show();
 
                 //creates user and saves data by default firebase logs the user in after creating account
-                userRegistration.userRegistration(Username,email,password);
-                //TODO LOG THE USER OUT
+                RegistrationView.userRegistration(Username,email,password);
+                RegistrationView.logOut();
             }else {
 
                 if (Username.equals("")) {
                     Toast.makeText(getActivity(), var.getString(R.string.FillFirstNameToast), Toast.LENGTH_SHORT).show();
                 }if (!email.matches(emailPattern)) {
                     Toast.makeText(getActivity(), var.getString(R.string.ValidEmailToast), Toast.LENGTH_SHORT).show();
-                }if ( password.length() < 6) { //&& !password.matches(PasswordPattern)
+                }if ( password.length() < 6) {
                     Toast.makeText(getActivity(), var.getString(R.string.PassLenghtToast), Toast.LENGTH_LONG).show();
                 }if (!confPassword.equals(password)) {
                     Toast.makeText(getActivity(), var.getString(R.string.ConfPasstToast), Toast.LENGTH_SHORT).show();

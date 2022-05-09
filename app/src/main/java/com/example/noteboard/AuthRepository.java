@@ -16,7 +16,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -87,7 +86,7 @@ public class AuthRepository {
                             .addOnFailureListener(e -> Log.e(TAG, "onFailure: Error writing to DB document", e));
                     userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
 
-                    //TODO UNCOMMENT EmailVerification();
+                    EmailVerification();
                 }
 
             } else {
@@ -114,6 +113,7 @@ public class AuthRepository {
 
     public void logOut(){
         firebaseAuth.signOut();
+        Log.i(TAG, "logOut: Successfully logged out");
         loggedOutMutableLiveData.postValue(true);
     }
 

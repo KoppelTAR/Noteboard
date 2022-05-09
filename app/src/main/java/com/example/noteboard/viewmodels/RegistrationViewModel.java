@@ -20,4 +20,8 @@ public class RegistrationViewModel extends AndroidViewModel {
         authRepository.userRegistration(username,email,password);
     }
 
+    public void logOut() {
+        authRepository.logOut();
+    }
+
 }
