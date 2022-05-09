@@ -33,7 +33,7 @@ public class PasswordResetFragment extends Fragment {
                 return true;
         return false;
     }
-    Application var = getActivity().getApplication();
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,7 @@ public class PasswordResetFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         TextInputEditText oldEmail = view.findViewById(R.id.txtPasswordReset);
+        Application var = getActivity().getApplication();
         oldEmail.setText(email);
         PasswordResetViewModel = new ViewModelProvider(this).get(PasswordResetViewModel.class);
         view.findViewById(R.id.btnResetPassword).setOnClickListener(view1 -> {

@@ -12,4 +12,11 @@ public class Utils {
         }
         return false;
     }
+
+    public static boolean isAnyStringNullOrEmpty(String... strings) {
+        for (String s : strings)
+            if (s == null || s.isEmpty())
+                return true;
+        return false;
+    }
 }
