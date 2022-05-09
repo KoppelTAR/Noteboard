@@ -29,4 +29,7 @@
     <string name="RegiSuccess">Registration Successful</string>
     <string name="LoginFailedToast">Login failed, please verify email.</string>
     <string name="EnterEmailToast">Please enter your email.</string>
+    <string name="onFaliureDbError">onFailure: Error writing to DB document</string>
+    <string name="SuccessfulEmailVerSent">Email sent. Please verify email</string>
+    <string name="UserDataWasSaved">onSuccess: user data was saved</string>
 </resources>

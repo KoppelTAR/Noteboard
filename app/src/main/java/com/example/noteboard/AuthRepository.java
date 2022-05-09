@@ -82,8 +82,8 @@ public class AuthRepository {
                     user.put("username",username);
                     user.put("email",email);
                     user.put("OwnedPosts", null);
-                    documentReference.set(user).addOnSuccessListener(aVoid -> Log.i(TAG, "onSuccess: user data was saved"))
-                            .addOnFailureListener(e -> Log.e(TAG, "onFailure: Error writing to DB document", e));
+                    documentReference.set(user).addOnSuccessListener(aVoid -> Log.i(TAG, String.valueOf(R.string.UserDataWasSaved)))
+                            .addOnFailureListener(e -> Log.e(TAG, application.getString(R.string.onFaliureDbError), e));
                     userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
 
                     EmailVerification();
@@ -104,8 +104,7 @@ public class AuthRepository {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "Email sent.");
-                            Toast.makeText(application, "Email sent. Please verify email", Toast.LENGTH_LONG).show();
+                            Toast.makeText(application, application.getString(R.string.SuccessfulEmailVerSent), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -113,7 +112,6 @@ public class AuthRepository {
 
     public void logOut(){
         firebaseAuth.signOut();
-        Log.i(TAG, "logOut: Successfully logged out");
         loggedOutMutableLiveData.postValue(true);
     }
 
