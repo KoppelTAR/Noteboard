@@ -33,4 +33,5 @@
     <string name="SuccessfulEmailVerSent">Email sent. Please verify email</string>
     <string name="UserDataWasSaved">onSuccess: user data was saved</string>
     <string name="create_a_new_post">CREATE A NEW POST</string>
+    <string name="postCreated">Post created!</string>
 </resources>
