@@ -1,5 +1,7 @@
 package com.example.noteboard.fragments;
 
+import static androidx.fragment.app.FragmentManager.TAG;
+
 import android.app.Application;
 import android.os.Bundle;
 
