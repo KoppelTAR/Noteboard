@@ -37,7 +37,7 @@ public class PostsRepository {
         Map<String,Object> post = new HashMap<>();
         post.put("content",postContent);
         post.put("title",postTitle);
-        post.put("sharingCode", Utils.generateShareCode());
+        post.put("sharingCode", currentMs);
         post.put("editedAt", Calendar.getInstance().getTime());
         docRefPost.set(post).addOnSuccessListener(aVoid -> Log.i(TAG, String.valueOf(R.string.UserDataWasSaved)));
 
@@ -47,7 +47,6 @@ public class PostsRepository {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 ArrayList<DocumentReference> array = (ArrayList<DocumentReference>) task.getResult().get("ownedPosts");
                 array.add(docRefPost);
-
                 docRefUser.update("ownedPosts", array);
             }
         });

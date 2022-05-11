@@ -34,7 +34,6 @@ public class CreatePostFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        requireActivity().getActionBar().setTitle("Create a new post.");
         View view = inflater.inflate(R.layout.fragment_create, container, false);
         EditText postContent = view.findViewById(R.id.editTextPostContent);
         EditText postTitle = view.findViewById(R.id.editTextPostTitle);
@@ -43,7 +42,6 @@ public class CreatePostFragment extends Fragment {
                     && !Utils.isEditTextEmpty(postTitle, getContext())){
                 viewModel.createPost(postTitle.getText().toString(),
                         postContent.getText().toString());
-
                 Toast.makeText(getContext(), getActivity().getString(R.string.postCreated), Toast.LENGTH_LONG).show();
             }
         });

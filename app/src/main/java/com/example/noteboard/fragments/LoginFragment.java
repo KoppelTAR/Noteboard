@@ -37,7 +37,6 @@ public class LoginFragment extends Fragment {
                 if(getView()!=null){
                     //TODO this needs to be added back in once we get the main page done -- kaspar
                     //TODO this should auto login if the user was previously logged in -- kaspar
-                    Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_createPostFragment);
                     //Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_userFragment);
                 }
                 else {
