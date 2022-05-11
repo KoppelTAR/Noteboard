@@ -15,8 +15,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -75,18 +78,22 @@ public class AuthRepository {
                 if (firebaseAuth.getCurrentUser() != null) {
                     //gets newly created users UID
                     String userId = firebaseAuth.getCurrentUser().getUid();
+                    ArrayList<DocumentReference> posts = new ArrayList<DocumentReference>();
 
                     //creates new collection named users if one doesn't exist into it add a new document with UID reference
                     DocumentReference documentReference = db.collection("users").document(userId);
                     Map<String,Object> user = new HashMap<>();
                     user.put("username",username);
                     user.put("email",email);
-                    user.put("OwnedPosts", null);
+                    user.put("ownedPosts", posts);
+                    user.put("sharedPosts", posts);
                     documentReference.set(user).addOnSuccessListener(aVoid -> Log.i(TAG, String.valueOf(R.string.UserDataWasSaved)))
                             .addOnFailureListener(e -> Log.e(TAG, application.getString(R.string.onFaliureDbError), e));
                     userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
 
                     EmailVerification();
+
+                    Toast.makeText(application, "Registration successful", Toast.LENGTH_SHORT).show();
                 }
 
             } else {

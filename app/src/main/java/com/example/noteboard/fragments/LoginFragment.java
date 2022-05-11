@@ -30,19 +30,6 @@ public class LoginFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Application var = getActivity().getApplication();
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-        loginViewModel.getUserMutableLiveData().observe(this, firebaseUser -> {
-            if (firebaseUser != null && firebaseUser.isEmailVerified()) {
-                if(getView()!=null){
-                    //TODO this needs to be added back in once we get the main page done -- kaspar
-                    //TODO this should auto login if the user was previously logged in -- kaspar
-                    //Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_userFragment);
-                }
-                else {
-                    Toast.makeText(getActivity(), var.getString(R.string.LoginFailedToast), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
     }
 
     @Override
@@ -56,6 +43,7 @@ public class LoginFragment extends Fragment {
                     && !Utils.isEditTextEmpty(editTextPassword, getContext())){
                 loginViewModel.logIn(editTextEmail.getText().toString(),
                         editTextPassword.getText().toString());
+                //TODO Uncomment after post viewing is done-> Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_userFragment);
             }
         });
 

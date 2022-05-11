@@ -65,25 +65,24 @@ public class RegistrationFragment extends Fragment {
                     && password.length() >= 6
                     && confPassword.equals(password)
                     && Username.length() > 0) {
-                Toast.makeText(getActivity(), var.getString(R.string.RegiSuccess), Toast.LENGTH_SHORT).show();
 
                 //creates user and saves data by default firebase logs the user in after creating account
                 RegistrationView.userRegistration(Username,email,password);
                 RegistrationView.logOut();
+                navController.navigate(R.id.action_registrationFragment_to_loginFragment);
             }else {
 
                 if (Username.equals("")) {
                     Toast.makeText(getActivity(), var.getString(R.string.FillFirstNameToast), Toast.LENGTH_SHORT).show();
-                }if (!email.matches(emailPattern)) {
+                }else if (!email.matches(emailPattern)) {
                     Toast.makeText(getActivity(), var.getString(R.string.ValidEmailToast), Toast.LENGTH_SHORT).show();
-                }if ( password.length() < 6) {
+                }else if ( password.length() < 6) {
                     Toast.makeText(getActivity(), var.getString(R.string.PassLenghtToast), Toast.LENGTH_LONG).show();
-                }if (!confPassword.equals(password)) {
+                } else if (!confPassword.equals(password)) {
                     Toast.makeText(getActivity(), var.getString(R.string.ConfPasstToast), Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(getActivity(), var.getString(R.string.ToastRegiFailed), Toast.LENGTH_SHORT).show();
             }
-            navController.navigate(R.id.action_registrationFragment_to_loginFragment);
+
         });
 
         return view;
