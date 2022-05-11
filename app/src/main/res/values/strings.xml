@@ -32,4 +32,6 @@
     <string name="onFaliureDbError">onFailure: Error writing to DB document</string>
     <string name="SuccessfulEmailVerSent">Email sent. Please verify email</string>
     <string name="UserDataWasSaved">onSuccess: user data was saved</string>
+    <string name="tempAllTitle">title</string>
+    <string name="tempAllContent">content</string>
 </resources>

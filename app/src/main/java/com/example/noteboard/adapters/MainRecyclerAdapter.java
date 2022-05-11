@@ -1,0 +1,56 @@
+package com.example.noteboard.adapters;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.noteboard.R;
+import com.example.noteboard.models.Post;
+
+import java.util.ArrayList;
+
+public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.MainViewHolder> {
+    ArrayList<Post> postArrayList;
+
+    public MainRecyclerAdapter() {
+        this.postArrayList = new ArrayList<>();
+    }
+
+    @NonNull
+    @Override
+    public MainRecyclerAdapter.MainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_main,parent,false);
+        return new MainRecyclerAdapter.MainViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MainRecyclerAdapter.MainViewHolder holder, int position) {
+        Post post = postArrayList.get(position);
+        holder.title.setText(post.getTitle());
+        holder.content.setText(post.getContent());
+    }
+
+    @Override
+    public int getItemCount() {
+        return postArrayList.size();
+    }
+
+    public void updatePostList(final ArrayList<Post> postArrayList){
+        this.postArrayList = postArrayList;
+        notifyDataSetChanged();
+    }
+
+    static class MainViewHolder extends RecyclerView.ViewHolder{
+        private final TextView title;
+        private final TextView content;
+        public MainViewHolder(@NonNull View itemView) {
+            super(itemView);
+            title = itemView.findViewById(R.id.txtPostTitle);
+            content = itemView.findViewById(R.id.txtPostContent);
+        }
+    }
+}
