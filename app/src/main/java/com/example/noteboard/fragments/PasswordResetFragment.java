@@ -1,5 +1,6 @@
 package com.example.noteboard.fragments;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Application;
@@ -46,6 +47,8 @@ public class PasswordResetFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Reset password");
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.password_reset_fragment, container, false);
     }
 

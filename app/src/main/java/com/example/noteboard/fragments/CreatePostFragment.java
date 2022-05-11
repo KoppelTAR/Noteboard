@@ -1,24 +1,21 @@
 package com.example.noteboard.fragments;
 
-import static androidx.fragment.app.FragmentManager.TAG;
-
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.noteboard.PostsRepository;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.noteboard.R;
 import com.example.noteboard.Utils;
 import com.example.noteboard.viewmodels.CreatePostViewModel;
+
+import java.util.Objects;
 
 
 public class CreatePostFragment extends Fragment {
@@ -34,6 +31,8 @@ public class CreatePostFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Create post");
+        setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_create, container, false);
         EditText postContent = view.findViewById(R.id.editTextPostContent);
         EditText postTitle = view.findViewById(R.id.editTextPostTitle);

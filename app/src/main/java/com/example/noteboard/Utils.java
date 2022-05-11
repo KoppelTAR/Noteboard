@@ -14,17 +14,4 @@ public class Utils {
         }
         return false;
     }
-
-    public static String generateShareCode(){
-        Random rnd = new Random();
-        int number = rnd.nextInt(999999);
-        return String.format("%06d", number);
-    }
-
-    public static boolean isAnyStringNullOrEmpty(String... strings) {
-        for (String s : strings)
-            if (s == null || s.isEmpty())
-                return true;
-        return false;
-    }
 }
