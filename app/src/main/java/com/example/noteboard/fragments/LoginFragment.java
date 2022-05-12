@@ -33,7 +33,6 @@ public class LoginFragment extends Fragment {
         loginViewModel.getUserMutableLiveData().observe(this, firebaseUser -> {
             if (firebaseUser != null && firebaseUser.isEmailVerified()) {
                 if(getView()!=null){
-                    //TODO this should auto login if the user was previously logged in -- kaspar
                     Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_mainFragment);
                 }
                 else {

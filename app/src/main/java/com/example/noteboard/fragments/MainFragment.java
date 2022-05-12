@@ -20,11 +20,15 @@ import android.view.ViewGroup;
 
 import com.example.noteboard.R;
 import com.example.noteboard.adapters.MainRecyclerAdapter;
+import com.example.noteboard.models.Post;
 import com.example.noteboard.viewmodels.MainViewModel;
+
+import java.util.ArrayList;
 
 public class MainFragment extends Fragment {
     private  MainViewModel mainViewModel;
     private MainRecyclerAdapter mainRecyclerAdapter;
+    ArrayList<Post> postArrayList;
 
 
     @Override
@@ -48,8 +52,8 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        mainViewModel.getPostLiveData().observe(getViewLifecycleOwner(), postArrayList ->
-                mainRecyclerAdapter.updatePostList(postArrayList));
+        mainRecyclerAdapter.loadPostsData();
+        //mainViewModel.displayPosts();
     }
 
     @Override

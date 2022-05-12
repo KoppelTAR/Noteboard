@@ -1,6 +1,7 @@
 package com.example.noteboard;
 
 import android.app.Application;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -37,8 +38,7 @@ public class PostsRepository {
     private FirebaseAuth firebaseAuth;
     private final Application application;
     private final MutableLiveData<Boolean> loggedOutMutableLiveData;
-    private final FirebaseDatabase db = FirebaseDatabase.getInstance();
-    private final FirebaseFirestore db2 = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private final MutableLiveData<FirebaseUser> userMutableLiveData;
     private final MutableLiveData<ArrayList<Post>> postLiveData;
     private final ArrayList<Post> postArrayList = new ArrayList<>();
@@ -53,13 +53,13 @@ public class PostsRepository {
         if (firebaseAuth.getCurrentUser() != null){
             userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
             loggedOutMutableLiveData.postValue(false);
-            loadPostsData();
         }
     }
 
 
+    /*
     public void loadPostsData(){
-        db2.collection("posts")
+        db.collection("posts")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -71,54 +71,9 @@ public class PostsRepository {
                         }
                     }
                 });
-        /*
-        DocumentReference document = db2.collection("posts").document("1652266757168");
-        document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
-                    Log.i("TAG", documentSnapshot.getString("title"));
-                } else{
-                    Log.i("TAG", "failed ");
-                }
-            }
-        });
-
-         */
-
-        /*
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot postsnap : snapshot.getChildren()) {
-                    Post post = postsnap.getValue(Post.class);
-                    postArrayList.add(post);
-                    Log.i("TAG", post.getTitle());
-                    postLiveData.setValue(postArrayList);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-         */
-
-
-            /*
-            String uid = firebaseAuth.getCurrentUser().getUid();
-            DocumentReference doc = db.collection("posts").document(uid);
-            doc.get()
-                    .addOnSuccessListener(documentSnapshot -> {
-
-                        Post post = documentSnapshot.toObject(Post.class);
-                        postArrayList.add(post);
-                        postLiveData.setValue(postArrayList);
-                    }).addOnFailureListener(e ->
-                    Toast.makeText(application, application.getString(R.string.error,e.getMessage()), Toast.LENGTH_SHORT).show());
-
-             */
     }
+
+     */
 
 
     public MutableLiveData<FirebaseUser> getUserMutableLiveData() {

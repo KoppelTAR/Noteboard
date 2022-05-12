@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class MainViewModel extends AndroidViewModel {
 
     private final AuthRepository authRepository;
-    private final PostsRepository repository;
+    private final PostsRepository postsRepository;
     private final MutableLiveData<FirebaseUser> userMutableLiveData;
     private final MutableLiveData<ArrayList<Post>> postLiveData;
     private final MutableLiveData<Boolean> loggedOutMutableLiveData;
@@ -26,9 +26,9 @@ public class MainViewModel extends AndroidViewModel {
     public MainViewModel(@NonNull Application application) {
         super(application);
         authRepository = new AuthRepository(application);
-        repository = new PostsRepository(application);
+        postsRepository = new PostsRepository(application);
         userMutableLiveData = authRepository.getUserMutableLiveData();
-        postLiveData = repository.getPostLiveData();
+        postLiveData = postsRepository.getPostLiveData();
         loggedOutMutableLiveData = authRepository.getLoggedOutMutableLiveData();
     }
     public void logOut(){ authRepository.logOut();}
@@ -36,7 +36,7 @@ public class MainViewModel extends AndroidViewModel {
         return authRepository.getUserMutableLiveData();
     }
     public MutableLiveData<ArrayList<Post>> getPostLiveData() {
-        return repository.getPostLiveData();
+        return postsRepository.getPostLiveData();
     }
     public MutableLiveData<Boolean> getLoggedOutMutableLiveData() {
         return loggedOutMutableLiveData;
