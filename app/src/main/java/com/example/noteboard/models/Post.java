@@ -1,18 +1,22 @@
 package com.example.noteboard.models;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class Post {
     private String title;
     private String content;
-    private Timestamp editedAt;
+    private Date editedAt;
     private String sharingCode;
 
-    public Post(String title, String content, Timestamp editedAt, String sharingCode) {
+    public Post(String title, String content, Date editedAt, String sharingCode) {
         this.title = title;
         this.content = content;
         this.editedAt = editedAt;
-        this.sharingCode = sharingCode;
+        this.sharingCode = sharingCode.toString();
+    }
+
+    public Post() {
+
     }
 
     public String getTitle() {
@@ -31,11 +35,11 @@ public class Post {
         this.content = content;
     }
 
-    public Timestamp getEditedAt() {
+    public Date getEditedAt() {
         return editedAt;
     }
 
-    public void setEditedAt(Timestamp editedAt) {
+    public void setEditedAt(Date editedAt) {
         this.editedAt = editedAt;
     }
 
