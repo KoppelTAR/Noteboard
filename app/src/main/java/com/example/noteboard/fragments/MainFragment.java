@@ -2,6 +2,7 @@ package com.example.noteboard.fragments;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -46,6 +47,13 @@ public class MainFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
+        mainRecyclerAdapter.setOnItemClickListener(new MainRecyclerAdapter.onItemClickListener() {
+            @Override
+            public void onItemClickListener(Post post) {
+                Intent intent = new Intent(MainFragment.this, EditFragment.class) //TODO left off
+            }
+        });
     }
 
     @Override

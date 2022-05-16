@@ -24,6 +24,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.MainViewHolder> {
+
+    private onItemClickListener listener;
+
     ArrayList<Post> postArrayList;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     public MainRecyclerAdapter() {
@@ -54,13 +57,23 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         notifyDataSetChanged();
     }
 
-    static class MainViewHolder extends RecyclerView.ViewHolder{
+    class MainViewHolder extends RecyclerView.ViewHolder{
         private final TextView title;
         private final TextView content;
         public MainViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.txtPostTitle);
             content = itemView.findViewById(R.id.txtPostContent);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClickListener(postArrayList.get(position));
+                    }
+                }
+            });
         }
     }
 
@@ -79,5 +92,13 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
                         }
                     }
                 });
+    }
+
+
+    public interface onItemClickListener {
+        void onItemClickListener(Post post);
+    }
+    public void setOnItemClickListener(onItemClickListener listener){
+        this.listener = listener;
     }
 }
