@@ -51,7 +51,12 @@ public class MainFragment extends Fragment {
         mainRecyclerAdapter.setOnItemClickListener(new MainRecyclerAdapter.onItemClickListener() {
             @Override
             public void onItemClickListener(Post post) {
-                Intent intent = new Intent(MainFragment.this, EditFragment.class) //TODO left off
+                Bundle bundle = new Bundle();
+                bundle.putString("title",post.getTitle());
+                bundle.putString("content",post.getContent());
+                bundle.putString("sharingcode",post.getSharingCode());
+
+                Navigation.findNavController(getView()).navigate(R.id.action_mainFragment_to_editFragment,bundle);
             }
         });
     }
