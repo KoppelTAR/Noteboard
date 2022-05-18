@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.noteboard.R;
 import com.example.noteboard.Utils;
@@ -41,6 +42,14 @@ public class CreatePostFragment extends Fragment {
                     && !Utils.isEditTextEmpty(postTitle, getContext())){
                 viewModel.createPost(postTitle.getText().toString(),
                         postContent.getText().toString());
+
+                try {
+                    Toast.makeText(getContext(), getActivity().getString(R.string.pleaseWait), Toast.LENGTH_LONG).show();
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Navigation.findNavController(getView()).navigate(R.id.action_createPostFragment_to_mainFragment);
                 Toast.makeText(getContext(), getActivity().getString(R.string.postCreated), Toast.LENGTH_LONG).show();
             }
         });

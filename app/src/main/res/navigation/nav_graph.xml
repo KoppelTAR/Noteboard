@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_loginFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/passwordResetFragment"
@@ -36,8 +39,44 @@
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.noteboard.fragments.MainFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_createPostFragment"
+            app:destination="@id/createPostFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.noteboard.fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.example.noteboard.fragments.UserFragment"
+        android:label="user_fragment"
+        tools:layout="@layout/user_fragment" >
+        <action
+            android:id="@+id/action_userFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
         android:id="@+id/createPostFragment"
         android:name="com.example.noteboard.fragments.CreatePostFragment"
         android:label="fragment_create"
-        tools:layout="@layout/fragment_create" />
+        tools:layout="@layout/fragment_create" >
+        <action
+            android:id="@+id/action_createPostFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>

@@ -7,13 +7,12 @@ import androidx.lifecycle.AndroidViewModel;
 
 import com.example.noteboard.AuthRepository;
 
-public class PasswordResetViewModel extends AndroidViewModel {
+public class SettingsViewModel extends AndroidViewModel {
     private final AuthRepository authRepository;
-    public PasswordResetViewModel(@NonNull Application application) {
+
+
+    public SettingsViewModel(@NonNull Application application) {
         super(application);
         authRepository = new AuthRepository(application);
-    }
-    public void resetPassword(String email){
-        authRepository.sendPasswordResetEmail(email);
     }
 }

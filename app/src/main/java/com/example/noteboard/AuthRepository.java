@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.app.Application;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -118,6 +120,20 @@ public class AuthRepository {
     public void logOut(){
         firebaseAuth.signOut();
         loggedOutMutableLiveData.postValue(true);
+    }
+
+    public void SetUsername(TextView hellousernameTextView) {
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if (firebaseUser != null) {
+            db.collection("users").document(firebaseUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    DocumentSnapshot document = task.getResult();
+                    String string = document.getString("username");
+                    hellousernameTextView.setText(String.format(application.getString(R.string.hello_user),string));
+                }
+            });
+        }
     }
 
 

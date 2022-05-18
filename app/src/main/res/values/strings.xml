@@ -32,6 +32,19 @@
     <string name="onFaliureDbError">onFailure: Error writing to DB document</string>
     <string name="SuccessfulEmailVerSent">Email sent. Please verify email</string>
     <string name="UserDataWasSaved">onSuccess: user data was saved</string>
+    <string name="tempAllTitle">title</string>
+    <string name="tempAllContent">content</string>
+    <string name="language_selection">Language selection:</string>
+    <string name="dark_mode_toggle">Dark mode toggle:</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="off">Off</string>
+    <string name="on">On</string>
+    <string name="notification_toggle">Notification toggle:</string>
+    <string name="hello_user">Hello, %s!</string>
+    <string name="view_your_posts">View your posts</string>
+    <string name="logout">Logout</string>
+    <string name="find_post_with_sharing_code">Find post with sharing code</string>
     <string name="create_a_new_post">CREATE A NEW POST</string>
     <string name="postCreated">Post created!</string>
+    <string name="pleaseWait">Saving, please wait</string>
 </resources>

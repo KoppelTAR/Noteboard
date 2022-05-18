@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -26,8 +27,19 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         Application var = getActivity().getApplication();
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        loginViewModel.getUserMutableLiveData().observe(this, firebaseUser -> {
+            if (firebaseUser != null && firebaseUser.isEmailVerified()) {
+                if(getView()!=null){
+                    Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_mainFragment);
+                }
+                else {
+                    Toast.makeText(getActivity(), var.getString(R.string.LoginFailedToast), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
@@ -43,7 +55,6 @@ public class LoginFragment extends Fragment {
                     && !Utils.isEditTextEmpty(editTextPassword, getContext())){
                 loginViewModel.logIn(editTextEmail.getText().toString(),
                         editTextPassword.getText().toString());
-                //TODO Uncomment after post viewing is done-> Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_userFragment);
             }
         });
 
