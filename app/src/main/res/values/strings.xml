@@ -49,4 +49,5 @@
     <string name="pleaseWait">Saving, please wait</string>
     <string name="author">author</string>
     <string name="byAuthor">By %s</string>
+    <string name="view_all_posts">View all posts</string>
 </resources>

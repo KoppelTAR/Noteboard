@@ -27,6 +27,8 @@ public class MainViewModel extends AndroidViewModel {
         return postLiveData;
     }
 
+    public void showUserPosts(){postsRepository.getUserPosts();}
+
     public void showPosts(){
         postsRepository.getPosts();
     }

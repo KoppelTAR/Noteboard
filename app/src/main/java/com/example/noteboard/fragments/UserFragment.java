@@ -19,7 +19,9 @@ import com.example.noteboard.viewmodels.UserViewModel;
 public class UserFragment extends Fragment {
 
     Button logout;
+    Button viewPosts;
     TextView hello;
+    Button viewAllPosts;
     UserViewModel userViewModel;
 
     @Override
@@ -29,6 +31,8 @@ public class UserFragment extends Fragment {
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         logout= view.findViewById(R.id.btnLogout);
         hello = view.findViewById(R.id.txtHelloUser);
+        viewPosts = view.findViewById(R.id.btnViewPosts);
+        viewAllPosts = view.findViewById(R.id.btnViewAllPosts);
         return view;
     }
 
@@ -37,6 +41,14 @@ public class UserFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         UserViewModel userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         userViewModel.showUsername(hello);
+
+        viewAllPosts.setOnClickListener(view1 -> {
+            Navigation.findNavController(getView()).navigate(R.id.action_userFragment_to_mainFragment);
+        });
+
+        viewPosts.setOnClickListener(view1 -> {
+            Navigation.findNavController(getView()).navigate(R.id.action_userFragment_to_userPostsFragment22);
+        });
 
 
         logout.setOnClickListener(new View.OnClickListener() {

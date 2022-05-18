@@ -51,7 +51,7 @@ public class PostsRepository {
                 post.put("content",postContent);
                 post.put("title",postTitle);
                 post.put("sharingCode", currentMs);
-                post.put("postAuthor",task.getResult().getString("username"));
+                post.put("postAuthor",String.format(application.getString(R.string.byAuthor),task.getResult().getString("userName")));
                 post.put("editedAt", Calendar.getInstance().getTime());
                 docRefPost.set(post).addOnSuccessListener(aVoid -> Log.i(TAG, String.valueOf(R.string.UserDataWasSaved)));
 
