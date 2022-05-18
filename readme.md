@@ -65,4 +65,14 @@ Voilà! You now have a virtual device ready to run applications!
 ![Image](readme_img_4.png)
 
 
+## Noteboard uml diagrams
+
+### machine state diagram
+
+![Image](machine state.png)
+
+### package dependency diagram
+
+![Image](package diagram.png)
+
 [Back to content](#markdown-header-content)
