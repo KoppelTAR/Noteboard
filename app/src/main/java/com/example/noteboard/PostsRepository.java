@@ -42,27 +42,83 @@ public class PostsRepository {
     }
 
     public void createPost(String postTitle, String postContent){
-        Long currentMs = Calendar.getInstance().getTimeInMillis();
-        DocumentReference docRefPost = db.collection("posts").document(currentMs.toString());
-        Map<String,Object> post = new HashMap<>();
-        post.put("content",postContent);
-        post.put("title",postTitle);
-        post.put("sharingCode", currentMs);
-        post.put("editedAt", Calendar.getInstance().getTime());
-        docRefPost.set(post).addOnSuccessListener(aVoid -> Log.i(TAG, String.valueOf(R.string.UserDataWasSaved)));
-
-        DocumentReference docRefUser = db.collection("users").document(firebaseAuth.getCurrentUser().getUid());
-        docRefUser.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        db.collection("users").document(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                ArrayList<DocumentReference> array = (ArrayList<DocumentReference>) task.getResult().get("ownedPosts");
-                array.add(docRefPost);
-                docRefUser.update("ownedPosts", array);
-                postLiveData.setValue(postArrayList);
+                Long currentMs = Calendar.getInstance().getTimeInMillis();
+                DocumentReference docRefPost = db.collection("posts").document(currentMs.toString());
+                Map<String,Object> post = new HashMap<>();
+                post.put("content",postContent);
+                post.put("title",postTitle);
+                post.put("sharingCode", currentMs);
+                post.put("postAuthor",task.getResult().getString("username"));
+                post.put("editedAt", Calendar.getInstance().getTime());
+                docRefPost.set(post).addOnSuccessListener(aVoid -> Log.i(TAG, String.valueOf(R.string.UserDataWasSaved)));
+
+                DocumentReference docRefUser = db.collection("users").document(firebaseAuth.getCurrentUser().getUid());
+                docRefUser.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        ArrayList<DocumentReference> array = (ArrayList<DocumentReference>) task.getResult().get("ownedPosts");
+                        array.add(docRefPost);
+                        docRefUser.update("ownedPosts", array);
+                        postLiveData.setValue(postArrayList);
+                    }
+                });
             }
         });
     }
 
+    public void getUserPosts(){
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if (firebaseUser != null) {
+            String uid = firebaseUser.getUid();
+            db.collection("users").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            List<DocumentReference> ownedPostsList = (List<DocumentReference>) document.get("ownedPosts");
+                            List<Task<DocumentSnapshot>> tasks = new ArrayList<>();
+                            if (ownedPostsList != null) {
+                                for (DocumentReference documentReference : ownedPostsList) {
+                                    Task<DocumentSnapshot> documentSnapshotTask = documentReference.get();
+                                    tasks.add(documentSnapshotTask);
+                                }
+                            }
+                            Tasks.whenAllSuccess(tasks).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
+                                @Override
+                                public void onSuccess(List<Object> list) {
+                                    for (int i = 0; i < list.size(); i++) {
+                                        Log.i("TAG", "onSuccess: "+list.get(i));
+
+                                        DocumentSnapshot object = (DocumentSnapshot) list.get(i);
+
+                                        Timestamp time = (Timestamp) object.get("editedAt");
+                                        long dv = Long.valueOf(time.getSeconds())*1000;
+                                        Date df = new Date(dv);
+
+                                        Post post = new Post();
+                                        post.setPostAuthor(object.getString("postAuthor"));
+                                        post.setTitle(object.getString("title"));
+                                        post.setEditedAt(df);
+                                        Long s = object.getLong("sharingCode");
+                                        post.setSharingCode(s);
+                                        post.setContent(object.getString("content"));
+
+                                        postArrayList.add(post);
+                                        postLiveData.setValue(postArrayList);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+    }
 
     public void getPosts(){
         firebaseAuth = FirebaseAuth.getInstance();
@@ -103,6 +159,7 @@ public class PostsRepository {
                                         Date df = new Date(dv);
 
                                         Post post = new Post();
+                                        post.setPostAuthor(String.format(application.getString(R.string.byAuthor),object.getString("postAuthor")));
                                         post.setTitle(object.getString("title"));
                                         post.setEditedAt(df);
                                         Long s = object.getLong("sharingCode");

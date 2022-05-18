@@ -47,4 +47,6 @@
     <string name="create_a_new_post">CREATE A NEW POST</string>
     <string name="postCreated">Post created!</string>
     <string name="pleaseWait">Saving, please wait</string>
+    <string name="author">author</string>
+    <string name="byAuthor">By %s</string>
 </resources>
