@@ -13,12 +13,15 @@ import com.google.firebase.auth.FirebaseUser;
 public class UserViewModel extends AndroidViewModel {
     private final AuthRepository authRepository;
     private final MutableLiveData<FirebaseUser> userMutableLiveData;
+    private final MutableLiveData<Boolean> loggedOutMutableLiveData;
+
 
 
     public UserViewModel(@NonNull Application application) {
         super(application);
         authRepository = new AuthRepository(application);
         userMutableLiveData = authRepository.getUserMutableLiveData();
+        loggedOutMutableLiveData = authRepository.getLoggedOutMutableLiveData();
     }
 
     public void logout(){
@@ -27,6 +30,9 @@ public class UserViewModel extends AndroidViewModel {
 
     public MutableLiveData<FirebaseUser> getUserMutableLiveData() {
         return authRepository.getUserMutableLiveData();
+    }
+    public MutableLiveData<Boolean> getLoggedOutMutableLiveData() {
+        return loggedOutMutableLiveData;
     }
 
 

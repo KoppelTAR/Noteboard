@@ -9,10 +9,13 @@ import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import com.example.noteboard.R;
+
+import java.util.Objects;
 
 public class SettingsFragment extends Fragment {
 
@@ -27,6 +30,7 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Settings");
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
         night= view.findViewById(R.id.switchDarkMode);
         return view;

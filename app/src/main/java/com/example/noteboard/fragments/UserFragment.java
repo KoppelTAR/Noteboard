@@ -9,12 +9,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.noteboard.R;
 import com.example.noteboard.viewmodels.UserViewModel;
+
+import java.util.Objects;
 
 public class UserFragment extends Fragment {
 
@@ -26,6 +29,7 @@ public class UserFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.user_fragment, container, false);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Profile");
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         logout= view.findViewById(R.id.btnLogout);
         hello = view.findViewById(R.id.txtHelloUser);
@@ -37,6 +41,12 @@ public class UserFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         UserViewModel userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         userViewModel.showUsername(hello);
+        userViewModel.getLoggedOutMutableLiveData().observe(getViewLifecycleOwner(), loggedOut ->{
+            if(loggedOut){
+                if(getView() != null) Navigation.findNavController(getView())
+                        .navigate(R.id.action_userFragment_to_loginFragment);
+            }
+        });
 
 
         logout.setOnClickListener(new View.OnClickListener() {

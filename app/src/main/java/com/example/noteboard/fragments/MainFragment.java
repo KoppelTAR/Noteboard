@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -21,6 +22,8 @@ import com.example.noteboard.adapters.MainRecyclerAdapter;
 import com.example.noteboard.viewmodels.MainViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Objects;
+
 public class MainFragment extends Fragment {
     private MainRecyclerAdapter mainRecyclerAdapter;
     FloatingActionButton fab;
@@ -29,6 +32,7 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Noteboard");
         View view = inflater.inflate(R.layout.main_fragment, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerAllPosts);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -49,6 +53,12 @@ public class MainFragment extends Fragment {
         MainViewModel mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         mainViewModel.showPosts();
         mainViewModel.getPostLiveData().observe(getViewLifecycleOwner(),posts -> mainRecyclerAdapter.updatePostList(posts));
+        mainViewModel.getLoggedOutMutableLiveData().observe(getViewLifecycleOwner(), loggedOut ->{
+            if(loggedOut){
+                if(getView() != null) Navigation.findNavController(getView())
+                        .navigate(R.id.action_mainFragment_to_loginFragment);
+            }
+        });
         fab = view.findViewById(R.id.floatingBtn);
         Navigation.findNavController(getView());
 
