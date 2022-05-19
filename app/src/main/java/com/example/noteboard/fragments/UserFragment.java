@@ -22,7 +22,9 @@ import java.util.Objects;
 public class UserFragment extends Fragment {
 
     Button logout;
+    Button viewPosts;
     TextView hello;
+    Button viewAllPosts;
     UserViewModel userViewModel;
 
     @Override
@@ -33,6 +35,8 @@ public class UserFragment extends Fragment {
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         logout= view.findViewById(R.id.btnLogout);
         hello = view.findViewById(R.id.txtHelloUser);
+        viewPosts = view.findViewById(R.id.btnViewPosts);
+        viewAllPosts = view.findViewById(R.id.btnViewAllPosts);
         return view;
     }
 
@@ -46,6 +50,18 @@ public class UserFragment extends Fragment {
                 if(getView() != null) Navigation.findNavController(getView())
                         .navigate(R.id.action_userFragment_to_loginFragment);
             }
+        });
+
+        viewAllPosts.setOnClickListener(view1 -> {
+            Bundle args = new Bundle();
+            args.putString("type","all");
+            Navigation.findNavController(getView()).navigate(R.id.action_userFragment_to_mainFragment,args);
+        });
+
+        viewPosts.setOnClickListener(view1 -> {
+            Bundle args = new Bundle();
+            args.putString("type","own");
+            Navigation.findNavController(getView()).navigate(R.id.action_userFragment_to_mainFragment, args);
         });
 
 

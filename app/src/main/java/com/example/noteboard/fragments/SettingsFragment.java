@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Switch;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.noteboard.R;
 
@@ -20,6 +22,7 @@ import java.util.Objects;
 public class SettingsFragment extends Fragment {
 
     Switch night;
+    Button backBtn;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,12 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        backBtn = view.findViewById(R.id.btnBack);
+
+        backBtn.setOnClickListener(view1 -> {
+            Navigation.findNavController(view).navigate(R.id.action_settingsFragment_to_userFragment);
+        });
 
         int nightModeFlags =  view.getContext().getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
         if (nightModeFlags == Configuration.UI_MODE_NIGHT_YES) {

@@ -33,7 +33,9 @@ public class LoginFragment extends Fragment {
         loginViewModel.getUserMutableLiveData().observe(this, firebaseUser -> {
             if (firebaseUser != null && firebaseUser.isEmailVerified()) {
                 if(getView()!=null){
-                    Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_mainFragment);
+                    Bundle args = new Bundle();
+                    args.putString("type","all");
+                    Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_mainFragment,args);
                 }
                 else {
                     Toast.makeText(getActivity(), var.getString(R.string.LoginFailedToast), Toast.LENGTH_SHORT).show();

@@ -7,17 +7,17 @@ public class Post {
     private String content;
     private Date editedAt;
     private Long sharingCode;
+    private String postAuthor;
 
-    public Post(String title, String content, Date editedAt, Long sharingCode) {
+    public Post(String title, String content, Date editedAt, Long sharingCode, String postAuthor) {
         this.title = title;
         this.content = content;
         this.editedAt = editedAt;
         this.sharingCode = sharingCode;
+        this.postAuthor = postAuthor;
     }
 
-    public Post() {
-
-    }
+    public Post() {}
 
     public String getTitle() {
         return title;
@@ -49,5 +49,13 @@ public class Post {
 
     public void setSharingCode(long sharingCode) {
         this.sharingCode = sharingCode;
+    }
+
+    public String getPostAuthor() {
+        return postAuthor;
+    }
+
+    public void setPostAuthor(String postAuthor) {
+        this.postAuthor = postAuthor;
     }
 }

@@ -37,7 +37,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         Post post = postArrayList.get(position);
         holder.title.setText(post.getTitle());
         holder.content.setText(post.getContent());
-        Log.i("TAG", "inside onbind ");
+        holder.author.setText(post.getPostAuthor());
     }
 
     @Override
@@ -47,17 +47,18 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
     public void updatePostList(final ArrayList<Post> postArrayList){
         this.postArrayList = postArrayList;
-        Log.i("TAG", "inside update ");
         notifyDataSetChanged();
     }
 
     static class MainViewHolder extends RecyclerView.ViewHolder{
         private final TextView title;
+        private final TextView author;
         private final TextView content;
         public MainViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.txtPostTitle);
             content = itemView.findViewById(R.id.txtPostContent);
+            author = itemView.findViewById(R.id.txtPostAuthor);
         }
     }
 }

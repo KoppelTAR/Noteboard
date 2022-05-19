@@ -60,7 +60,11 @@
         android:id="@+id/settingsFragment"
         android:name="com.example.noteboard.fragments.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userFragment"
         android:name="com.example.noteboard.fragments.UserFragment"
@@ -69,6 +73,10 @@
         <action
             android:id="@+id/action_userFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/createPostFragment"

@@ -21,6 +21,17 @@
 
 
     <Button
+        android:id="@+id/btnViewAllPosts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/view_all_posts"
+        app:icon="@drawable/ic_note"
+        app:layout_constraintBottom_toTopOf="@+id/btnViewPosts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtHelloUser" />
+
+    <Button
         android:id="@+id/btnViewPosts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
