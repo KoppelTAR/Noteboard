@@ -54,4 +54,13 @@
     <string name="postsTitle">%s\'s posts</string>
     <string name="save_changes_EditFrag">Save changes</string>
     <string name="ViewSingle_UsernameDisplay">By %s</string>
+    <string name="mainfragment_title">Posts</string>
+    <string name="singlepost_title">Post</string>
+    <string name="edit_menuBtn">EDIT</string>
+    <string name="user_menuBtn">USER</string>
+    <string name="settings_menuItem">SETTINGS</string>
+    <string name="content_hint">Content</string>
+    <string name="title_hint">Title</string>
+    <string name="create_btnText">Create</string>
+    <string name="email_example">Example: Egor@gmail.com</string>
 </resources>

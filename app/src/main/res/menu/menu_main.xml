@@ -5,11 +5,11 @@
     <item
         android:id="@+id/menuUser"
         android:icon="@drawable/ic_baseline_person_24"
-        android:title="user"
+        android:title="@string/user_menuBtn"
         app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/menuSettings"
         android:icon="@drawable/ic_baseline_settings_24"
-        android:title="settings"
+        android:title="@string/settings_menuItem"
         app:showAsAction="ifRoom|withText" />
 </menu>

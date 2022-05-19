@@ -63,7 +63,17 @@
         android:id="@+id/singlePostFragment"
         android:name="com.example.noteboard.fragments.SinglePostFragment"
         android:label="fragment_single_post"
-        tools:layout="@layout/fragment_single_post" />
+        tools:layout="@layout/fragment_single_post" >
+        <action
+            android:id="@+id/action_singlePostFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_singlePostFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_singlePostFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.noteboard.fragments.SettingsFragment"

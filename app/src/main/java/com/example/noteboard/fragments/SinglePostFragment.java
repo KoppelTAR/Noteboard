@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -17,6 +18,8 @@ import android.widget.TextView;
 
 import com.example.noteboard.R;
 
+import java.util.Objects;
+
 public class SinglePostFragment extends Fragment {
 
     TextView ContentTextView;
@@ -27,33 +30,35 @@ public class SinglePostFragment extends Fragment {
 
     String content;
     String title;
-    String sharingCode;
+    Long sharingCode;
     String author;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.singlepost_title);
         View view = inflater.inflate(R.layout.fragment_single_post,container,false);
         ContentTextView = view.findViewById(R.id.contentText);
         TitleTextView = view.findViewById(R.id.titleText);
         UsernameTextView = view.findViewById(R.id.usernameText);
-        return view;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
             content = getArguments().getString("content");
             title = getArguments().getString("title");
-            sharingCode = getArguments().getString("sharingcode");
+            sharingCode = getArguments().getLong("sharingcode");
             author = getArguments().getString("author");
 
             ContentTextView.setText(content);
             TitleTextView.setText(title);
             UsernameTextView.setText(String.format(getString(R.string.ViewSingle_UsernameDisplay),author));
         }
+        return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -64,20 +69,24 @@ public class SinglePostFragment extends Fragment {
 
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) { //TODO add nav
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menuSettings){
-
+            Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_settingsFragment);
         }
         if (item.getItemId() == R.id.menuUser){
-
+            Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_userFragment);
         }
-        if (item.getItemId() == R.id.menuEdit){ //TODO send bundle to edit
+        if (item.getItemId() == R.id.menuEdit){ //TODO send bundle to edit + nav
             Bundle bundle = new Bundle();
             bundle.putString("title",title);
             bundle.putString("content",content);
-            bundle.putString("sharingcode",sharingCode);
+            bundle.putLong("sharingcode",sharingCode);
             bundle.putString("author",author);
-
+        }
+        if (item.getItemId() == R.id.menuBack){
+            Bundle typeBundle = new Bundle();
+            typeBundle.putString("type",getArguments().getString("type"));
+            Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_mainFragment,typeBundle);
         }
         return false;
     }

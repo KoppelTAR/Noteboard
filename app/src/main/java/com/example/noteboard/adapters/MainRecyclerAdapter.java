@@ -11,15 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.noteboard.R;
 import com.example.noteboard.models.Post;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
 public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.MainViewHolder> {
     ArrayList<Post> postArrayList;
-    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseAuth firebaseAuth;
 
     private onItemClickListener listener;
 
@@ -52,7 +48,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         notifyDataSetChanged();
     }
 
-    static class MainViewHolder extends RecyclerView.ViewHolder{
+    class MainViewHolder extends RecyclerView.ViewHolder{
         private final TextView title;
         private final TextView author;
         private final TextView content;

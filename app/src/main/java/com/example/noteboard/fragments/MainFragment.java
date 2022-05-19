@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -24,6 +25,7 @@ import com.example.noteboard.viewmodels.MainViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class MainFragment extends Fragment {
@@ -36,11 +38,27 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.mainfragment_title);
         View view = inflater.inflate(R.layout.main_fragment, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerAllPosts);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         mainRecyclerAdapter = new MainRecyclerAdapter();
         recyclerView.setAdapter(mainRecyclerAdapter);
+
+        mainRecyclerAdapter.setOnItemClickListener(new MainRecyclerAdapter.onItemClickListener() {
+            @Override
+            public void onItemClickListener(Post post) {
+                Bundle bundle = new Bundle();
+                bundle.putString("type", getArguments().getString("type"));
+                bundle.putString("title",post.getTitle());
+                bundle.putString("content",post.getContent());
+                bundle.putLong("sharingcode",post.getSharingCode());
+                bundle.putString("author",post.getPostAuthor());
+
+                mainViewModel.clearPosts();
+                Navigation.findNavController(getView()).navigate(R.id.action_mainFragment_to_singlePostFragment,bundle);
+            }
+        });
         return view;
     }
 
@@ -48,19 +66,6 @@ public class MainFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
-        mainRecyclerAdapter.setOnItemClickListener(new MainRecyclerAdapter.onItemClickListener() {
-            @Override
-            public void onItemClickListener(Post post) {
-                Bundle bundle = new Bundle();
-                bundle.putString("title",post.getTitle());
-                bundle.putString("content",post.getContent());
-                bundle.putString("sharingcode",post.getSharingCode());
-                bundle.putString("author",post.getPostAuthor());
-
-                Navigation.findNavController(getView()).navigate(R.id.action_mainFragment_to_singlePostFragment,bundle);
-            }
-        });
     }
 
     @Override
