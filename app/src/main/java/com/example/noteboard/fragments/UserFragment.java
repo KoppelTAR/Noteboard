@@ -17,6 +17,7 @@ import androidx.navigation.Navigation;
 import com.example.noteboard.R;
 import com.example.noteboard.viewmodels.UserViewModel;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class UserFragment extends Fragment {
@@ -25,11 +26,12 @@ public class UserFragment extends Fragment {
     TextView hello;
     UserViewModel userViewModel;
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.user_fragment, container, false);
-        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Profile");
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.profile_title);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         logout= view.findViewById(R.id.btnLogout);
         hello = view.findViewById(R.id.txtHelloUser);
@@ -40,7 +42,7 @@ public class UserFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         UserViewModel userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-        userViewModel.showUsername(hello);
+            userViewModel.showUsername(hello, String.valueOf(getActivity().getResources().getConfiguration().locale));
         userViewModel.getLoggedOutMutableLiveData().observe(getViewLifecycleOwner(), loggedOut ->{
             if(loggedOut){
                 if(getView() != null) Navigation.findNavController(getView())
@@ -58,6 +60,5 @@ public class UserFragment extends Fragment {
             }
         });
     }
-
 
 }

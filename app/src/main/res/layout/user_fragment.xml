@@ -17,8 +17,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <!-- TODO figure out how to get username and use string formatting-->
-
 
     <Button
         android:id="@+id/btnViewPosts"

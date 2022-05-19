@@ -10,6 +10,8 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.noteboard.AuthRepository;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Locale;
+
 public class UserViewModel extends AndroidViewModel {
     private final AuthRepository authRepository;
     private final MutableLiveData<FirebaseUser> userMutableLiveData;
@@ -36,8 +38,8 @@ public class UserViewModel extends AndroidViewModel {
     }
 
 
-    public void showUsername(TextView textview){
-        authRepository.SetUsername (textview);
+    public void showUsername(TextView textview,String string){
+        authRepository.SetUsername (textview,string);
     }
 
 }

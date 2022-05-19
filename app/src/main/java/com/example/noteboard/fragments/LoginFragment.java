@@ -45,16 +45,17 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Login");
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.loginTitle);
         setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_login, container, false);
+        Log.i("TAG", String.valueOf(requireActivity().getResources().getConfiguration().locale));
         EditText editTextEmail = view.findViewById(R.id.editTextEmail);
         EditText editTextPassword = view.findViewById(R.id.editTextPassword);
         view.findViewById(R.id.btnLogin).setOnClickListener(view1 -> {
             if(!Utils.isEditTextEmpty(editTextEmail, getContext())
                     && !Utils.isEditTextEmpty(editTextPassword, getContext())){
                 loginViewModel.logIn(editTextEmail.getText().toString(),
-                        editTextPassword.getText().toString());
+                        editTextPassword.getText().toString(),String.valueOf(getActivity().getResources().getConfiguration().locale));
             }
         });
 

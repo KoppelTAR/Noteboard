@@ -67,13 +67,13 @@ public class RegistrationFragment extends Fragment {
                     && Username.length() > 0) {
 
                 //creates user and saves data by default firebase logs the user in after creating account
-                RegistrationView.userRegistration(Username,email,password);
+                RegistrationView.userRegistration(Username,email,password,String.valueOf(getActivity().getResources().getConfiguration().locale));
                 RegistrationView.logOut();
                 navController.navigate(R.id.action_registrationFragment_to_loginFragment);
             }else {
 
                 if (Username.equals("")) {
-                    Toast.makeText(getActivity(), var.getString(R.string.FillFirstNameToast), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), var.getString(R.string.FillUsernameToast), Toast.LENGTH_SHORT).show();
                 }else if (!email.matches(emailPattern)) {
                     Toast.makeText(getActivity(), var.getString(R.string.ValidEmailToast), Toast.LENGTH_SHORT).show();
                 }else if ( password.length() < 6) {

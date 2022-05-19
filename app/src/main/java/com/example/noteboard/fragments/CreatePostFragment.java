@@ -32,7 +32,7 @@ public class CreatePostFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Create post");
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.createPostTitle);
         setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_create, container, false);
         EditText postContent = view.findViewById(R.id.editTextPostContent);
