@@ -60,7 +60,11 @@
         android:id="@+id/settingsFragment"
         android:name="com.example.noteboard.fragments.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userFragment"
         android:name="com.example.noteboard.fragments.UserFragment"
@@ -72,9 +76,7 @@
         <action
             android:id="@+id/action_userFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
-        <action
-            android:id="@+id/action_userFragment_to_userPostsFragment22"
-            app:destination="@id/userPostsFragment2" />
+
     </fragment>
     <fragment
         android:id="@+id/createPostFragment"
@@ -83,21 +85,6 @@
         tools:layout="@layout/fragment_create" >
         <action
             android:id="@+id/action_createPostFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/userPostsFragment2"
-        android:name="com.example.noteboard.fragments.UserPostsFragment"
-        android:label="fragment_user_posts"
-        tools:layout="@layout/fragment_user_posts" >
-        <action
-            android:id="@+id/action_userPostsFragment2_to_userFragment"
-            app:destination="@id/userFragment" />
-        <action
-            android:id="@+id/action_userPostsFragment2_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
-        <action
-            android:id="@+id/action_userPostsFragment2_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

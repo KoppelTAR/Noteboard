@@ -122,19 +122,7 @@ public class AuthRepository {
         loggedOutMutableLiveData.postValue(true);
     }
 
-    public void SetUsername(TextView hellousernameTextView) {
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if (firebaseUser != null) {
-            db.collection("users").document(firebaseUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    DocumentSnapshot document = task.getResult();
-                    String string = document.getString("username");
-                    hellousernameTextView.setText(String.format(application.getString(R.string.hello_user),string));
-                }
-            });
-        }
-    }
+
 
 
     public MutableLiveData<FirebaseUser> getUserMutableLiveData() {

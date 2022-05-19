@@ -1,6 +1,7 @@
 package com.example.noteboard.viewmodels;
 
 import android.app.Application;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -28,6 +29,12 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public void showUserPosts(){postsRepository.getUserPosts();}
+
+    public void clearPosts(){postsRepository.clearPosts();}
+
+    public void setPostsTitle(TextView textView){
+        postsRepository.setTitle(textView);
+    }
 
     public void showPosts(){
         postsRepository.getPosts();

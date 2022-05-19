@@ -1,12 +1,16 @@
 package com.example.noteboard.fragments;
 
+import static androidx.fragment.app.FragmentManager.TAG;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +28,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class MainFragment extends Fragment {
     private MainRecyclerAdapter mainRecyclerAdapter;
     FloatingActionButton fab;
+    TextView title;
+    MainViewModel mainViewModel;
 
 
     @Override
@@ -46,15 +52,26 @@ public class MainFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        MainViewModel mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        mainViewModel.showPosts();
-        mainViewModel.getPostLiveData().observe(getViewLifecycleOwner(),posts -> mainRecyclerAdapter.updatePostList(posts));
+        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         fab = view.findViewById(R.id.floatingBtn);
-        Navigation.findNavController(getView());
+        title = view.findViewById(R.id.txtTitle);
+        if(getArguments().getString("type").equals("all")){
+            mainViewModel.showPosts();
+            title.setText(getActivity().getApplication().getString(R.string.allPosts));
+        }
+        if(getArguments().getString("type").equals("own")){
+            mainViewModel.showUserPosts();
+            mainViewModel.setPostsTitle(title);
+        }
+        mainViewModel.getPostLiveData().observe(getViewLifecycleOwner(),posts -> mainRecyclerAdapter.updatePostList(posts));
+
+
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mainViewModel.clearPosts();
                 Navigation.findNavController(getView()).navigate(R.id.action_mainFragment_to_createPostFragment);
             }
         });
@@ -70,9 +87,11 @@ public class MainFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menuSettings){
+            mainViewModel.clearPosts();
             Navigation.findNavController(getView()).navigate(R.id.action_mainFragment_to_settingsFragment);
         }
         if (item.getItemId() == R.id.menuUser){
+            mainViewModel.clearPosts();
             Navigation.findNavController(getView()).navigate(R.id.action_mainFragment_to_userFragment);
         }
         return false;

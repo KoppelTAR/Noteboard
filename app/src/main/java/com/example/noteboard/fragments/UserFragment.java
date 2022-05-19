@@ -43,11 +43,15 @@ public class UserFragment extends Fragment {
         userViewModel.showUsername(hello);
 
         viewAllPosts.setOnClickListener(view1 -> {
-            Navigation.findNavController(getView()).navigate(R.id.action_userFragment_to_mainFragment);
+            Bundle args = new Bundle();
+            args.putString("type","all");
+            Navigation.findNavController(getView()).navigate(R.id.action_userFragment_to_mainFragment,args);
         });
 
         viewPosts.setOnClickListener(view1 -> {
-            Navigation.findNavController(getView()).navigate(R.id.action_userFragment_to_userPostsFragment22);
+            Bundle args = new Bundle();
+            args.putString("type","own");
+            Navigation.findNavController(getView()).navigate(R.id.action_userFragment_to_mainFragment, args);
         });
 
 

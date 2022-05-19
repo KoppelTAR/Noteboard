@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.app.Application;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -41,6 +42,11 @@ public class PostsRepository {
         firebaseAuth = FirebaseAuth.getInstance();
     }
 
+    public void clearPosts(){
+        postArrayList.clear();
+        postLiveData.setValue(postArrayList);
+    }
+
     public void createPost(String postTitle, String postContent){
         db.collection("users").document(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -68,6 +74,7 @@ public class PostsRepository {
             }
         });
     }
+
 
     public void getUserPosts(){
         firebaseAuth = FirebaseAuth.getInstance();
@@ -101,7 +108,7 @@ public class PostsRepository {
                                         Date df = new Date(dv);
 
                                         Post post = new Post();
-                                        post.setPostAuthor(object.getString("postAuthor"));
+                                        post.setPostAuthor(String.format(application.getString(R.string.byAuthor),object.getString("postAuthor")));
                                         post.setTitle(object.getString("title"));
                                         post.setEditedAt(df);
                                         Long s = object.getLong("sharingCode");
@@ -115,6 +122,34 @@ public class PostsRepository {
                             });
                         }
                     }
+                }
+            });
+        }
+    }
+
+    public void setTitle(TextView textView) {
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if (firebaseUser != null) {
+            db.collection("users").document(firebaseUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    DocumentSnapshot document = task.getResult();
+                    String string = document.getString("username");
+                    textView.setText(String.format(application.getString(R.string.postsTitle),string));
+                }
+            });
+        }
+    }
+
+    public void SetUsername(TextView hellousernameTextView) {
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if (firebaseUser != null) {
+            db.collection("users").document(firebaseUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    DocumentSnapshot document = task.getResult();
+                    String string = document.getString("username");
+                    hellousernameTextView.setText(String.format(application.getString(R.string.hello_user),string));
                 }
             });
         }
