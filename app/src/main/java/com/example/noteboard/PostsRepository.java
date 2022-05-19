@@ -57,25 +57,6 @@ public class PostsRepository {
     }
 
 
-    /*
-    public void loadPostsData(){
-        db.collection("posts")
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        for (DocumentChange dc : value.getDocumentChanges()){
-                            if (dc.getType() == DocumentChange.Type.ADDED){
-                                postArrayList.add(dc.getDocument().toObject(Post.class));
-                                Log.i("TAG", dc.getDocument().getId());
-                            }
-                        }
-                    }
-                });
-    }
-
-     */
-
-
     public MutableLiveData<FirebaseUser> getUserMutableLiveData() {
         return userMutableLiveData;
     }

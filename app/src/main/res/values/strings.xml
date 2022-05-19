@@ -34,4 +34,6 @@
     <string name="UserDataWasSaved">onSuccess: user data was saved</string>
     <string name="tempAllTitle">title</string>
     <string name="tempAllContent">content</string>
+    <string name="save_changes_EditFrag">Save changes</string>
+    <string name="ViewSingle_UsernameDisplay">By %s</string>
 </resources>

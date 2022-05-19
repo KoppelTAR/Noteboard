@@ -55,8 +55,9 @@ public class MainFragment extends Fragment {
                 bundle.putString("title",post.getTitle());
                 bundle.putString("content",post.getContent());
                 bundle.putString("sharingcode",post.getSharingCode());
+                bundle.putString("author",post.getPostAuthor());
 
-                Navigation.findNavController(getView()).navigate(R.id.action_mainFragment_to_editFragment,bundle);
+                Navigation.findNavController(getView()).navigate(R.id.action_mainFragment_to_singlePostFragment,bundle);
             }
         });
     }
