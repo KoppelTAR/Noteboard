@@ -49,7 +49,9 @@ public class CreatePostFragment extends Fragment {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Navigation.findNavController(getView()).navigate(R.id.action_createPostFragment_to_mainFragment);
+                Bundle args = new Bundle();
+                args.putString("type",getArguments().getString("type"));
+                Navigation.findNavController(getView()).navigate(R.id.action_createPostFragment_to_mainFragment, args);
                 Toast.makeText(getContext(), getActivity().getString(R.string.postCreated), Toast.LENGTH_LONG).show();
             }
         });

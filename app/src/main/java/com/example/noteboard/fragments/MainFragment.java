@@ -90,7 +90,9 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 mainViewModel.clearPosts();
-                Navigation.findNavController(getView()).navigate(R.id.action_mainFragment_to_createPostFragment);
+                Bundle args = new Bundle();
+                args.putString("type",getArguments().getString("type"));
+                Navigation.findNavController(getView()).navigate(R.id.action_mainFragment_to_createPostFragment,args);
             }
         });
     }
