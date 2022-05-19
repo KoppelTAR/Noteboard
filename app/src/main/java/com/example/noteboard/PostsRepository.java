@@ -99,7 +99,6 @@ public class PostsRepository {
                                 @Override
                                 public void onSuccess(List<Object> list) {
                                     for (int i = 0; i < list.size(); i++) {
-                                        Log.i("TAG", "onSuccess: "+list.get(i));
 
                                         DocumentSnapshot object = (DocumentSnapshot) list.get(i);
 
@@ -108,7 +107,7 @@ public class PostsRepository {
                                         Date df = new Date(dv);
 
                                         Post post = new Post();
-                                        post.setPostAuthor(String.format(application.getString(R.string.byAuthor),object.getString("postAuthor")));
+                                        post.setPostAuthor(object.getString("postAuthor"));
                                         post.setTitle(object.getString("title"));
                                         post.setEditedAt(df);
                                         Long s = object.getLong("sharingCode");
@@ -194,7 +193,7 @@ public class PostsRepository {
                                         Date df = new Date(dv);
 
                                         Post post = new Post();
-                                        post.setPostAuthor(String.format(application.getString(R.string.byAuthor),object.getString("postAuthor")));
+                                        post.setPostAuthor(object.getString("postAuthor"));
                                         post.setTitle(object.getString("title"));
                                         post.setEditedAt(df);
                                         Long s = object.getLong("sharingCode");
