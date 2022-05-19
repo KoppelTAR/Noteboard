@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.app.Application;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,7 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -37,6 +42,55 @@ public class AuthRepository {
         userMutableLiveData = new MutableLiveData<>();
     }
 
+
+    public void updateDataFromForm(EditText editTextEmail, EditText editTextUsername, EditText editTextConfirmPassword){
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        user.reload();
+        AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail()
+                ,editTextConfirmPassword.getText().toString());
+        DocumentReference docRef = db.collection("users").document(user.getUid());
+
+        if(!Utils.isEditTextEmpty(editTextEmail, application.getApplicationContext())
+                && !Utils.isEditTextEmpty(editTextUsername, application.getApplicationContext())
+                && !Utils.isEditTextEmpty(editTextConfirmPassword, application.getApplicationContext())){
+            user.reauthenticate(credential).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    docRef.update("username",editTextUsername.getText().toString());
+                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (!editTextEmail.getText().toString()
+                                    .equals(task.getResult().getString("email"))){
+                                user.verifyBeforeUpdateEmail(editTextEmail.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Toast.makeText(application.getApplicationContext(), "Data successfully updated. Please verify new email.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                            else {
+                                Toast.makeText(application.getApplicationContext(), "Data successfully updated", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(application.getApplicationContext(), "Error when getting data from database", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(application.getApplicationContext(), "Invalid password", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+    }
+
+
     public void logIn(String email, String password){
         firebaseAuth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(application.getMainExecutor(),task -> {
@@ -50,6 +104,23 @@ public class AuthRepository {
                     }
                     else{
                         Toast.makeText(application, application.getString(R.string.loginError), Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+    public void sendPasswordResetEmailForCurrentUser(){
+        firebaseAuth.sendPasswordResetEmail(firebaseAuth.getCurrentUser().getEmail())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(application, R.string.passRezSuccess,Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(application, application.getString(R.string.error, task.getException()
+                                            .getMessage())
+                                    , Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
     }

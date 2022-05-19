@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="darkMode_blue">#82EEFD</color>
+    <color name="warning">#F32013</color>
 </resources>

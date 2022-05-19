@@ -52,5 +52,8 @@
     <string name="view_all_posts">View all posts</string>
     <string name="allPosts">All posts</string>
     <string name="postsTitle">%s\'s posts</string>
-    <string name="test">afasfsafa</string>
+    <string name="warning"><b>WARNING!</b></string>
+    <string name="this_action_can_t_be_undone"><b>This action can\'t be undone!</b></string>
+    <string name="please_confirm_your_password_to_continue_with_account_deletion">Please confirm your password to continue with account deletion</string>
+    <string name="delete_account">delete account</string>
 </resources>
