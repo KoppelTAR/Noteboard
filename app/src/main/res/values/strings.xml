@@ -52,5 +52,6 @@
     <string name="view_all_posts">View all posts</string>
     <string name="allPosts">All posts</string>
     <string name="postsTitle">%s\'s posts</string>
-    <string name="test">afasfsafa</string>
+    <string name="save_changes_EditFrag">Save changes</string>
+    <string name="ViewSingle_UsernameDisplay">By %s</string>
 </resources>

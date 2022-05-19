@@ -55,7 +55,15 @@
         <action
             android:id="@+id/action_mainFragment_to_createPostFragment"
             app:destination="@id/createPostFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_singlePostFragment"
+            app:destination="@id/singlePostFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/singlePostFragment"
+        android:name="com.example.noteboard.fragments.SinglePostFragment"
+        android:label="fragment_single_post"
+        tools:layout="@layout/fragment_single_post" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.noteboard.fragments.SettingsFragment"

@@ -42,6 +42,7 @@ public class LoginFragment extends Fragment {
                 }
             }
         });
+
     }
 
     @Override

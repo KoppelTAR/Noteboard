@@ -19,8 +19,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.noteboard.R;
 import com.example.noteboard.adapters.MainRecyclerAdapter;
+import com.example.noteboard.models.Post;
 import com.example.noteboard.viewmodels.MainViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+
 
 public class MainFragment extends Fragment {
     private MainRecyclerAdapter mainRecyclerAdapter;
@@ -44,6 +48,19 @@ public class MainFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
+        mainRecyclerAdapter.setOnItemClickListener(new MainRecyclerAdapter.onItemClickListener() {
+            @Override
+            public void onItemClickListener(Post post) {
+                Bundle bundle = new Bundle();
+                bundle.putString("title",post.getTitle());
+                bundle.putString("content",post.getContent());
+                bundle.putString("sharingcode",post.getSharingCode());
+                bundle.putString("author",post.getPostAuthor());
+
+                Navigation.findNavController(getView()).navigate(R.id.action_mainFragment_to_singlePostFragment,bundle);
+            }
+        });
     }
 
     @Override

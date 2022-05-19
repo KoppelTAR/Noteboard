@@ -4,7 +4,6 @@ import static android.content.ContentValues.TAG;
 
 import android.app.Application;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,7 +14,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -121,8 +119,6 @@ public class AuthRepository {
         firebaseAuth.signOut();
         loggedOutMutableLiveData.postValue(true);
     }
-
-
 
 
     public MutableLiveData<FirebaseUser> getUserMutableLiveData() {

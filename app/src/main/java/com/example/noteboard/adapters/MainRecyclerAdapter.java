@@ -1,7 +1,6 @@
 package com.example.noteboard.adapters;
 
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +20,9 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     ArrayList<Post> postArrayList;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth firebaseAuth;
+
+    private onItemClickListener listener;
+
     public MainRecyclerAdapter() {
         this.postArrayList = new ArrayList<>();
     }
@@ -59,6 +61,23 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             title = itemView.findViewById(R.id.txtPostTitle);
             content = itemView.findViewById(R.id.txtPostContent);
             author = itemView.findViewById(R.id.txtPostAuthor);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClickListener(postArrayList.get(position));
+                    }
+                }
+            });
         }
+    }
+
+    public interface onItemClickListener {
+        void onItemClickListener(Post post);
+    }
+    public void setOnItemClickListener(onItemClickListener listener){
+        this.listener = listener;
     }
 }
