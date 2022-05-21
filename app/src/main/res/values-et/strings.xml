@@ -76,4 +76,5 @@
     <string name="email_badly_formated">Emaili aadress on valesti kirjutatud.</string>
     <string name="no_user_record">Kasutajat pole olemas.</string>
     <string name="btnBack">tagasi</string>
+    <string name="register_title">Registeerimine</string>
 </resources>

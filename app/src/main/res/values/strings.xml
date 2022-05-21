@@ -75,4 +75,5 @@
     <string name="email_badly_formated">The email address is badly formatted.</string>
     <string name="no_user_record">There is no user record corresponding to this identifier. The user may have been deleted.</string>
     <string name="btnBack">back</string>
+    <string name="register_title">Register User</string>
 </resources>
