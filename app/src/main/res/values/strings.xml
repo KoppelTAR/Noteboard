@@ -71,5 +71,8 @@
     <string name="content_hint">Content</string>
     <string name="title_hint">Title</string>
     <string name="create_btnText">Create</string>
-    <string name="email_example">Example: Egor@gmail.com</string>
+    <string name="email_already_in_use">The email address is already in use by another account.</string>
+    <string name="email_badly_formated">The email address is badly formatted.</string>
+    <string name="no_user_record">There is no user record corresponding to this identifier. The user may have been deleted.</string>
+    <string name="btnBack">back</string>
 </resources>

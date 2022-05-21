@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -82,8 +84,20 @@ public class AuthRepository {
                             Toast.makeText(application, R.string.passRezSuccess,Toast.LENGTH_SHORT).show();
                         }
                         else{
-                            Toast.makeText(application, application.getString(R.string.error,  Objects.requireNonNull(task.getException()).getLocalizedMessage())
-                                    , Toast.LENGTH_SHORT).show();
+                            if (Objects.requireNonNull(task.getException()).getLocalizedMessage() == "The email address is badly formatted."){
+                                Toast.makeText(application, application.getString(R.string.error, application.getString(R.string.email_badly_formated)), Toast.LENGTH_SHORT).show();
+                            }
+
+                            else if(Objects.requireNonNull(task.getException()).getLocalizedMessage() == "There is no user record corresponding to this identifier. The user may have been deleted.") {
+                                Log.i(TAG, Objects.requireNonNull(task.getException()).getLocalizedMessage());
+                                Toast.makeText(application, application.getString(R.string.error,  application.getString(R.string.no_user_record))
+                                        , Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                Log.i(TAG, Objects.requireNonNull(task.getException()).getLocalizedMessage());
+                                Toast.makeText(application, application.getString(R.string.error,  Objects.requireNonNull(task.getException()).getLocalizedMessage())
+                                        , Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 });
@@ -122,7 +136,12 @@ public class AuthRepository {
                 }
             }
             else {
-                Toast.makeText(application, application.getString(R.string.error, Objects.requireNonNull(Registertask.getException()).getLocalizedMessage()), Toast.LENGTH_SHORT).show();
+                if (Objects.requireNonNull(Registertask.getException()).getLocalizedMessage() == "The email address is already in use by another account."){
+                    Toast.makeText(application, application.getString(R.string.error, application.getString(R.string.email_already_in_use)), Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(application, application.getString(R.string.error, Objects.requireNonNull(Registertask.getException()).getLocalizedMessage()), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -152,28 +171,6 @@ public class AuthRepository {
     public void logOut(){
         firebaseAuth.signOut();
         loggedOutMutableLiveData.postValue(true);
-    }
-
-    public void SetUsername(TextView hellousernameTextView,String locale) {
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if (firebaseUser != null) {
-            db.collection("users").document(firebaseUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    DocumentSnapshot document = task.getResult();
-                    Log.i("TAG", locale);
-                    String newlocale = locale;
-                    Locale locale = new Locale(newlocale);
-                    Locale.setDefault(locale);
-                    Configuration config = application.getResources().getConfiguration();
-                    config.locale = locale;
-                    application.getResources().updateConfiguration(config,
-                            application.getResources().getDisplayMetrics());
-                    String string = document.getString("username");
-                    hellousernameTextView.setText(String.format(application.getString(R.string.hello_user),string));
-                }
-            });
-        }
     }
 
 

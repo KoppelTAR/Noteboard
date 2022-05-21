@@ -42,7 +42,7 @@ public class UserViewModel extends AndroidViewModel {
 
 
     public void showUsername(TextView textview,String string){
-        authRepository.SetUsername (textview,string);
+        postsRepository.SetUsername (textview,string);
     }
 
 }

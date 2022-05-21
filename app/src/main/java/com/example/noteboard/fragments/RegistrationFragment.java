@@ -2,6 +2,7 @@ package com.example.noteboard.fragments;
 
 import android.app.Application;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.example.noteboard.R;
 import com.example.noteboard.viewmodels.RegistrationViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class RegistrationFragment extends Fragment {
@@ -59,7 +61,6 @@ public class RegistrationFragment extends Fragment {
             String password = Objects.requireNonNull(Objects.requireNonNull(PasswordEditText).getText()).toString().trim();
             String confPassword = Objects.requireNonNull(Objects.requireNonNull(PasswordConfirmEditText).getText()).toString().trim();
             String Username = Objects.requireNonNull(Objects.requireNonNull(UsernameEditText).getText()).toString().trim();
-            Application var = getActivity().getApplication();
 
             if (email.matches(emailPattern)
                     && password.length() >= 6
@@ -73,13 +74,13 @@ public class RegistrationFragment extends Fragment {
             }else {
 
                 if (Username.equals("")) {
-                    Toast.makeText(getActivity(), var.getString(R.string.FillUsernameToast), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getActivity().getString(R.string.FillUsernameToast), Toast.LENGTH_SHORT).show();
                 }else if (!email.matches(emailPattern)) {
-                    Toast.makeText(getActivity(), var.getString(R.string.ValidEmailToast), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getActivity().getString(R.string.ValidEmailToast), Toast.LENGTH_SHORT).show();
                 }else if ( password.length() < 6) {
-                    Toast.makeText(getActivity(), var.getString(R.string.PassLenghtToast), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), getActivity().getString(R.string.PassLenghtToast), Toast.LENGTH_LONG).show();
                 } else if (!confPassword.equals(password)) {
-                    Toast.makeText(getActivity(), var.getString(R.string.ConfPasstToast), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getActivity().getString(R.string.ConfPasstToast), Toast.LENGTH_SHORT).show();
                 }
             }
 

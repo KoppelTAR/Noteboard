@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">NoteBoard</string>
-    <string name="error">Viga %1$s</string>
+    <string name="error">Viga, %1$s</string>
     <string name="confirmEmail">\" Konto aktiveerimiseks kinnitage oma emaili aadress \"</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="verifyEmail">Palun kinnitage oma emaili aadress</string>
@@ -57,5 +57,23 @@
     <string name="example_pass">Näide: Qwerty123</string>
     <string name="example_mail">Näide: Egor@gmail.com</string>
     <string name="example_name">Näide: Egor</string>
-
+    <string name="author">autor</string>
+    <string name="byAuthor">%s poolt</string>
+    <string name="view_all_posts">Vaata kõiki postitusi</string>
+    <string name="allPosts">Kõik postitused</string>
+    <string name="postsTitle">%s\'i postitused</string>
+    <string name="save_changes_EditFrag">Salvesta muudatused</string>
+    <string name="ViewSingle_UsernameDisplay">%s poolt</string>
+    <string name="mainfragment_title">Postitused</string>
+    <string name="singlepost_title">Postitus</string>
+    <string name="edit_menuBtn">MUUDA</string>
+    <string name="user_menuBtn">KASUTAJA</string>
+    <string name="settings_menuItem">SEADMED</string>
+    <string name="content_hint">Sisu</string>
+    <string name="title_hint">Pealkiri</string>
+    <string name="create_btnText">Loo</string>
+    <string name="email_already_in_use">Email aadress on juba kasutusel.</string>
+    <string name="email_badly_formated">Emaili aadress on valesti kirjutatud.</string>
+    <string name="no_user_record">Kasutajat pole olemas.</string>
+    <string name="btnBack">tagasi</string>
 </resources>

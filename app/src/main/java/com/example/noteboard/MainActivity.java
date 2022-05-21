@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         res.updateConfiguration(conf, dm);
         getBaseContext().getResources().updateConfiguration(conf, getBaseContext().getResources().getDisplayMetrics());
         invalidateOptionsMenu();
-        onConfigurationChanged(conf);//Add this line
+        //onConfigurationChanged(conf);//Add this line
 
     }
 

@@ -3,6 +3,7 @@ package com.example.noteboard;
 import static android.content.ContentValues.TAG;
 
 import android.app.Application;
+import android.content.res.Configuration;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -26,6 +27,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class PostsRepository {
@@ -140,13 +142,21 @@ public class PostsRepository {
         }
     }
 
-    public void SetUsername(TextView hellousernameTextView) {
+    public void SetUsername(TextView hellousernameTextView, String locale) {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser != null) {
             db.collection("users").document(firebaseUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     DocumentSnapshot document = task.getResult();
+                    Log.i("TAG", locale);
+                    String newlocale = locale;
+                    Locale locale = new Locale(newlocale);
+                    Locale.setDefault(locale);
+                    Configuration config = application.getResources().getConfiguration();
+                    config.locale = locale;
+                    application.getResources().updateConfiguration(config,
+                            application.getResources().getDisplayMetrics());
                     String string = document.getString("username");
                     hellousernameTextView.setText(String.format(application.getString(R.string.hello_user),string));
                 }
