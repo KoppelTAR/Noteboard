@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.noteboard.R;
 import com.example.noteboard.viewmodels.UserDetailsViewModel;
@@ -22,6 +23,10 @@ public class UserDetailsFragment extends Fragment {
     Button updateDataBtn;
     Button forgotPasswordBtn;
     Button deleteUserBtn;
+    Button backBtn;
+    EditText username;
+    EditText email;
+    EditText confirmPassword;
     UserDetailsViewModel userDetailsViewModel;
 
 
@@ -35,9 +40,24 @@ public class UserDetailsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        backBtn = view.findViewById(R.id.btnBackTOUserFragment);
         updateDataBtn = view.findViewById(R.id.btnUpdateData);
         forgotPasswordBtn = view.findViewById(R.id.forgotPasswordBtn);
         deleteUserBtn = view.findViewById(R.id.btnDeleteAccount);
+        username = view.findViewById(R.id.editTextUpdateUserName);
+        email = view.findViewById(R.id.editTextUpdateEmail);
+        confirmPassword = view.findViewById(R.id.editTextConfirmPassword);
+
+        userDetailsViewModel.showCurrentUserEmail(email);
+        userDetailsViewModel.showCurrentUserUsername(username);
+
+        updateDataBtn.setOnClickListener(view1 -> {
+            userDetailsViewModel.updateData(email,username,confirmPassword);
+        });
+
+        backBtn.setOnClickListener(view1 -> {
+            Navigation.findNavController(view).navigate(R.id.action_userDetailsFragment_to_userFragment);
+        });
 
         deleteUserBtn.setOnClickListener(view1 -> {
             Navigation.findNavController(view).navigate(R.id.action_userDetailsFragment_to_deleteUserFragment);

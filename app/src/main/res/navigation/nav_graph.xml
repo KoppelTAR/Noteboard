@@ -94,7 +94,14 @@
         android:id="@+id/deleteUserFragment"
         android:name="com.example.noteboard.fragments.DeleteUserFragment"
         android:label="fragment_delete_user"
-        tools:layout="@layout/fragment_delete_user" />
+        tools:layout="@layout/fragment_delete_user" >
+        <action
+            android:id="@+id/action_deleteUserFragment_to_userDetailsFragment"
+            app:destination="@id/userDetailsFragment" />
+        <action
+            android:id="@+id/action_deleteUserFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userDetailsFragment"
         android:name="com.example.noteboard.fragments.UserDetailsFragment"
@@ -103,5 +110,8 @@
         <action
             android:id="@+id/action_userDetailsFragment_to_deleteUserFragment"
             app:destination="@id/deleteUserFragment" />
+        <action
+            android:id="@+id/action_userDetailsFragment_to_userFragment"
+            app:destination="@id/userFragment" />
     </fragment>
 </navigation>

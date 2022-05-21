@@ -56,4 +56,15 @@
     <string name="this_action_can_t_be_undone"><b>This action can\'t be undone!</b></string>
     <string name="please_confirm_your_password_to_continue_with_account_deletion">Please confirm your password to continue with account deletion</string>
     <string name="delete_account">delete account</string>
+    <string name="account_settings">account settings</string>
+    <string name="enter_password">Enter password</string>
+    <string name="username">Username</string>
+    <string name="confirm_current_password">Confirm current password</string>
+    <string name="back">back</string>
+    <string name="update_data">update data</string>
+    <string name="emailUpdated">Data successfully updated. Please verify new email.</string>
+    <string name="dataUpdated">Data successfully updated</string>
+    <string name="errorWhenGettingData">Error when getting data from database</string>
+    <string name="invalidPassword">Invalid password</string>
+    <string name="registrationSuccess">Registration successful</string>
 </resources>

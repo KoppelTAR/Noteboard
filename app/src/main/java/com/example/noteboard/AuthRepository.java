@@ -3,6 +3,7 @@ package com.example.noteboard;
 import static android.content.ContentValues.TAG;
 
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -10,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -42,17 +45,39 @@ public class AuthRepository {
         userMutableLiveData = new MutableLiveData<>();
     }
 
+    public void deleteCurrentUser(EditText confirmPassword, NavController navController){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DocumentReference docRef = db.collection("users").document(user.getUid());
+        if(!Utils.isEditTextEmpty(confirmPassword, application.getApplicationContext())){
+            AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail()
+                    ,confirmPassword.getText().toString());
+            user.reauthenticate(credential).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    docRef.delete();
+                    user.delete();
+                    navController.navigate(R.id.action_deleteUserFragment_to_loginFragment);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(application.getApplicationContext(), "Invalid password", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
 
     public void updateDataFromForm(EditText editTextEmail, EditText editTextUsername, EditText editTextConfirmPassword){
         FirebaseUser user = firebaseAuth.getCurrentUser();
         user.reload();
-        AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail()
-                ,editTextConfirmPassword.getText().toString());
         DocumentReference docRef = db.collection("users").document(user.getUid());
 
         if(!Utils.isEditTextEmpty(editTextEmail, application.getApplicationContext())
                 && !Utils.isEditTextEmpty(editTextUsername, application.getApplicationContext())
                 && !Utils.isEditTextEmpty(editTextConfirmPassword, application.getApplicationContext())){
+            AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail()
+                    ,editTextConfirmPassword.getText().toString());
             user.reauthenticate(credential).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
@@ -65,29 +90,46 @@ public class AuthRepository {
                                 user.verifyBeforeUpdateEmail(editTextEmail.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        Toast.makeText(application.getApplicationContext(), "Data successfully updated. Please verify new email.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(application.getApplicationContext(), application.getString(R.string.emailUpdated), Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
                             else {
-                                Toast.makeText(application.getApplicationContext(), "Data successfully updated", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(application.getApplicationContext(), application.getString(R.string.dataUpdated), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(application.getApplicationContext(), "Error when getting data from database", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(application.getApplicationContext(), application.getString(R.string.errorWhenGettingData), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(application.getApplicationContext(), "Invalid password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(application.getApplicationContext(), application.getString(R.string.invalidPassword), Toast.LENGTH_SHORT).show();
                 }
             });
 
         }
+    }
+
+    public void setCurrentUserUserNameEditText(EditText editText){
+        DocumentReference docRef = db.collection("users").document(firebaseAuth.getCurrentUser().getUid());
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                editText.setText(task.getResult().getString("username"));
+            }
+        });
+    }
+
+    public void setCurrentUserEmailEditText(EditText editText){
+        DocumentReference docRef = db.collection("users").document(firebaseAuth.getCurrentUser().getUid());
+        firebaseAuth.getCurrentUser().reload();
+        docRef.update("email", firebaseAuth.getCurrentUser().getEmail());
+        editText.setText(firebaseAuth.getCurrentUser().getEmail());
     }
 
 
@@ -164,7 +206,7 @@ public class AuthRepository {
 
                     EmailVerification();
 
-                    Toast.makeText(application, "Registration successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(application, application.getString(R.string.registrationSuccess), Toast.LENGTH_SHORT).show();
                 }
 
             } else {
