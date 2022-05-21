@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NoteBoard</string>
+    <string name="error">Viga %1$s</string>
+    <string name="confirmEmail">\" Konto aktiveerimiseks kinnitage oma emaili aadress \"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="verifyEmail">Palun kinnitage oma emaili aadress</string>
+    <string name="loginError">Viga sisselogimisel. Veenduge, et kõik sisselogimis andmed on õiged</string>
+    <string name="emptyInput">Väljad on tühjad</string>
+    <string name="appTitle">NOTEBOARD</string>
+    <string name="hintEmail">Email</string>
+    <string name="hintPassword">Parool</string>
+    <string name="login">logi sisse</string>
+    <string name="register">registeeri</string>
+    <string name="forgotPassword">parool ununenud?</string>
+    <string name="enter_email">Sisesta email</string>
+    <string name="reset_password">taasta parool</string>
+    <string name="registerFragBtn">Registeeri</string>
+    <string name="confirm_passwordRegFrag">Kinnita salasõna</string>
+    <string name="enter_passwordRegFrag">Sisesta parool</string>
+    <string name="enter_emailRegFrag">Sisesta email</string>
+    <string name="enter_usernameRegFrag">Sisesta kasutajanimi</string>
+    <string name="passRezSuccess">Parooli taastamis emaili saatmine õnnestus</string>
+    <string name="ToastRegiFailed">Registeerimine ebaõnnestus, tagasi pöördumine sisse logimis lehele</string>
+    <string name="ConfPasstToast">Paroolid peavad üksteisega kattuma</string>
+    <string name="PassLenghtToast">Parool peab koosnema vähemalt 6 tähemärgist</string>
+    <string name="ValidEmailToast">Peab olema kehtiv emaili aadress</string>
+    <string name="FillUsernameToast">Palun sisestage kasutajanimi</string>
+    <string name="RegiSuccess">Registeerimine õnnestus</string>
+    <string name="LoginFailedToast">Sisselogimine ebaõnnestus, palun kinnitage emaili aadress</string>
+    <string name="EnterEmailToast">Palun sisesta oma email.</string>
+    <string name="onFaliureDbError">onFailure: Error writing to DB document</string>
+    <string name="SuccessfulEmailVerSent">Email saadetud. Palun kinnitage emaili aadress</string>
+    <string name="UserDataWasSaved">onSuccess: user data was saved</string>
+    <string name="tempAllTitle">pealkiri</string>
+    <string name="tempAllContent">sisu</string>
+    <string name="language_selection">Keele valik:</string>
+    <string name="dark_mode_toggle">Tumeda režiimi lüliti</string>
+    <string name="dark_mode">Tume režiim</string>
+    <string name="off">Off</string>
+    <string name="on">On</string>
+    <string name="hello_user">Tere, %s!</string>
+    <string name="view_your_posts">Vaata oma postitusi</string>
+    <string name="logout">Logi välja</string>
+    <string name="find_post_with_sharing_code">Leidke jagamiskoodi abiga postitusi</string>
+    <string name="create_a_new_post">LOO UUS POSTITUS</string>
+    <string name="postCreated">Postitus loodud!</string>
+    <string name="pleaseWait">Salvestamine, palun oodake</string>
+    <string name="btnSave">Salvesta</string>
+    <string name="settings_title">Seadmed</string>
+    <string name="create_btn">Loo uus postitus</string>
+    <string name="resetPasswordTitle">Taasta parool</string>
+    <string name="loginTitle">Sisselogimine</string>
+    <string name="createPostTitle">Uue posti loomine</string>
+    <string name="profile_title">Profiil</string>
+    <string name="reg_success">Registeerimine õnnestus</string>
+    <string name="example_pass">Näide: Qwerty123</string>
+    <string name="example_mail">Näide: Egor@gmail.com</string>
+    <string name="example_name">Näide: Egor</string>
+
+</resources>

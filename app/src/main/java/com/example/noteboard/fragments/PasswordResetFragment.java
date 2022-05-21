@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Application;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -47,7 +48,7 @@ public class PasswordResetFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Reset password");
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.resetPasswordTitle);
         setHasOptionsMenu(true);
         return inflater.inflate(R.layout.password_reset_fragment, container, false);
     }
@@ -65,7 +66,7 @@ public class PasswordResetFragment extends Fragment {
                 Toast.makeText(getContext(), var.getString(R.string.EnterEmailToast),Toast.LENGTH_SHORT).show();
             }
             else{
-                PasswordResetViewModel.resetPassword(email);
+                PasswordResetViewModel.resetPassword(email,String.valueOf(getActivity().getResources().getConfiguration().locale));
                 Navigation.findNavController(view).navigate(R.id.action_passwordResetFragment_to_loginFragment);
             }
         });

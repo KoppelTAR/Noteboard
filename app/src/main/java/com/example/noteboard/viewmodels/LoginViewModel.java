@@ -9,6 +9,8 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.noteboard.AuthRepository;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Locale;
+
 public class LoginViewModel extends AndroidViewModel {
     private final AuthRepository authRepository;
     private final MutableLiveData<FirebaseUser> userMutableLiveData;
@@ -20,8 +22,8 @@ public class LoginViewModel extends AndroidViewModel {
         userMutableLiveData = authRepository.getUserMutableLiveData();
     }
 
-    public void logIn(String email, String password){
-        authRepository.logIn(email, password);
+    public void logIn(String email, String password,String locale){
+        authRepository.logIn(email, password, locale);
     }
 
     public MutableLiveData<FirebaseUser> getUserMutableLiveData() {

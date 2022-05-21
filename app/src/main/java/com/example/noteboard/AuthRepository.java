@@ -3,6 +3,9 @@ package com.example.noteboard;
 import static android.content.ContentValues.TAG;
 
 import android.app.Application;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -12,12 +15,16 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -35,7 +42,14 @@ public class AuthRepository {
         userMutableLiveData = new MutableLiveData<>();
     }
 
-    public void logIn(String email, String password){
+    public void logIn(String email, String password,String localeString){
+        String newlocale = localeString;
+        Locale locale = new Locale(newlocale);
+        Locale.setDefault(locale);
+        Configuration config = application.getResources().getConfiguration();
+        config.locale = locale;
+        application.getResources().updateConfiguration(config,
+                application.getResources().getDisplayMetrics());
         firebaseAuth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(application.getMainExecutor(),task -> {
                     if(task.isSuccessful()){
@@ -52,7 +66,14 @@ public class AuthRepository {
                 });
     }
 
-    public void sendPasswordResetEmail(String email) {
+    public void sendPasswordResetEmail(String email,String localeString) {
+        String newlocale = localeString;
+        Locale locale = new Locale(newlocale);
+        Locale.setDefault(locale);
+        Configuration config = application.getResources().getConfiguration();
+        config.locale = locale;
+        application.getResources().updateConfiguration(config,
+                application.getResources().getDisplayMetrics());
         firebaseAuth.sendPasswordResetEmail(email)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -61,15 +82,21 @@ public class AuthRepository {
                             Toast.makeText(application, R.string.passRezSuccess,Toast.LENGTH_SHORT).show();
                         }
                         else{
-                            Toast.makeText(application, application.getString(R.string.error, task.getException()
-                                            .getMessage())
+                            Toast.makeText(application, application.getString(R.string.error,  Objects.requireNonNull(task.getException()).getLocalizedMessage())
                                     , Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
 
-    public void userRegistration(String username, String email, String password) {
+    public void userRegistration(String username, String email, String password,String localeString) {
+        String newlocale = localeString;
+        Locale locale = new Locale(newlocale);
+        Locale.setDefault(locale);
+        Configuration config = application.getResources().getConfiguration();
+        config.locale = locale;
+        application.getResources().updateConfiguration(config,
+                application.getResources().getDisplayMetrics());
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(application.getMainExecutor(),Registertask-> {
             //if user was created successfully then save data to firebase firestore
             if (Registertask.isSuccessful()){
@@ -89,18 +116,25 @@ public class AuthRepository {
                             .addOnFailureListener(e -> Log.e(TAG, application.getString(R.string.onFaliureDbError), e));
                     userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
 
-                    EmailVerification();
+                    EmailVerification(localeString);
 
-                    Toast.makeText(application, "Registration successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(application, R.string.reg_success, Toast.LENGTH_SHORT).show();
                 }
-
-            } else {
-                Toast.makeText(application, application.getString(R.string.error, Objects.requireNonNull(Registertask.getException()).getMessage()), Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(application, application.getString(R.string.error, Objects.requireNonNull(Registertask.getException()).getLocalizedMessage()), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void EmailVerification() {
+    public void EmailVerification(String localeString) {
+        String newlocale = localeString;
+        Locale locale = new Locale(newlocale);
+        Locale.setDefault(locale);
+        Configuration config = application.getResources().getConfiguration();
+        config.locale = locale;
+        application.getResources().updateConfiguration(config,
+                application.getResources().getDisplayMetrics());
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser VerUser = firebaseAuth.getCurrentUser();
 
@@ -118,6 +152,28 @@ public class AuthRepository {
     public void logOut(){
         firebaseAuth.signOut();
         loggedOutMutableLiveData.postValue(true);
+    }
+
+    public void SetUsername(TextView hellousernameTextView,String locale) {
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if (firebaseUser != null) {
+            db.collection("users").document(firebaseUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    DocumentSnapshot document = task.getResult();
+                    Log.i("TAG", locale);
+                    String newlocale = locale;
+                    Locale locale = new Locale(newlocale);
+                    Locale.setDefault(locale);
+                    Configuration config = application.getResources().getConfiguration();
+                    config.locale = locale;
+                    application.getResources().updateConfiguration(config,
+                            application.getResources().getDisplayMetrics());
+                    String string = document.getString("username");
+                    hellousernameTextView.setText(String.format(application.getString(R.string.hello_user),string));
+                }
+            });
+        }
     }
 
 

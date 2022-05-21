@@ -11,6 +11,8 @@ import com.example.noteboard.AuthRepository;
 import com.example.noteboard.PostsRepository;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Locale;
+
 public class UserViewModel extends AndroidViewModel {
     private final AuthRepository authRepository;
     private final PostsRepository postsRepository;
@@ -39,9 +41,8 @@ public class UserViewModel extends AndroidViewModel {
     }
 
 
-
-    public void showUsername(TextView textview){
-        postsRepository.SetUsername(textview);
+    public void showUsername(TextView textview,String string){
+        authRepository.SetUsername (textview,string);
     }
 
 }
