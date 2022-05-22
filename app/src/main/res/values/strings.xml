@@ -38,7 +38,6 @@
     <string name="dark_mode">Dark mode</string>
     <string name="off">Off</string>
     <string name="on">On</string>
-    <string name="notification_toggle">Notification toggle:</string>
     <string name="hello_user">Hello, %s!</string>
     <string name="view_your_posts">View your posts</string>
     <string name="logout">Logout</string>

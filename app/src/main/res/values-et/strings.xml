@@ -77,4 +77,19 @@
     <string name="no_user_record">Kasutajat pole olemas.</string>
     <string name="btnBack">tagasi</string>
     <string name="register_title">Registeerimine</string>
+    <string name="warning"><b>HOIATUS!</b></string>
+    <string name="this_action_can_t_be_undone"><b>KASUTAJAT EI SAA TAASTADA!</b></string>
+    <string name="please_confirm_your_password_to_continue_with_account_deletion">Palun kinnitage salasõna</string>
+    <string name="delete_account">kustuta kasutaja</string>
+    <string name="account_settings">kasutaja seaded</string>
+    <string name="enter_password">Sisestage salasõna</string>
+    <string name="username">Kasutajanimi</string>
+    <string name="confirm_current_password">Palun kinnitage salasõna</string>
+    <string name="back">tagasi</string>
+    <string name="update_data">uuenda andmeid</string>
+    <string name="emailUpdated">Andmed uuendatud. Palun kinnitage uus email</string>
+    <string name="dataUpdated">Andmed uuendatud</string>
+    <string name="errorWhenGettingData">Error andmebaasiga ühendumisel</string>
+    <string name="invalidPassword">Vale salasõna</string>
+    <string name="registrationSuccess">Registratsioon õnnestus</string>
 </resources>
