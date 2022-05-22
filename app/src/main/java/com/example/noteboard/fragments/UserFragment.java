@@ -27,6 +27,7 @@ public class UserFragment extends Fragment {
     TextView hello;
     Button viewAllPosts;
     UserViewModel userViewModel;
+    Button viewUserSettings;
 
 
     @Override
@@ -39,6 +40,7 @@ public class UserFragment extends Fragment {
         hello = view.findViewById(R.id.txtHelloUser);
         viewPosts = view.findViewById(R.id.btnViewPosts);
         viewAllPosts = view.findViewById(R.id.btnViewAllPosts);
+        viewUserSettings = view.findViewById(R.id.btnViewUserDetails);
         return view;
     }
 
@@ -52,6 +54,10 @@ public class UserFragment extends Fragment {
                 if(getView() != null) Navigation.findNavController(getView())
                         .navigate(R.id.action_userFragment_to_loginFragment);
             }
+        });
+
+        viewUserSettings.setOnClickListener(view1 -> {
+            Navigation.findNavController(getView()).navigate(R.id.action_userFragment_to_userDetailsFragment);
         });
 
         viewAllPosts.setOnClickListener(view1 -> {
