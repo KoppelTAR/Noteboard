@@ -2,6 +2,9 @@ package com.example.noteboard.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -15,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.noteboard.R;
+import com.example.noteboard.viewmodels.MainViewModel;
 import com.example.noteboard.viewmodels.UserViewModel;
 
 import java.util.Locale;
@@ -28,7 +32,13 @@ public class UserFragment extends Fragment {
     Button viewAllPosts;
     UserViewModel userViewModel;
     Button viewUserSettings;
+    MainViewModel mainViewModel;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -36,12 +46,29 @@ public class UserFragment extends Fragment {
         View view = inflater.inflate(R.layout.user_fragment, container, false);
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.profile_title);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         logout= view.findViewById(R.id.btnLogout);
         hello = view.findViewById(R.id.txtHelloUser);
         viewPosts = view.findViewById(R.id.btnViewPosts);
         viewAllPosts = view.findViewById(R.id.btnViewAllPosts);
         viewUserSettings = view.findViewById(R.id.btnViewUserDetails);
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_user, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menuSettings){
+            mainViewModel.clearPosts();
+            Navigation.findNavController(getView()).navigate(R.id.action_userFragment_to_settingsFragment);
+        }
+        return false;
     }
 
     @Override

@@ -97,6 +97,9 @@
         <action
             android:id="@+id/action_userFragment_to_userDetailsFragment"
             app:destination="@id/userDetailsFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
 
     </fragment>
     <fragment
@@ -131,5 +134,8 @@
         <action
             android:id="@+id/action_userDetailsFragment_to_userFragment"
             app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_userDetailsFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 </navigation>

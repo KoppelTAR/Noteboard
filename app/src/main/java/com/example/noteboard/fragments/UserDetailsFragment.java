@@ -9,12 +9,16 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.noteboard.R;
+import com.example.noteboard.viewmodels.MainViewModel;
 import com.example.noteboard.viewmodels.UserDetailsViewModel;
 
 
@@ -28,12 +32,35 @@ public class UserDetailsFragment extends Fragment {
     EditText email;
     EditText confirmPassword;
     UserDetailsViewModel userDetailsViewModel;
+    MainViewModel mainViewModel;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         userDetailsViewModel = new ViewModelProvider(this).get(UserDetailsViewModel.class);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_main, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menuSettings){
+            mainViewModel.clearPosts();
+            Navigation.findNavController(getView()).navigate(R.id.action_userDetailsFragment_to_settingsFragment);
+        }
+        if (item.getItemId() == R.id.menuUser){
+            mainViewModel.clearPosts();
+            Navigation.findNavController(getView()).navigate(R.id.action_userDetailsFragment_to_userFragment);
+        }
+        return false;
     }
 
     @Override

@@ -43,7 +43,7 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(R.layout.main_fragment, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerAllPosts);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        mainRecyclerAdapter = new MainRecyclerAdapter();
+        mainRecyclerAdapter = new MainRecyclerAdapter(getContext());
         recyclerView.setAdapter(mainRecyclerAdapter);
 
         mainRecyclerAdapter.setOnItemClickListener(new MainRecyclerAdapter.onItemClickListener() {

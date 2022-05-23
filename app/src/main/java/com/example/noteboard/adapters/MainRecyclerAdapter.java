@@ -1,6 +1,7 @@
 package com.example.noteboard.adapters;
 
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +18,12 @@ import java.util.ArrayList;
 public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.MainViewHolder> {
     ArrayList<Post> postArrayList;
 
+    Context context;
     private onItemClickListener listener;
 
-    public MainRecyclerAdapter() {
+    public MainRecyclerAdapter(Context context) {
         this.postArrayList = new ArrayList<>();
+        this.context = context;
     }
 
     @NonNull
@@ -35,7 +38,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         Post post = postArrayList.get(position);
         holder.title.setText(post.getTitle());
         holder.content.setText(post.getContent());
-        holder.author.setText(post.getPostAuthor());
+        holder.author.setText(String.format(context.getString(R.string.byAuthor),post.getPostAuthor()));
     }
 
     @Override
