@@ -91,4 +91,7 @@
     <string name="errorWhenGettingData">Error when getting data from database</string>
     <string name="invalidPassword">Invalid password</string>
     <string name="registrationSuccess">Registration successful</string>
+    <string name="editPostContentEditText">Content</string>
+    <string name="BtnEditPostSaveChanges">Save changes</string>
+    <string name="TitleEditTextPostEdit">Title</string>
 </resources>
