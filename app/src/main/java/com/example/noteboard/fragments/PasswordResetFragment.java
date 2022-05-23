@@ -71,7 +71,7 @@ public class PasswordResetFragment extends Fragment {
                 Toast.makeText(getContext(), getActivity().getString(R.string.EnterEmailToast),Toast.LENGTH_SHORT).show();
             }
             else{
-                PasswordResetViewModel.resetPassword(email,(getArguments().getString("locale")));
+                PasswordResetViewModel.resetPassword(email, String.valueOf(getActivity().getResources().getConfiguration().locale));
                 Navigation.findNavController(view).navigate(R.id.action_passwordResetFragment_to_loginFragment);
             }
         });
