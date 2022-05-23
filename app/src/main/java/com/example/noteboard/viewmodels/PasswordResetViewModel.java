@@ -13,7 +13,7 @@ public class PasswordResetViewModel extends AndroidViewModel {
         super(application);
         authRepository = new AuthRepository(application);
     }
-    public void resetPassword(String email,String locale){
-        authRepository.sendPasswordResetEmail(email,locale);
+    public void resetPassword(String email){
+        authRepository.sendPasswordResetEmail(email);
     }
 }
