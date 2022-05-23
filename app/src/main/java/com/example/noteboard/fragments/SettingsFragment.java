@@ -131,6 +131,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         txtLang.setText(R.string.language_selection);
         txtDark.setText(R.string.dark_mode_toggle);
         save.setText(R.string.btnSave);
+        backBtn.setText(R.string.btnBack);
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.settings_title);
     }
 }
