@@ -81,8 +81,9 @@ public class SinglePostFragment extends Fragment {
             bundle.putString("title",title);
             bundle.putString("content",content);
             bundle.putLong("Id",sharingCode);
-            bundle.putString("author",author);
-            //Navigation.findNavController(getView()).navigate(R.id.);
+            bundle.putString("author", author);
+            bundle.putString("type",getArguments().getString("type"));
+            Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_editPostFragment, bundle);
         }
         if (item.getItemId() == R.id.menuBack){
             Bundle typeBundle = new Bundle();

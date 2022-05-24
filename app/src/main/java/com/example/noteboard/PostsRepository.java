@@ -13,6 +13,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.noteboard.models.Post;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
@@ -88,7 +89,7 @@ public class PostsRepository {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 Toast.makeText(application, "Changes saved", Toast.LENGTH_SHORT).show();
             }
-        })
+        });
     }
 
     public void getUserPosts(){
@@ -240,4 +241,21 @@ public class PostsRepository {
     }
 
 
+    public void DeletePost(Long id) {
+        db.collection("posts").document(id.toString())
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(application, "post successfully deleted!", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(application, "Error deleting post", Toast.LENGTH_SHORT).show();
+                        Log.w(TAG, "Error deleting post", e);
+                    }
+                });
+    }
 }
