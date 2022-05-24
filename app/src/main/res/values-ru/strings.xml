@@ -92,4 +92,11 @@
     <string name="errorWhenGettingData">ошибка выборки данных</string>
     <string name="invalidPassword">неправильный пароль</string>
     <string name="registrationSuccess">Регистрация удалась</string>
+    <string name="post_added">пост добавлено!</string>
+    <string name="post_created_by_user">ты автор поста!</string>
+    <string name="access_exists">у вас уже есть доступ!</string>
+    <string name="invalid_code">неверный код</string>
+    <string name="find_a_post">поиск поста</string>
+    <string name="enter_post_code">введите код</string>
+    <string name="find">найти</string>
 </resources>

@@ -67,11 +67,10 @@ public class PasswordResetFragment extends Fragment {
         view.findViewById(R.id.btnResetPassword).setOnClickListener(view1 -> {
             email = Objects.requireNonNull(oldEmail.getText()).toString().trim();
             if (isAnyStringNullOrEmpty(email)) {
-                Log.i(TAG, String.valueOf(getActivity().getResources().getConfiguration().locale));
                 Toast.makeText(getContext(), getActivity().getString(R.string.EnterEmailToast),Toast.LENGTH_SHORT).show();
             }
             else{
-                PasswordResetViewModel.resetPassword(email);
+                PasswordResetViewModel.resetPassword(email,String.valueOf(getActivity().getResources().getConfiguration().locale));
                 Navigation.findNavController(view).navigate(R.id.action_passwordResetFragment_to_loginFragment);
             }
         });

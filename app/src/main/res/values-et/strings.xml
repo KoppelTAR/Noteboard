@@ -92,4 +92,11 @@
     <string name="errorWhenGettingData">Error andmebaasiga ühendumisel</string>
     <string name="invalidPassword">Vale salasõna</string>
     <string name="registrationSuccess">Registratsioon õnnestus</string>
+    <string name="post_added">Ligipääs postile antud!</string>
+    <string name="post_created_by_user">Sina oled selle postituse autor!</string>
+    <string name="access_exists">Teil juba on ligipääs postitusele!</string>
+    <string name="invalid_code">Ebaõigne kood</string>
+    <string name="find_a_post">LEIA POSTITUS</string>
+    <string name="enter_post_code">Sisesta jagamiskood</string>
+    <string name="find">leia</string>
 </resources>

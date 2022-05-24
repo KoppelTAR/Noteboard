@@ -100,6 +100,9 @@
         <action
             android:id="@+id/action_userFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_findPostFragment"
+            app:destination="@id/findPostFragment" />
 
     </fragment>
     <fragment
@@ -137,5 +140,14 @@
         <action
             android:id="@+id/action_userDetailsFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/findPostFragment"
+        android:name="com.example.noteboard.fragments.FindPostFragment"
+        android:label="fragment_find_post"
+        tools:layout="@layout/fragment_find_post" >
+        <action
+            android:id="@+id/action_findPostFragment_to_userFragment"
+            app:destination="@id/userFragment" />
     </fragment>
 </navigation>

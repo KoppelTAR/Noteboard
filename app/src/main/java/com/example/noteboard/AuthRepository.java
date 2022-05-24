@@ -98,7 +98,14 @@ public class AuthRepository {
                 });
     }
 
-    public void sendPasswordResetEmail(String email) {
+    public void sendPasswordResetEmail(String email,String localeString) {
+        String newlocale = localeString;
+        Locale locale = new Locale(newlocale);
+        Locale.setDefault(locale);
+        Configuration config = application.getResources().getConfiguration();
+        config.locale = locale;
+        application.getResources().updateConfiguration(config,
+                application.getResources().getDisplayMetrics());
         firebaseAuth.sendPasswordResetEmail(email)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

@@ -92,5 +92,11 @@
     <string name="invalidPassword">Invalid password</string>
     <string name="registrationSuccess">Registration successful</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="post_added">Post successfully added!</string>
+    <string name="post_created_by_user">This post is created by you!</string>
+    <string name="access_exists">You already have access to this post!</string>
+    <string name="invalid_code">Invalid code</string>
+    <string name="find_a_post">FIND A POST</string>
+    <string name="enter_post_code">Enter post code</string>
+    <string name="find">find</string>
 </resources>

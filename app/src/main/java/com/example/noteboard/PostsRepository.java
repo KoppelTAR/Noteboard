@@ -3,9 +3,11 @@ package com.example.noteboard;
 import static android.content.ContentValues.TAG;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -67,24 +69,39 @@ public class PostsRepository {
         });
     }
 
-    public void addPostThroughCode(String sharingCode){
-        db.collection("posts").whereEqualTo("sharingCode", sharingCode).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    public void addPostThroughCode(String sharingCode, Context context){
+    try{
+        db.collection("posts").whereEqualTo("sharingCode", Long.parseLong(sharingCode)).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                task.getResult();
-            }
-        });
-        DocumentReference docRefUser = db.collection("users").document(firebaseAuth.getCurrentUser().getUid());
-        docRefUser.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                ArrayList<DocumentReference> array = (ArrayList<DocumentReference>) task.getResult().get("ownedPosts");
-                array.add(docRefPost);
-                docRefUser.update("sharedPosts", array);
-                postLiveData.setValue(postArrayList);
+                DocumentReference docRefPost = db.collection("posts").document(task.getResult().getDocuments().get(0).getId());
+                DocumentReference docRefUser = db.collection("users").document(firebaseAuth.getCurrentUser().getUid());
+                docRefUser.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        ArrayList<DocumentReference> ownPosts = (ArrayList<DocumentReference>) task.getResult().get("ownedPosts");
+                        ArrayList<DocumentReference> array = (ArrayList<DocumentReference>) task.getResult().get("sharedPosts");
+                        if(array.contains(docRefPost)){
+                            Toast.makeText(context, context.getString(R.string.access_exists),Toast.LENGTH_SHORT).show();
+                        }
+                        else if(ownPosts.contains(docRefPost)){
+                            Toast.makeText(context, context.getString(R.string.post_created_by_user),Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            array.add(docRefPost);
+                            docRefUser.update("sharedPosts", array);
+                            postLiveData.setValue(postArrayList);
+                            Toast.makeText(context, context.getString(R.string.post_added),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
     }
+    catch (Exception e){
+        Toast.makeText(context, context.getString(R.string.invalid_code),Toast.LENGTH_SHORT).show();
+    }
+}
 
 
     public void getUserPosts(){
