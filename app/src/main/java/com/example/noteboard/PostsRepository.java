@@ -72,9 +72,16 @@ public class PostsRepository {
     public void addPostThroughCode(String sharingCode, Context context){
     try{
         db.collection("posts").whereEqualTo("sharingCode", Long.parseLong(sharingCode)).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            DocumentReference docRefPost;
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                DocumentReference docRefPost = db.collection("posts").document(task.getResult().getDocuments().get(0).getId());
+                try{
+                    docRefPost = db.collection("posts").document(task.getResult().getDocuments().get(0).getId());
+                }
+                catch(Exception e){
+                    Toast.makeText(context, context.getString(R.string.invalid_code),Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 DocumentReference docRefUser = db.collection("users").document(firebaseAuth.getCurrentUser().getUid());
                 docRefUser.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
