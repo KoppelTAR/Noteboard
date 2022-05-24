@@ -6,14 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".fragments.SettingsFragment">
 
+
     <TextView
         android:id="@+id/txtLang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
         android:text="@string/language_selection"
         android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/imgRus"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,8 +22,8 @@
         android:id="@+id/imgEst"
         android:layout_width="70dp"
         android:layout_height="81dp"
-        android:layout_marginTop="28dp"
         android:src="@drawable/estonianflag"
+        app:layout_constraintBottom_toTopOf="@+id/txtDarkModeToggle"
         app:layout_constraintEnd_toStartOf="@+id/imgRus"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,6 +34,7 @@
         android:layout_width="70dp"
         android:layout_height="81dp"
         android:src="@drawable/russianflag"
+        app:layout_constraintBottom_toBottomOf="@+id/imgEst"
         app:layout_constraintEnd_toStartOf="@+id/imgEng"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imgEst"
@@ -43,6 +45,7 @@
         android:layout_width="70dp"
         android:layout_height="81dp"
         android:src="@drawable/ukflag"
+        app:layout_constraintBottom_toBottomOf="@+id/imgRus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imgRus"
@@ -52,10 +55,10 @@
         android:id="@+id/txtDarkModeToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="28dp"
         android:text="@string/dark_mode_toggle"
         android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnBack"
+        app:layout_constraintEnd_toStartOf="@+id/switchDarkMode"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgEst" />
 
@@ -63,14 +66,16 @@
         android:id="@+id/switchDarkMode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textOn="@string/on"
-        android:textOff="@string/off"
         android:showText="true"
+        android:textOff="@string/off"
+        android:textOn="@string/on"
         android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSaveSettings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.427"
         app:layout_constraintStart_toEndOf="@+id/txtDarkModeToggle"
-        app:layout_constraintTop_toTopOf="@+id/txtDarkModeToggle" />
+        app:layout_constraintTop_toTopOf="@+id/txtDarkModeToggle"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnSaveSettings"
@@ -82,17 +87,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.675"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDarkModeToggle"
-        app:layout_constraintVertical_bias="0.301" />
+        app:layout_constraintTop_toTopOf="@+id/btnBack"
+        app:layout_constraintVertical_bias="0.157" />
 
     <Button
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="@string/btnBack"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnSaveSettings"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtDarkModeToggle" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
