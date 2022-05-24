@@ -80,8 +80,9 @@ public class SinglePostFragment extends Fragment {
             Bundle bundle = new Bundle();
             bundle.putString("title",title);
             bundle.putString("content",content);
-            bundle.putLong("sharingcode",sharingCode);
+            bundle.putLong("Id",sharingCode);
             bundle.putString("author",author);
+            //Navigation.findNavController(getView()).navigate(R.id.);
         }
         if (item.getItemId() == R.id.menuBack){
             Bundle typeBundle = new Bundle();

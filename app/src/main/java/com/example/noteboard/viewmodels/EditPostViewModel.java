@@ -1,7 +1,22 @@
 package com.example.noteboard.viewmodels;
 
-import androidx.lifecycle.ViewModel;
+import android.app.Application;
 
-public class EditPostViewModel extends ViewModel {
-    // TODO: Implement the ViewModel
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+
+import com.example.noteboard.PostsRepository;
+
+public class EditPostViewModel extends AndroidViewModel {
+
+    private final PostsRepository postsRepository;
+
+    public EditPostViewModel(@NonNull Application application) {
+        super(application);
+        postsRepository = new PostsRepository(application);
+    }
+
+    public void SaveChanges(String Title, String Content, Long Id) {
+        postsRepository.SaveEditedPostChanges(Title,Content,Id);
+    }
 }

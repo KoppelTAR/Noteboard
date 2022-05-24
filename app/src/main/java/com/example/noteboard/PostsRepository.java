@@ -6,6 +6,7 @@ import android.app.Application;
 import android.content.res.Configuration;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -77,6 +78,18 @@ public class PostsRepository {
         });
     }
 
+    public void SaveEditedPostChanges(String title, String content, Long id) {
+        DocumentReference docRefPost = db.collection("posts").document(id.toString());
+        docRefPost.update("content",content);
+        docRefPost.update("title",title);
+        docRefPost.update("editedAt", Calendar.getInstance().getTime());
+        docRefPost.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                Toast.makeText(application, "Changes saved", Toast.LENGTH_SHORT).show();
+            }
+        })
+    }
 
     public void getUserPosts(){
         firebaseAuth = FirebaseAuth.getInstance();
@@ -225,5 +238,6 @@ public class PostsRepository {
     public MutableLiveData<ArrayList<Post>> getPostLiveData() {
         return postLiveData;
     }
+
 
 }
