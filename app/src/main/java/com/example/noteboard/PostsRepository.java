@@ -65,6 +65,17 @@ public class PostsRepository {
                 post.put("postAuthor",task.getResult().getString("username"));
                 post.put("editedAt", Calendar.getInstance().getTime());
                 docRefPost.set(post).addOnSuccessListener(aVoid -> Log.i(TAG, String.valueOf(R.string.UserDataWasSaved)));
+
+                DocumentReference docRefUser = db.collection("users").document(firebaseAuth.getCurrentUser().getUid());
+                docRefUser.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        ArrayList<DocumentReference> array = (ArrayList<DocumentReference>) task.getResult().get("ownedPosts");
+                        array.add(docRefPost);
+                        docRefUser.update("ownedPosts", array);
+                        postLiveData.setValue(postArrayList);
+                    }
+                });
             }
         });
     }
