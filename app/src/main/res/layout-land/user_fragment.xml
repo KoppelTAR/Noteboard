@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.UserFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtHelloUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:layout_gravity="center"
+                app:layout_constraintBottom_toTopOf="@+id/btnViewAllPosts"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnViewUserDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/account_settings"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/btnLogout"
+                app:layout_constraintTop_toBottomOf="@+id/btnViewPosts"
+                android:layout_gravity="center"
+                app:layout_constraintVertical_bias="0.227" />
+
+            <Button
+                android:id="@+id/btnViewPosts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/view_your_posts"
+                app:icon="@drawable/ic_note"
+                android:layout_gravity="center"
+                app:layout_constraintBottom_toTopOf="@+id/btnFindWithCode"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btnViewAllPosts"
+                app:layout_constraintTop_toTopOf="@+id/btnViewAllPosts" />
+
+            <Button
+                android:id="@+id/btnViewAllPosts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/view_all_posts"
+                app:icon="@drawable/ic_note"
+                android:layout_gravity="center"
+                app:layout_constraintBottom_toTopOf="@+id/btnFindWithCode"
+                app:layout_constraintEnd_toStartOf="@+id/btnViewPosts"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtHelloUser" />
+
+            <Button
+                android:id="@+id/btnFindWithCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/find_post_with_sharing_code"
+                app:icon="@drawable/ic_find"
+                android:layout_gravity="center"
+                app:layout_constraintBottom_toTopOf="@+id/btnLogout"
+                app:layout_constraintEnd_toStartOf="@+id/btnViewUserDetails"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnViewAllPosts" />
+
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/logout"
+                app:icon="@drawable/ic_logout"
+                android:layout_gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnFindWithCode" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
