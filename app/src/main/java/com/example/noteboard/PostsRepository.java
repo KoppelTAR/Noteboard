@@ -76,25 +76,22 @@ public class PostsRepository {
                         array.add(docRefPost);
                         docRefUser.update("ownedPosts", array);
                         postLiveData.setValue(postArrayList);
-                        docRefUser.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                ArrayList<DocumentReference> arrayList = (ArrayList<DocumentReference>) task.getResult().get("ownedPosts");
-                                while (true) {
-                                    try{
-                                        arrayList.get(array.indexOf(docRefPost));
-                                        break;
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                        try {
-                                            Thread.sleep(500);
-                                        } catch (InterruptedException i) {
-                                            i.printStackTrace();
-                                        }
-                                    }
+                        while (true) {
+                            try { //TODO delay it from switching to mainfrag until firebase catches up
+                                if (array.get(array.indexOf(docRefPost)) != null) {
+                                    break;
                                 }
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                                try {
+                                    Thread.sleep(500);
+                                } catch (InterruptedException interruptedException) {
+                                    interruptedException.printStackTrace();
+                                }
+                                e.printStackTrace();
                             }
-                        });
+
+                        }
                     }
                 });
             }
@@ -254,6 +251,8 @@ public class PostsRepository {
                                             Log.i(TAG, "onSuccess: "+ i);
                                             Log.i(TAG, "onSuccess: "+ object.getLong("sharingCode"));
                                             ownedPostsList.remove(i);
+                                            list.remove(i);
+                                            i--;
                                         }
                                     }
                                     reference.update("ownedPosts", ownedPostsList);
@@ -283,6 +282,8 @@ public class PostsRepository {
                                             postLiveData.setValue(postArrayList);
                                         } else {
                                             sharedPostsList.remove(i);
+                                            list.remove(i);
+                                            i--;
                                         }
                                     }
                                     reference.update("sharedPosts", sharedPostsList);
