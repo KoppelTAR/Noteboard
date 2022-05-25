@@ -159,7 +159,6 @@ public class PostsRepository {
                                         Long s = object.getLong("sharingCode");
                                         post.setSharingCode(s);
                                         post.setContent(object.getString("content"));
-
                                         postArrayList.add(post);
                                         postLiveData.setValue(postArrayList);
                                     }

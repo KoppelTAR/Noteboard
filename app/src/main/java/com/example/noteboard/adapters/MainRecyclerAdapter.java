@@ -37,7 +37,16 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
         Post post = postArrayList.get(position);
         holder.title.setText(post.getTitle());
-        holder.content.setText(post.getContent());
+        if (post.getContent().length() >= 100){
+            String string = post.getContent().substring(0,100);
+            StringBuilder stringBuilder = new StringBuilder(string);
+            stringBuilder.append("...");
+            holder.content.setText(stringBuilder);
+        }
+        else{
+            holder.content.setText(post.getContent());
+
+        }
         holder.author.setText(String.format(context.getString(R.string.byAuthor),post.getPostAuthor()));
     }
 
