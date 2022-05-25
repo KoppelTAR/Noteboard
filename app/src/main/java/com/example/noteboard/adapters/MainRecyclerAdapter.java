@@ -37,8 +37,9 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
         Post post = postArrayList.get(position);
         holder.title.setText(post.getTitle());
-        if (post.getContent().length() >= 100){
-            String string = post.getContent().substring(0,100);
+        //here you can adjust post content length
+        if (post.getContent().length() >= 80){
+            String string = post.getContent().substring(0,80);
             StringBuilder stringBuilder = new StringBuilder(string);
             stringBuilder.append("...");
             holder.content.setText(stringBuilder);
