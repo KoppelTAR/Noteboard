@@ -27,6 +27,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_gravity="center"
                 app:layout_constraintBottom_toTopOf="@+id/btnViewAllPosts"
                 app:layout_constraintEnd_toEndOf="parent"
