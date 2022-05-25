@@ -79,7 +79,7 @@ public class UserDetailsFragment extends Fragment {
         userDetailsViewModel.showCurrentUserUsername(username);
 
         updateDataBtn.setOnClickListener(view1 -> {
-            userDetailsViewModel.updateData(email,username,confirmPassword);
+            userDetailsViewModel.updateData(email,username,confirmPassword, String.valueOf(getActivity().getResources().getConfiguration().locale));
         });
 
         backBtn.setOnClickListener(view1 -> {

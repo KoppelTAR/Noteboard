@@ -15,7 +15,7 @@
             android:id="@+id/editTextUpdateUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/userDetailsMarginTop"
             android:ems="10"
             android:hint="@string/username"
             android:inputType="textPersonName"
@@ -27,9 +27,9 @@
             android:id="@+id/editTextUpdateEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/userDetailsMarginTop"
             android:ems="10"
-            android:hint="Email"
+            android:hint="@string/hintEmail"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +49,7 @@
 
         <Button
             android:id="@+id/btnBackTOUserFragment"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/back"
             app:layout_constraintBottom_toTopOf="@+id/btnUpdateData"
@@ -58,7 +58,7 @@
 
         <Button
             android:id="@+id/btnUpdateData"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/update_data"
             app:layout_constraintBottom_toTopOf="@+id/forgotPasswordBtn"
@@ -67,7 +67,7 @@
 
         <Button
             android:id="@+id/btnDeleteAccount"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/delete_account"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -78,7 +78,7 @@
 
         <Button
             android:id="@+id/forgotPasswordBtn"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/forgotPassword"
             app:layout_constraintBottom_toTopOf="@+id/btnDeleteAccount"

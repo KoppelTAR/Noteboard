@@ -77,7 +77,7 @@ public class MainFragment extends Fragment {
         title = view.findViewById(R.id.txtTitle);
         if(getArguments().getString("type").equals("all")){
             mainViewModel.showPosts();
-            title.setText(getActivity().getApplication().getString(R.string.allPosts));
+            title.setText(getActivity().getString(R.string.allPosts));
         }
         if(getArguments().getString("type").equals("own")){
             mainViewModel.showUserPosts();

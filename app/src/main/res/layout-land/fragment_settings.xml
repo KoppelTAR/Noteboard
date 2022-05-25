@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/language_selection"
-        android:textSize="20dp"
+        android:textSize="@dimen/langSelectionTextSize"
         app:layout_constraintBottom_toTopOf="@+id/imgRus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,8 +20,8 @@
 
     <ImageView
         android:id="@+id/imgEst"
-        android:layout_width="70dp"
-        android:layout_height="81dp"
+        android:layout_width="@dimen/imgWidth"
+        android:layout_height="@dimen/imgHeight"
         android:src="@drawable/estonianflag"
         app:layout_constraintBottom_toTopOf="@+id/txtDarkModeToggle"
         app:layout_constraintEnd_toStartOf="@+id/imgRus"
@@ -31,8 +31,8 @@
 
     <ImageView
         android:id="@+id/imgRus"
-        android:layout_width="70dp"
-        android:layout_height="81dp"
+        android:layout_width="@dimen/imgWidth"
+        android:layout_height="@dimen/imgHeight"
         android:src="@drawable/russianflag"
         app:layout_constraintBottom_toBottomOf="@+id/imgEst"
         app:layout_constraintEnd_toStartOf="@+id/imgEng"
@@ -42,8 +42,8 @@
 
     <ImageView
         android:id="@+id/imgEng"
-        android:layout_width="70dp"
-        android:layout_height="81dp"
+        android:layout_width="@dimen/imgWidth"
+        android:layout_height="@dimen/imgHeight"
         android:src="@drawable/ukflag"
         app:layout_constraintBottom_toBottomOf="@+id/imgRus"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dark_mode_toggle"
-        android:textSize="20dp"
+        android:textSize="@dimen/darkModeToggleTextSize"
         app:layout_constraintBottom_toTopOf="@+id/btnBack"
         app:layout_constraintEnd_toStartOf="@+id/switchDarkMode"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +69,7 @@
         android:showText="true"
         android:textOff="@string/off"
         android:textOn="@string/on"
-        android:textSize="15dp"
+        android:textSize="@dimen/darkModeSwitchTextSize"
         app:layout_constraintBottom_toTopOf="@+id/btnSaveSettings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.427"

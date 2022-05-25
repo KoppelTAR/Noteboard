@@ -11,9 +11,8 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="66dp"
         android:text="@string/find_a_post"
-        android:textSize="34sp"
+        android:textSize="@dimen/titleTextSize"
         app:layout_constraintBottom_toTopOf="@+id/editTextPostCode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +32,7 @@
 
     <Button
         android:id="@+id/btnFindPostBack"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
         android:text="@string/btnBack"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,9 +41,9 @@
 
     <Button
         android:id="@+id/btnFindPost"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="@dimen/layoutMarginTopFindAPost"
         android:text="@string/find"
         app:layout_constraintBottom_toTopOf="@+id/btnFindPostBack"
         app:layout_constraintEnd_toEndOf="parent"

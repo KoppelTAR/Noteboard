@@ -67,7 +67,7 @@ public class AuthRepository {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(application.getApplicationContext(), "Invalid password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(application.getApplicationContext(), R.string.invalidPassword, Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -176,7 +176,14 @@ public class AuthRepository {
         });
     }
 
-    public void updateDataFromForm(EditText editTextEmail, EditText editTextUsername, EditText editTextConfirmPassword){
+    public void updateDataFromForm(EditText editTextEmail, EditText editTextUsername, EditText editTextConfirmPassword, String localeString){
+        String newlocale = localeString;
+        Locale locale = new Locale(newlocale);
+        Locale.setDefault(locale);
+        Configuration config = application.getResources().getConfiguration();
+        config.locale = locale;
+        application.getResources().updateConfiguration(config,
+                application.getResources().getDisplayMetrics());
         FirebaseUser user = firebaseAuth.getCurrentUser();
         user.reload();
         DocumentReference docRef = db.collection("users").document(user.getUid());
