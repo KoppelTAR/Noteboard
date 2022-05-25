@@ -80,7 +80,7 @@ public class SinglePostFragment extends Fragment {
             Bundle bundle = new Bundle();
             bundle.putString("title",title);
             bundle.putString("content",content);
-            bundle.putLong("Id",sharingCode);
+            bundle.putLong("sharingcode",sharingCode);
             bundle.putString("author", author);
             bundle.putString("type",getArguments().getString("type"));
             Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_editPostFragment, bundle);

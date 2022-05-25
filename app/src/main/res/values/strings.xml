@@ -94,7 +94,7 @@
     <string name="editPostContentEditText">Content</string>
     <string name="BtnEditPostSaveChanges">Save changes</string>
     <string name="TitleEditTextPostEdit">Title</string>
-    <string name="are_you_sure">Are you sure?</string>
+    <string name="are_you_sure">Are you sure you want to delete this post?</string>
     <string name="yes">yes</string>
     <string name="no">no</string>
 </resources>

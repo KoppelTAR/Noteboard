@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,5 +38,25 @@ public class DeletionConfirmationFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Viewmodel = new ViewModelProvider(this).get(DeletionConfirmationViewModel.class);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Bundle bundle = new Bundle();
+        bundle.putString("type",getArguments().getString("type"));
+
+        yes.setOnClickListener(view1 -> {
+            Viewmodel.DeletePost(getArguments().getLong("sharingcode"));
+            Navigation.findNavController(getView()).navigate(R.id.action_deletionConfirmationFragment_to_mainFragment,bundle);
+        });
+        no.setOnClickListener(view1 -> {
+            bundle.putString("title",getArguments().getString("title"));
+            bundle.putString("content",getArguments().getString("title"));
+            bundle.putLong("sharingcode",getArguments().getLong("sharingcode"));
+            bundle.putString("author", getArguments().getString("author"));
+            Navigation.findNavController(getView()).navigate(R.id.action_deletionConfirmationFragment_to_editPostFragment,bundle);
+        });
     }
 }

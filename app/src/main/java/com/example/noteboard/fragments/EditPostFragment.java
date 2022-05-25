@@ -47,7 +47,7 @@ public class EditPostFragment extends Fragment {
         if (getArguments() != null) {
             Title = getArguments().getString("title");
             Content = getArguments().getString("content");
-            Id = getArguments().getLong("Id");
+            Id = getArguments().getLong("sharingcode");
 
             TitleEditText.setText(Title);
             ContentEditText.setText(Content);
@@ -88,18 +88,16 @@ public class EditPostFragment extends Fragment {
 
         Bundle bundle = new Bundle();
         bundle.putString("type",getArguments().getString("type"));
+        bundle.putString("title",Title);
+        bundle.putString("content",Content);
+        bundle.putLong("sharingcode",Id);
+        bundle.putString("author", getArguments().getString("author"));
 
         if (item.getItemId() == R.id.menuBack) {
-            bundle.putString("title",Title);
-            bundle.putString("content",Content);
-            bundle.putLong("sharingcode",Id);
-            bundle.putString("author", getArguments().getString("author"));
-
             Navigation.findNavController(getView()).navigate(R.id.action_editPostFragment_to_singlePostFragment,bundle);
         }
         if (item.getItemId() == R.id.menuDelete) {
-            EditViewmodel.DeletePost(Id);
-            Navigation.findNavController(getView()).navigate(R.id.action_editPostFragment_to_mainFragment,bundle);
+            Navigation.findNavController(getView()).navigate(R.id.action_editPostFragment_to_deletionConfirmationFragment,bundle);
         }
         return super.onOptionsItemSelected(item);
     }
