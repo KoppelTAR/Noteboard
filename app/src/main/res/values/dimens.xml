@@ -25,7 +25,7 @@
     <dimen name="singlePostTitleMarginStart">8dp</dimen>
     <dimen name="singlePostTitleMarginTop">24dp</dimen>
     <dimen name="singlePostTitleMarginEnd">8dp</dimen>
-    <dimen name="singlePostTitleTextSize">20sp</dimen>
+    <dimen name="singlePostTitleTextSize">25sp</dimen>
     <dimen name="singlePostTitleTextSizeLandscape">25sp</dimen>
     <dimen name="singlePostUsernameTextSizeLandscape">20sp</dimen>
     <dimen name="userDetailsMarginTop">32dp</dimen>

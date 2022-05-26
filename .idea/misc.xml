@@ -25,45 +25,11 @@
         <entry key="..\:/Users/opilane/AndroidStudioProjects/TARpe20/aktsia-selts/app/src/main/res/menu/menu_singlepost.xml" value="0.559375" />
         <entry key="..\:/Users/opilane/AndroidStudioProjects/TARpe20/aktsia-selts/app/src/main/res/menu/menu_user.xml" value="0.559375" />
         <entry key="..\:/Users/opilane/AndroidStudioProjects/TARpe20/aktsia-selts/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.4185" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/drawable-v24/ic_save.xml" value="0.2995" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/drawable/ic_back.xml" value="0.2995" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2995" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.2995" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/drawable/ic_edit.xml" value="0.2995" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/drawable/ic_find.xml" value="0.2995" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2995" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/drawable/ic_logout.xml" value="0.2995" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/drawable/ic_note.xml" value="0.2995" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/drawable/new_add.xml" value="0.2995" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout-land/fragment_create.xml" value="0.28802083333333334" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout-land/fragment_delete_user.xml" value="0.3148148148148148" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout-land/fragment_find_post.xml" value="0.1" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout-land/fragment_login.xml" value="0.1" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout-land/fragment_settings.xml" value="0.22" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout-land/fragment_single_post.xml" value="0.1" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout-land/fragment_user_details.xml" value="0.25" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout-land/layout_main.xml" value="0.1" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout-land/main_fragment.xml" value="0.1" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout-land/password_reset_fragment.xml" value="0.15" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout-land/registration_fragment.xml" value="0.1" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout-land/user_fragment.xml" value="0.1" />
         <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/activity_main.xml" value="0.24954710144927536" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/fragment_create.xml" value="0.1" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/fragment_delete_user.xml" value="0.3605072463768116" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/fragment_find_post.xml" value="0.3605072463768116" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/fragment_login.xml" value="0.17" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/fragment_settings.xml" value="0.1" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/fragment_single_post.xml" value="0.1" />
+        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/fragment_login.xml" value="0.10597826086956522" />
+        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/fragment_single_post.xml" value="0.25" />
         <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/fragment_user.xml" value="0.25" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/fragment_user_details.xml" value="0.18" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/layout_main.xml" value="0.2" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/main_fragment.xml" value="0.15" />
         <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/password_reset_fragment.xml" value="0.19166666666666668" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/registration_fragment.xml" value="0.1" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/user_fragment.xml" value="0.1" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/menu/menu_main.xml" value="0.371875" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/menu/menu_singlepost.xml" value="0.371875" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/menu/menu_user.xml" value="0.371875" />
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/layout/fragment_create.xml" value="0.3605072463768116" />
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/layout/fragment_find_post.xml" value="0.358695652173913" />
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/layout/fragment_login.xml" value="0.358695652173913" />

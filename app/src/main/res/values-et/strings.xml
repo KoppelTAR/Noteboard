@@ -58,12 +58,12 @@
     <string name="example_mail">Näide: Egor@gmail.com</string>
     <string name="example_name">Näide: Egor</string>
     <string name="author">autor</string>
-    <string name="byAuthor">%s\'i poolt</string>
+    <string name="byAuthor">Autor: %s</string>
     <string name="view_all_posts">Vaata kõiki postitusi</string>
     <string name="allPosts">Kõik postitused</string>
     <string name="postsTitle">%s\'i postitused</string>
     <string name="save_changes_EditFrag">Salvesta muudatused</string>
-    <string name="ViewSingle_UsernameDisplay">%s poolt</string>
+    <string name="ViewSingle_UsernameDisplay">Autor: %s</string>
     <string name="mainfragment_title">Postitused</string>
     <string name="singlepost_title">Postitus</string>
     <string name="edit_menuBtn">MUUDA</string>
