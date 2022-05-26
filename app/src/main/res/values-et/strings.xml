@@ -102,4 +102,5 @@
     <string name="account_deleted">Kasutaja on kustutatud!</string>
     <string name="invalid_password">Vale salasõna</string>
     <string name="refresh">REFRESH</string>
+    <string name="deleted_user">[kustutatud kasutaja]</string>
 </resources>

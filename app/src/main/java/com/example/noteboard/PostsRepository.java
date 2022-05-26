@@ -192,7 +192,14 @@ public class PostsRepository {
         userDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                textView.setText(String.format(context.getString(R.string.byAuthor),task.getResult().getString("username")));
+                String username = task.getResult().getString("username");
+                if(username != null){
+                    textView.setText(String.format(context.getString(R.string.byAuthor),username));
+                }
+                if(username == null){
+                    textView.setText(String.format(context.getString(R.string.byAuthor),context.getString(R.string.deleted_user)));
+                }
+                
             }
         });
     }
