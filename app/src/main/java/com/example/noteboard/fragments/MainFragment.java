@@ -111,6 +111,17 @@ public class MainFragment extends Fragment {
             mainViewModel.clearPosts();
             Navigation.findNavController(getView()).navigate(R.id.action_mainFragment_to_settingsFragment);
         }
+        if (item.getItemId() == R.id.menuRefresh){
+            mainViewModel.clearPosts();
+            if(getArguments().getString("type").equals("own")){
+                mainViewModel.clearPosts();
+                mainViewModel.showUserPosts();
+            }
+            else if(getArguments().getString("type").equals("all")){
+                mainViewModel.clearPosts();
+                mainViewModel.showPosts();
+            }
+        }
         if (item.getItemId() == R.id.menuUser){
             mainViewModel.clearPosts();
             Navigation.findNavController(getView()).navigate(R.id.action_mainFragment_to_userFragment);

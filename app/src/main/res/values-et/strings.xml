@@ -99,4 +99,7 @@
     <string name="find_a_post">LEIA POSTITUS</string>
     <string name="enter_post_code">Sisesta jagamiskood</string>
     <string name="find">leia</string>
+    <string name="account_deleted">Kasutaja on kustutatud!</string>
+    <string name="invalid_password">Vale salasõna</string>
+    <string name="refresh">REFRESH</string>
 </resources>

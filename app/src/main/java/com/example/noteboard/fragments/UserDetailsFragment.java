@@ -45,7 +45,7 @@ public class UserDetailsFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_main, menu);
+        inflater.inflate(R.menu.menu_user_settings, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 

@@ -99,4 +99,7 @@
     <string name="find_a_post">FIND A POST</string>
     <string name="enter_post_code">Enter post code</string>
     <string name="find">find</string>
+    <string name="account_deleted">Account has been deleted!</string>
+    <string name="invalid_password">Invalid password</string>
+    <string name="refresh">REFRESH</string>
 </resources>
