@@ -66,7 +66,7 @@ public class PostsRepository {
                 post.put("content",postContent);
                 post.put("title",postTitle);
                 post.put("sharingCode", currentMs);
-                post.put("postAuthor",task.getResult().getString("username"));
+                post.put("postAuthor", firebaseAuth.getCurrentUser().getUid());
                 post.put("editedAt", Calendar.getInstance().getTime());
                 docRefPost.set(post).addOnSuccessListener(aVoid -> Log.i(TAG, String.valueOf(R.string.UserDataWasSaved)));
 
@@ -211,6 +211,18 @@ public class PostsRepository {
                 }
             });
         }
+    }
+
+    public static void findAndSetUsername(TextView textView, String uid, Context context){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference userDocRef = db.collection("users").document(uid);
+
+        userDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                textView.setText(String.format(context.getString(R.string.byAuthor),task.getResult().getString("username")));
+            }
+        });
     }
 
     public void SetUsername(TextView hellousernameTextView, String locale) {
