@@ -92,4 +92,15 @@
     <string name="errorWhenGettingData">Error andmebaasiga ühendumisel</string>
     <string name="invalidPassword">Vale salasõna</string>
     <string name="registrationSuccess">Registratsioon õnnestus</string>
+    <string name="editPostContentEditText">Content</string>
+    <string name="BtnEditPostSaveChanges">Save changes</string>
+    <string name="TitleEditTextPostEdit">Title</string>
+    <string name="are_you_sure">Oled sa kindel et soovid seda postitust kustutada?</string>
+    <string name="yes">jah</string>
+    <string name="no">ei</string>
+    <string name="EditedChangesSaved">Muudatused salvestatud</string>
+    <string name="PostDeleted">postitus edukalt kustutatud!</string>
+    <string name="errorDeletingPost">Tekkis probleem postituse kustutamisel</string>
+    <string name="EditingTitle">Postituse muutmine</string>
+    <string name="DeletionConfTitle">Kinnita kustutamine</string>
 </resources>

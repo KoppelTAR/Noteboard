@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -17,6 +18,8 @@ import com.example.noteboard.R;
 import com.example.noteboard.viewmodels.DeletionConfirmationViewModel;
 import com.example.noteboard.viewmodels.EditPostViewModel;
 
+import java.util.Objects;
+
 public class DeletionConfirmationFragment extends Fragment {
 
     DeletionConfirmationViewModel Viewmodel;
@@ -26,6 +29,8 @@ public class DeletionConfirmationFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.DeletionConfTitle);
+        setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_deletion_confirmation, container, false);
 
         yes = view.findViewById(R.id.yesBtn);

@@ -1,5 +1,6 @@
 package com.example.noteboard.fragments;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -23,6 +24,8 @@ import android.widget.EditText;
 import com.example.noteboard.R;
 import com.example.noteboard.viewmodels.EditPostViewModel;
 
+import java.util.Objects;
+
 public class EditPostFragment extends Fragment {
 
     EditPostViewModel EditViewmodel;
@@ -38,6 +41,7 @@ public class EditPostFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.EditingTitle);
         View view = inflater.inflate(R.layout.edit_post_fragment, container, false);
 
         ContentEditText = view.findViewById(R.id.ContentEditText);
@@ -76,8 +80,6 @@ public class EditPostFragment extends Fragment {
         Save.setOnClickListener(view1 -> {
             String TitleFinal = TitleEditText.getText().toString();
             String ContentFinal = ContentEditText.getText().toString();
-
-            Log.i("TAG", "onCreateView: "+ContentFinal+" :::   ::: "+TitleFinal);
 
             EditViewmodel.SaveChanges(TitleFinal,ContentFinal,Id);
         });
