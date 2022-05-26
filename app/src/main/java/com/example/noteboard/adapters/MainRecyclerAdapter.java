@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.noteboard.PostsRepository;
 import com.example.noteboard.R;
 import com.example.noteboard.models.Post;
 
@@ -48,7 +49,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             holder.content.setText(post.getContent());
 
         }
-        holder.author.setText(String.format(context.getString(R.string.byAuthor),post.getPostAuthor()));
+        PostsRepository.findAndSetUsername(holder.author, post.getPostAuthor(), context);
     }
 
     @Override
