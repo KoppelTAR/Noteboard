@@ -43,7 +43,7 @@
         android:id="@+id/btnFindPost"
         android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/layoutMarginTopFindAPost"
+        android:layout_marginTop="46dp"
         android:text="@string/find"
         app:layout_constraintBottom_toTopOf="@+id/btnFindPostBack"
         app:layout_constraintEnd_toEndOf="parent"
