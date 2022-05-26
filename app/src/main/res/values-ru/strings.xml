@@ -99,4 +99,7 @@
     <string name="find_a_post">поиск поста</string>
     <string name="enter_post_code">введите код</string>
     <string name="find">найти</string>
+    <string name="account_deleted">аккаунт удален!</string>
+    <string name="invalid_password">неверный пароль</string>
+    <string name="refresh">REFRESH</string>
 </resources>
