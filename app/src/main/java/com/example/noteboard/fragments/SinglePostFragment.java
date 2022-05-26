@@ -16,7 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.noteboard.PostsRepository;
 import com.example.noteboard.R;
+import com.google.firebase.firestore.auth.User;
 
 import java.util.Objects;
 
@@ -50,7 +52,7 @@ public class SinglePostFragment extends Fragment {
 
             ContentTextView.setText(content);
             TitleTextView.setText(title);
-            UsernameTextView.setText(String.format(getString(R.string.ViewSingle_UsernameDisplay),author));
+            PostsRepository.findAndSetUsername(UsernameTextView,author,getContext());
         }
         return view;
     }
