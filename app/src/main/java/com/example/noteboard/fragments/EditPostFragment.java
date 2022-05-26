@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.noteboard.R;
 import com.example.noteboard.viewmodels.EditPostViewModel;
@@ -78,10 +79,13 @@ public class EditPostFragment extends Fragment {
         EditViewmodel = new ViewModelProvider(this).get(EditPostViewModel.class);
 
         Save.setOnClickListener(view1 -> {
-            String TitleFinal = TitleEditText.getText().toString();
-            String ContentFinal = ContentEditText.getText().toString();
-
-            EditViewmodel.SaveChanges(TitleFinal,ContentFinal,Id);
+            String ContentFinal = ContentEditText.getText().toString().trim();
+            String TitleFinal = TitleEditText.getText().toString().trim();
+            if (TitleFinal.equals("") || ContentFinal.equals("")) {
+                Toast.makeText(getContext(), R.string.emptyInput, Toast.LENGTH_SHORT).show();
+            } else {
+                EditViewmodel.SaveChanges(TitleFinal,ContentFinal,Id);
+            }
         });
     }
 
