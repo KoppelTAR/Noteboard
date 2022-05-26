@@ -46,6 +46,7 @@ public class UserFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.user_fragment, container, false);
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.profile_title);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         logout= view.findViewById(R.id.btnLogout);

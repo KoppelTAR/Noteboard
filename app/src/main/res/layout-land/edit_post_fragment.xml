@@ -10,16 +10,17 @@
         android:id="@+id/TitleEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/TitleEditTextPostEdit"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="@dimen/zero"
         android:layout_marginStart="@dimen/scrollViewMarginStartAndEnd"
@@ -44,19 +45,18 @@
                 android:ems="10"
                 android:inputType="textMultiLine"
                 android:lineHeight="24dp"
-                android:text="@string/editPostContentEditText" />
+                android:text="@string/editPostContentEditText"
+                android:textColor="#000000" />
         </LinearLayout>
     </ScrollView>
 
     <Button
         android:id="@+id/btnSaveChanges"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/saveChangesBtnMarginStartAndEnd"
-        android:layout_marginEnd="@dimen/saveChangesBtnMarginStartAndEnd"
-        android:layout_marginBottom="10dp"
         android:text="@string/BtnEditPostSaveChanges"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

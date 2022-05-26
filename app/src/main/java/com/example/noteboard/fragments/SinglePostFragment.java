@@ -39,6 +39,7 @@ public class SinglePostFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.singlepost_title);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         View view = inflater.inflate(R.layout.fragment_single_post,container,false);
         ContentTextView = view.findViewById(R.id.contentText);
         TitleTextView = view.findViewById(R.id.titleText);
@@ -87,7 +88,7 @@ public class SinglePostFragment extends Fragment {
             bundle.putString("type",getArguments().getString("type"));
             Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_editPostFragment, bundle);
         }
-        if (item.getItemId() == R.id.menuBack){
+        if (item.getItemId() == android.R.id.home){
             Bundle typeBundle = new Bundle();
             typeBundle.putString("type",getArguments().getString("type"));
             Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_mainFragment,typeBundle);

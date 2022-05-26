@@ -2,11 +2,13 @@ package com.example.noteboard.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -33,6 +35,7 @@ public class CreatePostFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.createPostTitle);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_create, container, false);
         EditText postContent = view.findViewById(R.id.editTextPostContent);
@@ -56,5 +59,15 @@ public class CreatePostFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home){
+            Bundle args = new Bundle();
+            args.putString("type",getArguments().getString("type"));
+            Navigation.findNavController(getView()).navigate(R.id.action_createPostFragment_to_mainFragment,args);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

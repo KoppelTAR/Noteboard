@@ -45,22 +45,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <Button
-        android:id="@+id/btnDeleteUserBack"
-        android:layout_width="@dimen/zero"
-        android:layout_height="wrap_content"
-        android:text="@string/back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/btnDeleteUser"
         android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/warning"
         android:text="@string/delete_account"
         android:theme="@style/Button.Warning"
-        app:layout_constraintBottom_toTopOf="@+id/btnDeleteUserBack"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

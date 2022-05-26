@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -52,6 +53,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.settings_title);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        setHasOptionsMenu(true);
+
+
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
         night= view.findViewById(R.id.switchDarkMode);
         en = view.findViewById(R.id.imgEng);
@@ -59,19 +64,12 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         ru = view.findViewById(R.id.imgRus);
         txtLang = view.findViewById(R.id.txtLang);
         txtDark = view.findViewById(R.id.txtDarkModeToggle);
-        save = view.findViewById(R.id.btnSaveSettings);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        backBtn = view.findViewById(R.id.btnBack);
-
-        backBtn.setOnClickListener(view1 -> {
-            Navigation.findNavController(view).navigate(R.id.action_settingsFragment_to_userFragment);
-        });
 
         en.setOnClickListener(this);
         ee.setOnClickListener(this);
@@ -130,8 +128,14 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         super.onConfigurationChanged(newConfig);
         txtLang.setText(R.string.language_selection);
         txtDark.setText(R.string.dark_mode_toggle);
-        save.setText(R.string.btnSave);
-        backBtn.setText(R.string.btnBack);
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.settings_title);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home){
+            Navigation.findNavController(getView()).navigate(R.id.action_settingsFragment_to_userFragment);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -30,6 +30,7 @@ public class DeletionConfirmationFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.DeletionConfTitle);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
         setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_deletion_confirmation, container, false);
 

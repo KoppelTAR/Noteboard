@@ -48,15 +48,6 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextUpdateEmail" />
 
         <Button
-            android:id="@+id/btnBackTOUserFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/back"
-            app:layout_constraintBottom_toTopOf="@+id/btnUpdateData"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
             android:id="@+id/btnUpdateData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

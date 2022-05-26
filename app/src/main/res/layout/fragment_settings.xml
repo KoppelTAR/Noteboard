@@ -72,27 +72,4 @@
         app:layout_constraintStart_toEndOf="@+id/txtDarkModeToggle"
         app:layout_constraintTop_toTopOf="@+id/txtDarkModeToggle" />
 
-    <Button
-        android:id="@+id/btnSaveSettings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnSave"
-        app:icon="@drawable/ic_save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDarkModeToggle"
-        app:layout_constraintVertical_bias="0.313" />
-
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnBack"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSaveSettings" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

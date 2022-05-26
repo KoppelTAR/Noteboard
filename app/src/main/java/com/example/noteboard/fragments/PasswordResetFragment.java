@@ -16,6 +16,7 @@ import androidx.navigation.Navigation;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -53,6 +54,7 @@ public class PasswordResetFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.resetPasswordTitle);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setHasOptionsMenu(true);
         return inflater.inflate(R.layout.password_reset_fragment, container, false);
     }
@@ -75,5 +77,13 @@ public class PasswordResetFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_passwordResetFragment_to_loginFragment);
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home){
+            Navigation.findNavController(getView()).navigate(R.id.action_passwordResetFragment_to_loginFragment);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

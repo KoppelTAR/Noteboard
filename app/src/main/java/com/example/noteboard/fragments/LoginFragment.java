@@ -49,6 +49,7 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.loginTitle);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
         setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         Log.i("TAG", String.valueOf(requireActivity().getResources().getConfiguration().locale));

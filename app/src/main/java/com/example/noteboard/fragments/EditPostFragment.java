@@ -43,6 +43,7 @@ public class EditPostFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.EditingTitle);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         View view = inflater.inflate(R.layout.edit_post_fragment, container, false);
 
         ContentEditText = view.findViewById(R.id.ContentEditText);
@@ -99,7 +100,7 @@ public class EditPostFragment extends Fragment {
         bundle.putLong("sharingcode",Id);
         bundle.putString("author", getArguments().getString("author"));
 
-        if (item.getItemId() == R.id.menuBack) {
+        if (item.getItemId() == android.R.id.home) {
             Navigation.findNavController(getView()).navigate(R.id.action_editPostFragment_to_singlePostFragment,bundle);
         }
         if (item.getItemId() == R.id.menuDelete) {

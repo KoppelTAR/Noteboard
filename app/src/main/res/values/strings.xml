@@ -113,4 +113,6 @@
     <string name="errorDeletingPost">Error deleting post</string>
     <string name="EditingTitle">Editing</string>
     <string name="DeletionConfTitle">Confirm delete</string>
+    <string name="findPostTitle">find a post</string>
+    <string name="deleteAccountTitle">User deletion</string>
 </resources>

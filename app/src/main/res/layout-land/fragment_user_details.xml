@@ -54,14 +54,6 @@
                 android:hint="@string/confirm_current_password"
                 android:inputType="textPassword"
                 android:layout_gravity="center" />
-
-            <Button
-                android:id="@+id/btnBackTOUserFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/back"
-                android:layout_gravity="center" />
-
             <Button
                 android:id="@+id/btnUpdateData"
                 android:layout_width="wrap_content"

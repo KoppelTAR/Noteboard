@@ -114,5 +114,6 @@
     <string name="errorDeletingPost">Tekkis probleem postituse kustutamisel</string>
     <string name="EditingTitle">Postituse muutmine</string>
     <string name="DeletionConfTitle">Kinnita kustutamine</string>
->>>>>>> 0a1d3692156cc15e507da0dbd9e2097c693ad585
+    <string name="findPostTitle">leia postitus</string>
+    <string name="deleteAccountTitle">Kasutaja kustutamine</string>
 </resources>

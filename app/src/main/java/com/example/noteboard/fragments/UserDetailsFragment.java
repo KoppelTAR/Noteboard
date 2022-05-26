@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -21,13 +22,14 @@ import com.example.noteboard.R;
 import com.example.noteboard.viewmodels.MainViewModel;
 import com.example.noteboard.viewmodels.UserDetailsViewModel;
 
+import java.util.Objects;
+
 
 public class UserDetailsFragment extends Fragment {
 
     Button updateDataBtn;
     Button forgotPasswordBtn;
     Button deleteUserBtn;
-    Button backBtn;
     EditText username;
     EditText email;
     EditText confirmPassword;
@@ -60,6 +62,10 @@ public class UserDetailsFragment extends Fragment {
             mainViewModel.clearPosts();
             Navigation.findNavController(getView()).navigate(R.id.action_userDetailsFragment_to_userFragment);
         }
+
+        if (item.getItemId() == android.R.id.home){
+            Navigation.findNavController(getView()).navigate(R.id.action_userDetailsFragment_to_userFragment);
+        }
         return false;
     }
 
@@ -67,7 +73,6 @@ public class UserDetailsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        backBtn = view.findViewById(R.id.btnBackTOUserFragment);
         updateDataBtn = view.findViewById(R.id.btnUpdateData);
         forgotPasswordBtn = view.findViewById(R.id.forgotPasswordBtn);
         deleteUserBtn = view.findViewById(R.id.btnDeleteAccount);
@@ -80,10 +85,6 @@ public class UserDetailsFragment extends Fragment {
 
         updateDataBtn.setOnClickListener(view1 -> {
             userDetailsViewModel.updateData(email,username,confirmPassword, String.valueOf(getActivity().getResources().getConfiguration().locale));
-        });
-
-        backBtn.setOnClickListener(view1 -> {
-            Navigation.findNavController(view).navigate(R.id.action_userDetailsFragment_to_userFragment);
         });
 
         deleteUserBtn.setOnClickListener(view1 -> {
@@ -99,6 +100,7 @@ public class UserDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_details, container, false);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         return view;
     }
 }

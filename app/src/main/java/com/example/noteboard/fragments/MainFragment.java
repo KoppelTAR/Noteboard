@@ -40,6 +40,9 @@ public class MainFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.mainfragment_title);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+        setHasOptionsMenu(true);
+
         View view = inflater.inflate(R.layout.main_fragment, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerAllPosts);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
