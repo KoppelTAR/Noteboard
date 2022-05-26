@@ -2,16 +2,14 @@
 <resources>
     <dimen name="icon_general">24dp</dimen>
     <dimen name="icon_add">56dp</dimen>
-    <dimen name="scrollViewMarginStart">8dp</dimen>
-    <dimen name="scrollViewMarginTop">16dp</dimen>
-    <dimen name="scrollViewMarginEnd">8dp</dimen>
-    <dimen name="scrollViewMarginBottom">16dp</dimen>
+    <dimen name="scrollViewMarginStartAndEnd">8dp</dimen>
+    <dimen name="scrollViewMarginTopAndBottom">16dp</dimen>
     <dimen name="layoutMarginTop">32dp</dimen>
     <dimen name="createPostTextSize">32dp</dimen>
     <dimen name="layoutMarginTopLand">5dp</dimen>
     <dimen name="zero">0dp</dimen>
     <dimen name="activityMainMargin">16dp</dimen>
-    <dimen name="deleteUserWarningTextSize">30dp</dimen>
+    <dimen name="textSizeForTitles">30dp</dimen>
     <dimen name="deleteUserConfirmTextSize">20dp</dimen>
     <dimen name="titleTextSize">34sp</dimen>
     <dimen name="layoutMarginBottom">32dp</dimen>
@@ -36,7 +34,6 @@
     <dimen name="singlePostTitleTextSize">20sp</dimen>
     <dimen name="singlePostTitleTextSizeLandscape">25sp</dimen>
     <dimen name="singlePostUsernameTextSizeLandscape">20sp</dimen>
-    <dimen name="singlePostContentTextSizeLandscape">25sp</dimen>
     <dimen name="userDetailsMarginTop">32dp</dimen>
     <dimen name="cardViewMargin">10dp</dimen>
     <dimen name="cardViewTitleMarginTop">44dp</dimen>
@@ -52,21 +49,16 @@
     <dimen name="cardViewContentMarginEndLandscape">24dp</dimen>
     <dimen name="cardViewContentMarginBottomLandscape">32dp</dimen>
     <dimen name="cardViewContentTextSizeLandscape">16sp</dimen>
-    <dimen name="floatingBtnMarginEnd">16dp</dimen>
-    <dimen name="floatingBtnMarginBottom">16dp</dimen>
+    <dimen name="floatingBtnMargin">16dp</dimen>
     <dimen name="recyclerViewMarginTop">32dp</dimen>
     <dimen name="mainFragTitleTextSize">24sp</dimen>
-    <dimen name="passResetTextInputLayoutMarginStart">16dp</dimen>
-    <dimen name="passResetTexInputLayoutMarginEnd">16dp</dimen>
+    <dimen name="passResetTextInputLayoutMargin">16dp</dimen>
     <dimen name="registrationFragBtnMarginTop">32dp</dimen>
-    <dimen name="registrationFragTextInputLayoutMarginStart">16dp</dimen>
+    <dimen name="registrationFragTextInputLayoutMargin">16dp</dimen>
     <dimen name="registrationFragTextInputLayoutMarginTop">28dp</dimen>
-    <dimen name="registrationFragTextInputLayoutMarginEnd">16dp</dimen>
     <dimen name="registrationFragTexInputLayoutUsernameMarginTop">104dp</dimen>
     <dimen name="registrationFragTexInputLayoutUsernameMarginTopLandscape">8dp</dimen>
-    <dimen name="helloUserTextSize">30sp</dimen>
     <dimen name="helloUserMarginTop">32dp</dimen>
-    <dimen name="helloUserMarginTopLandscape">5dp</dimen>
-    <dimen name="helloUserMarginBottomLandscape">5dp</dimen>
+    <dimen name="helloUserMarginLandscape">5dp</dimen>
 
 </resources>

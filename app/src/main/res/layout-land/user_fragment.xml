@@ -9,9 +9,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/scrollViewMarginStart"
-        android:layout_marginTop="@dimen/scrollViewMarginTop"
-        android:layout_marginEnd="@dimen/scrollViewMarginEnd"
+        android:layout_marginStart="@dimen/scrollViewMarginStartAndEnd"
+        android:layout_marginTop="@dimen/scrollViewMarginTopAndBottom"
+        android:layout_marginEnd="@dimen/scrollViewMarginStartAndEnd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,27 +26,17 @@
                 android:id="@+id/txtHelloUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/helloUserTextSize"
-                android:layout_marginTop="@dimen/helloUserMarginTopLandscape"
-                android:layout_marginBottom="@dimen/helloUserMarginBottomLandscape"
-                android:layout_gravity="center"
-                app:layout_constraintBottom_toTopOf="@+id/btnViewAllPosts"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="@dimen/textSizeForTitles"
+                android:layout_marginTop="@dimen/helloUserMarginLandscape"
+                android:layout_marginBottom="@dimen/helloUserMarginLandscape"
+                android:layout_gravity="center" />
 
             <Button
                 android:id="@+id/btnViewUserDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/account_settings"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/btnLogout"
-                app:layout_constraintTop_toBottomOf="@+id/btnViewPosts"
-                android:layout_gravity="center"
-                app:layout_constraintVertical_bias="0.227" />
+                android:layout_gravity="center" />
 
             <Button
                 android:id="@+id/btnViewPosts"
@@ -54,11 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/view_your_posts"
                 app:icon="@drawable/ic_note"
-                android:layout_gravity="center"
-                app:layout_constraintBottom_toTopOf="@+id/btnFindWithCode"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btnViewAllPosts"
-                app:layout_constraintTop_toTopOf="@+id/btnViewAllPosts" />
+                android:layout_gravity="center" />
 
             <Button
                 android:id="@+id/btnViewAllPosts"
@@ -66,11 +52,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/view_all_posts"
                 app:icon="@drawable/ic_note"
-                android:layout_gravity="center"
-                app:layout_constraintBottom_toTopOf="@+id/btnFindWithCode"
-                app:layout_constraintEnd_toStartOf="@+id/btnViewPosts"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtHelloUser" />
+                android:layout_gravity="center" />
 
             <Button
                 android:id="@+id/btnFindWithCode"
@@ -78,11 +60,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/find_post_with_sharing_code"
                 app:icon="@drawable/ic_find"
-                android:layout_gravity="center"
-                app:layout_constraintBottom_toTopOf="@+id/btnLogout"
-                app:layout_constraintEnd_toStartOf="@+id/btnViewUserDetails"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnViewAllPosts" />
+                android:layout_gravity="center" />
 
             <Button
                 android:id="@+id/btnLogout"
@@ -90,11 +68,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/logout"
                 app:icon="@drawable/ic_logout"
-                android:layout_gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnFindWithCode" />
+                android:layout_gravity="center" />
 
         </LinearLayout>
     </ScrollView>

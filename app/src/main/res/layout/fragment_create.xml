@@ -11,9 +11,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/scrollViewMarginStart"
-        android:layout_marginTop="@dimen/scrollViewMarginTop"
-        android:layout_marginEnd="@dimen/scrollViewMarginEnd"
+        android:layout_marginStart="@dimen/scrollViewMarginStartAndEnd"
+        android:layout_marginTop="@dimen/scrollViewMarginTopAndBottom"
+        android:layout_marginEnd="@dimen/scrollViewMarginStartAndEnd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

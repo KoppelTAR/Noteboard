@@ -10,9 +10,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/scrollViewMarginStart"
-        android:layout_marginTop="@dimen/scrollViewMarginTop"
-        android:layout_marginEnd="@dimen/scrollViewMarginEnd"
+        android:layout_marginStart="@dimen/scrollViewMarginStartAndEnd"
+        android:layout_marginTop="@dimen/scrollViewMarginTopAndBottom"
+        android:layout_marginEnd="@dimen/scrollViewMarginStartAndEnd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,13 +29,8 @@
         android:layout_height="wrap_content"
         android:text="@string/warning"
         android:textColor="@color/warning"
-        android:textSize="@dimen/deleteUserWarningTextSize"
-        android:layout_gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/textView8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="@dimen/textSizeForTitles"
+        android:layout_gravity="center" />
 
     <TextView
         android:id="@+id/textView8"
@@ -44,12 +39,8 @@
         android:gravity="center"
         android:text="@string/this_action_can_t_be_undone"
         android:textColor="@color/warning"
-        android:textSize="@dimen/deleteUserWarningTextSize"
-        android:layout_gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/textView7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        android:textSize="@dimen/textSizeForTitles"
+        android:layout_gravity="center" />
 
     <TextView
         android:id="@+id/textView7"
@@ -58,12 +49,7 @@
         android:gravity="center"
         android:text="@string/please_confirm_your_password_to_continue_with_account_deletion"
         android:textSize="@dimen/deleteUserConfirmTextSize"
-        android:layout_gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/deleteUserConfirmPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        android:layout_gravity="center" />
 
         <EditText
             android:id="@+id/deleteUserConfirmPassword"
@@ -72,13 +58,7 @@
             android:ems="10"
             android:hint="@string/enter_password"
             android:layout_gravity="center"
-            android:inputType="textPassword"
-            app:layout_constraintBottom_toTopOf="@+id/btnDeleteUserBack"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7"
-            app:layout_constraintVertical_bias="0.261" />
+            android:inputType="textPassword" />
 
 
         <Button
@@ -88,23 +68,14 @@
             android:backgroundTint="@color/warning"
             android:text="@string/delete_account"
             android:layout_gravity="center"
-            android:theme="@style/Button.Warning"
-            app:layout_constraintBottom_toTopOf="@+id/btnDeleteUserBack"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/deleteUserConfirmPassword" />
+            android:theme="@style/Button.Warning" />
 
         <Button
             android:id="@+id/btnDeleteUserBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/back"
-            android:layout_gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnDeleteUser" />
+            android:layout_gravity="center" />
 
     </LinearLayout>
     </ScrollView>

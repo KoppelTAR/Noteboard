@@ -10,9 +10,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/scrollViewMarginStart"
-        android:layout_marginTop="@dimen/scrollViewMarginTop"
-        android:layout_marginEnd="@dimen/scrollViewMarginStart"
+        android:layout_marginStart="@dimen/scrollViewMarginStartAndEnd"
+        android:layout_marginTop="@dimen/scrollViewMarginTopAndBottom"
+        android:layout_marginEnd="@dimen/scrollViewMarginStartAndEnd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,11 +30,7 @@
             android:text="@string/create_a_new_post"
             android:textSize="@dimen/createPostTextSize"
             android:layout_marginTop="@dimen/layoutMarginTopLand"
-            android:layout_gravity="center"
-            app:layout_constraintBottom_toTopOf="@+id/editTextPostTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_gravity="center" />
 
         <EditText
             android:id="@+id/editTextPostTitle"
@@ -44,11 +40,7 @@
             android:hint="@string/tempAllTitle"
             android:layout_marginTop="@dimen/layoutMarginTopLand"
             android:layout_gravity="center"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/editTextPostContent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/editTextPostContent"
@@ -59,11 +51,7 @@
             android:layout_marginTop="@dimen/layoutMarginTopLand"
             android:hint="@string/tempAllContent"
             android:inputType="textMultiLine"
-            android:layout_gravity="center"
-            app:layout_constraintBottom_toTopOf="@+id/btnCreate"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPostTitle" />
+            android:layout_gravity="center" />
 
         <Button
             android:id="@+id/btnCreate"
@@ -71,10 +59,7 @@
             android:layout_height="wrap_content"
             android:text="@string/create_btn"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/layoutMarginTopLand"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_marginTop="@dimen/layoutMarginTopLand" />
 
     </LinearLayout>
     </ScrollView>
