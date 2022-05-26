@@ -101,9 +101,7 @@
     <string name="account_deleted">Account has been deleted!</string>
     <string name="invalid_password">Invalid password</string>
     <string name="refresh">REFRESH</string>
-<<<<<<< HEAD
     <string name="deleted_user">[deleted user]</string>
-=======
     <string name="editPostContentEditText">Content</string>
     <string name="BtnEditPostSaveChanges">Save changes</string>
     <string name="TitleEditTextPostEdit">Title</string>
@@ -115,5 +113,4 @@
     <string name="errorDeletingPost">Error deleting post</string>
     <string name="EditingTitle">Editing</string>
     <string name="DeletionConfTitle">Confirm delete</string>
->>>>>>> 0a1d3692156cc15e507da0dbd9e2097c693ad585
 </resources>
