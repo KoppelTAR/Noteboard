@@ -14,6 +14,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.noteboard.models.Post;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
@@ -32,6 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 public class PostsRepository {
 
@@ -53,9 +55,11 @@ public class PostsRepository {
     }
 
     public void createPost(String postTitle, String postContent){
-        db.collection("users").document(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        DocumentReference userDocRef = db.collection("users").document(firebaseAuth.getCurrentUser().getUid());
+        userDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
                 Long currentMs = Calendar.getInstance().getTimeInMillis();
                 DocumentReference docRefPost = db.collection("posts").document(currentMs.toString());
                 Map<String,Object> post = new HashMap<>();
@@ -66,18 +70,22 @@ public class PostsRepository {
                 post.put("editedAt", Calendar.getInstance().getTime());
                 docRefPost.set(post).addOnSuccessListener(aVoid -> Log.i(TAG, String.valueOf(R.string.UserDataWasSaved)));
 
-                DocumentReference docRefUser = db.collection("users").document(firebaseAuth.getCurrentUser().getUid());
-                docRefUser.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                userDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         ArrayList<DocumentReference> array = (ArrayList<DocumentReference>) task.getResult().get("ownedPosts");
                         array.add(docRefPost);
-                        docRefUser.update("ownedPosts", array);
+                        userDocRef.update("ownedPosts", array);
                         postLiveData.setValue(postArrayList);
-                    }
-                });
-            }
-        });
+                        }
+                    });
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                }
+            });
     }
 
     public void addPostThroughCode(String sharingCode, Context context){
@@ -121,13 +129,27 @@ public class PostsRepository {
     }
 }
 
+    public void SaveEditedPostChanges(String title, String content, Long id) {
+        DocumentReference docRefPost = db.collection("posts").document(id.toString());
+        docRefPost.update("content",content);
+        docRefPost.update("title",title);
+        docRefPost.update("editedAt", Calendar.getInstance().getTime());
+        docRefPost.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                Toast.makeText(application, R.string.EditedChangesSaved, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     public void getUserPosts(){
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser != null) {
             String uid = firebaseUser.getUid();
-            db.collection("users").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            DocumentReference reference = db.collection("users").document(uid);
+            reference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
@@ -145,23 +167,29 @@ public class PostsRepository {
                                 @Override
                                 public void onSuccess(List<Object> list) {
                                     for (int i = 0; i < list.size(); i++) {
-
                                         DocumentSnapshot object = (DocumentSnapshot) list.get(i);
+                                        if (object.getLong("sharingCode") != null) {
+                                            Timestamp time = (Timestamp) object.get("editedAt");
+                                            long dv = Long.valueOf(time.getSeconds())*1000;
+                                            Date df = new Date(dv);
+                                            Long s = object.getLong("sharingCode");
+                                            Post post = new Post();
+                                            post.setPostAuthor(object.getString("postAuthor"));
+                                            post.setTitle(object.getString("title"));
+                                            post.setEditedAt(df);
 
-                                        Timestamp time = (Timestamp) object.get("editedAt");
-                                        long dv = Long.valueOf(time.getSeconds())*1000;
-                                        Date df = new Date(dv);
+                                            post.setSharingCode(s);
+                                            post.setContent(object.getString("content"));
 
-                                        Post post = new Post();
-                                        post.setPostAuthor(object.getString("postAuthor"));
-                                        post.setTitle(object.getString("title"));
-                                        post.setEditedAt(df);
-                                        Long s = object.getLong("sharingCode");
-                                        post.setSharingCode(s);
-                                        post.setContent(object.getString("content"));
-                                        postArrayList.add(post);
-                                        postLiveData.setValue(postArrayList);
+                                            postArrayList.add(post);
+                                            postLiveData.setValue(postArrayList);
+                                        } else if (object.getLong("sharingCode") == null){
+                                            ownedPostsList.remove(i);
+                                            list.remove(i);
+                                            i--;
+                                        }
                                     }
+                                    reference.update("ownedPosts", ownedPostsList);
                                 }
                             });
                         }
@@ -231,7 +259,8 @@ public class PostsRepository {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser != null) {
             String uid = firebaseUser.getUid();
-            db.collection("users").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            DocumentReference reference = db.collection("users").document(uid);
+            reference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
@@ -239,42 +268,84 @@ public class PostsRepository {
                         if (document.exists()) {
                             List<DocumentReference> ownedPostsList = (List<DocumentReference>) document.get("ownedPosts");
                             List<DocumentReference> sharedPostsList = (List<DocumentReference>) document.get("sharedPosts");
-                            List<Task<DocumentSnapshot>> tasks = new ArrayList<>();
+                            List<Task<DocumentSnapshot>> tasksOwnedPosts = new ArrayList<>();
+                            List<Task<DocumentSnapshot>> tasksSharedPosts = new ArrayList<>();
                             if (ownedPostsList != null) {
                                 for (DocumentReference documentReference : ownedPostsList) {
-                                    Task<DocumentSnapshot> documentSnapshotTask = documentReference.get();
-                                    tasks.add(documentSnapshotTask);
+                                        Task<DocumentSnapshot> documentSnapshotTask = documentReference.get();
+                                        tasksOwnedPosts.add(documentSnapshotTask);
                                 }
                             }
                             if (sharedPostsList != null) {
                                 for (DocumentReference documentReference : sharedPostsList) {
-                                    Task<DocumentSnapshot> documentSnapshotTask = documentReference.get();
-                                    tasks.add(documentSnapshotTask);
+                                        Task<DocumentSnapshot> documentSnapshotTask = documentReference.get();
+                                        tasksSharedPosts.add(documentSnapshotTask);
                                 }
+
                             }
-                            Tasks.whenAllSuccess(tasks).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
+
+                            Tasks.whenAllSuccess(tasksOwnedPosts).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
                                 @Override
-                                public void onSuccess(List<Object> list) {
-                                    for (int i = 0; i < list.size(); i++) {
-                                        Log.i("TAG", "onSuccess: "+list.get(i));
+                                public void onSuccess(List<Object> listOwned) {
+                                    Log.i(TAG, "BEGIN LIST: "+ownedPostsList);
+                                    Log.i(TAG, "STARTED ON SUCCESS: ");
+                                    for (int i = 0; i < listOwned.size(); i++) {
+                                        DocumentSnapshot object = (DocumentSnapshot) listOwned.get(i);
+                                        if (object.getLong("sharingCode") != null) {
+                                            Timestamp time = (Timestamp) object.get("editedAt");
+                                            long dv = Long.valueOf(time.getSeconds())*1000;
+                                            Date df = new Date(dv);
+                                            Long s = object.getLong("sharingCode");
+                                            Post post = new Post();
+                                            post.setPostAuthor(object.getString("postAuthor"));
+                                            post.setTitle(object.getString("title"));
+                                            post.setEditedAt(df);
 
-                                        DocumentSnapshot object = (DocumentSnapshot) list.get(i);
+                                            post.setSharingCode(s);
+                                            post.setContent(object.getString("content"));
 
-                                        Timestamp time = (Timestamp) object.get("editedAt");
-                                        long dv = Long.valueOf(time.getSeconds())*1000;
-                                        Date df = new Date(dv);
-
-                                        Post post = new Post();
-                                        post.setPostAuthor(object.getString("postAuthor"));
-                                        post.setTitle(object.getString("title"));
-                                        post.setEditedAt(df);
-                                        Long s = object.getLong("sharingCode");
-                                        post.setSharingCode(s);
-                                        post.setContent(object.getString("content"));
-
-                                        postArrayList.add(post);
-                                        postLiveData.setValue(postArrayList);
+                                            postArrayList.add(post);
+                                            postLiveData.setValue(postArrayList);
+                                        } else {
+                                            Log.i(TAG, "sharingCode: "+ object.getLong("sharingCode"));
+                                            ownedPostsList.remove(i);
+                                            listOwned.remove(i);
+                                            i--;
+                                        }
                                     }
+                                    Log.i(TAG, "LIST: "+ ownedPostsList);
+                                    reference.update("ownedPosts", ownedPostsList);
+                                }
+                            });
+                            Tasks.whenAllSuccess(tasksSharedPosts).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
+                                @Override
+                                public void onSuccess(List<Object> listShared) {
+                                    for (int i = 0; i < listShared.size(); i++) {
+                                        Log.i("TAG", "onSuccess: "+listShared.get(i));
+
+                                        DocumentSnapshot object = (DocumentSnapshot) listShared.get(i);
+                                        if (object.getLong("sharingCode") != null) {
+                                            Timestamp time = (Timestamp) object.get("editedAt");
+                                            long dv = Long.valueOf(time.getSeconds())*1000;
+                                            Date df = new Date(dv);
+                                            Long s = object.getLong("sharingCode");
+                                            Post post = new Post();
+                                            post.setPostAuthor(object.getString("postAuthor"));
+                                            post.setTitle(object.getString("title"));
+                                            post.setEditedAt(df);
+
+                                            post.setSharingCode(s);
+                                            post.setContent(object.getString("content"));
+
+                                            postArrayList.add(post);
+                                            postLiveData.setValue(postArrayList);
+                                        } else {
+                                            sharedPostsList.remove(i);
+                                            listShared.remove(i);
+                                            i--;
+                                        }
+                                    }
+                                    reference.update("sharedPosts", sharedPostsList);
                                 }
                             });
                         }
@@ -288,4 +359,22 @@ public class PostsRepository {
         return postLiveData;
     }
 
+
+    public void DeletePost(Long id) {
+        db.collection("posts").document(id.toString())
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(application.getApplicationContext(), application.getString(R.string.PostDeleted), Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(application.getApplicationContext(), application.getString(R.string.errorDeletingPost), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
 }
