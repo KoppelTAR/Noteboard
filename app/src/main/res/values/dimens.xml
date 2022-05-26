@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Kaspars philosophy for dimens.xml: only add values here if they are used more than once in a fragment. -->
     <dimen name="icon_general">24dp</dimen>
     <dimen name="icon_add">56dp</dimen>
     <dimen name="scrollViewMarginStartAndEnd">8dp</dimen>
