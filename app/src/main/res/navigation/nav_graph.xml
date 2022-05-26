@@ -73,6 +73,9 @@
         <action
             android:id="@+id/action_singlePostFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_singlePostFragment_to_editPostFragment"
+            app:destination="@id/editPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -149,5 +152,29 @@
         <action
             android:id="@+id/action_findPostFragment_to_userFragment"
             app:destination="@id/userFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPostFragment"
+        android:name="com.example.noteboard.fragments.EditPostFragment"
+        android:label="edit_post_fragment"
+        tools:layout="@layout/edit_post_fragment" >
+        <action
+            android:id="@+id/action_editPostFragment_to_singlePostFragment"
+            app:destination="@id/singlePostFragment" />
+        <action
+            android:id="@+id/action_editPostFragment_to_deletionConfirmationFragment"
+            app:destination="@id/deletionConfirmationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/deletionConfirmationFragment"
+        android:name="com.example.noteboard.fragments.DeletionConfirmationFragment"
+        android:label="fragment_deletion_confirmation"
+        tools:layout="@layout/fragment_deletion_confirmation" >
+        <action
+            android:id="@+id/action_deletionConfirmationFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_deletionConfirmationFragment_to_editPostFragment"
+            app:destination="@id/editPostFragment" />
     </fragment>
 </navigation>

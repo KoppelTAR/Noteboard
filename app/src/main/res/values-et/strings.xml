@@ -101,5 +101,16 @@
     <string name="find">leia</string>
     <string name="account_deleted">Kasutaja on kustutatud!</string>
     <string name="invalid_password">Vale salasõna</string>
-    <string name="refresh">REFRESH</string>
+    <string name="refresh">VÄRSKENDA</string>
+    <string name="editPostContentEditText">Sisu</string>
+    <string name="BtnEditPostSaveChanges">Salvesta muudatused</string>
+    <string name="TitleEditTextPostEdit">Pealkiri</string>
+    <string name="are_you_sure">Oled sa kindel et soovid seda postitust kustutada?</string>
+    <string name="yes">jah</string>
+    <string name="no">ei</string>
+    <string name="EditedChangesSaved">Muudatused salvestatud</string>
+    <string name="PostDeleted">postitus edukalt kustutatud!</string>
+    <string name="errorDeletingPost">Tekkis probleem postituse kustutamisel</string>
+    <string name="EditingTitle">Postituse muutmine</string>
+    <string name="DeletionConfTitle">Kinnita kustutamine</string>
 </resources>

@@ -91,7 +91,6 @@
     <string name="errorWhenGettingData">Error when getting data from database</string>
     <string name="invalidPassword">Invalid password</string>
     <string name="registrationSuccess">Registration successful</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="post_added">Post successfully added!</string>
     <string name="post_created_by_user">This post is created by you!</string>
     <string name="access_exists">You already have access to this post!</string>
@@ -102,4 +101,15 @@
     <string name="account_deleted">Account has been deleted!</string>
     <string name="invalid_password">Invalid password</string>
     <string name="refresh">REFRESH</string>
+    <string name="editPostContentEditText">Content</string>
+    <string name="BtnEditPostSaveChanges">Save changes</string>
+    <string name="TitleEditTextPostEdit">Title</string>
+    <string name="are_you_sure">Are you sure you want to delete this post?</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="EditedChangesSaved">Changes saved</string>
+    <string name="PostDeleted">post successfully deleted!</string>
+    <string name="errorDeletingPost">Error deleting post</string>
+    <string name="EditingTitle">Editing</string>
+    <string name="DeletionConfTitle">Confirm delete</string>
 </resources>
