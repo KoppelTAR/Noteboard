@@ -18,7 +18,7 @@ public class UserDetailsViewModel extends AndroidViewModel {
     }
 
     public void updateData(EditText editTextEmail, EditText editTextUserName, EditText editTextPassword,String locale){
-        authRepository.updateDataFromForm(editTextEmail,editTextUserName,editTextPassword,locale);
+        authRepository.updateDataFromForm(editTextEmail,editTextUserName,editTextPassword);
     }
 
     public void showCurrentUserUsername(EditText editText){authRepository.setCurrentUserUserNameEditText(editText);}
