@@ -76,6 +76,9 @@
         <action
             android:id="@+id/action_singlePostFragment_to_editPostFragment"
             app:destination="@id/editPostFragment" />
+        <action
+            android:id="@+id/action_singlePostFragment_to_smsFragment"
+            app:destination="@id/smsFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -176,5 +179,14 @@
         <action
             android:id="@+id/action_deletionConfirmationFragment_to_editPostFragment"
             app:destination="@id/editPostFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/smsFragment"
+        android:name="com.example.noteboard.fragments.SmsFragment"
+        android:label="fragment_sms"
+        tools:layout="@layout/fragment_sms" >
+        <action
+            android:id="@+id/action_smsFragment_to_singlePostFragment"
+            app:destination="@id/singlePostFragment" />
     </fragment>
 </navigation>

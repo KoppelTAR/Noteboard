@@ -115,4 +115,13 @@
     <string name="DeletionConfTitle">Confirm delete</string>
     <string name="findPostTitle">find a post</string>
     <string name="deleteAccountTitle">User deletion</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="share">SHARE</string>
+    <string name="postShared">A NoteBoard post has been shared with you! \n  %s \n  %s</string>
+    <string name="codeShared">A NoteBoard sharing code has been shared with you! The code is \n  %s</string>
+    <string name="sms_sent">SMS sent!</string>
+    <string name="share_through_sms">SHARE THROUGH SMS</string>
+    <string name="enter_a_number_to_send_the_sms_to">Enter a number to send the SMS to</string>
+    <string name="share_post">share post</string>
+    <string name="share_code">share code</string>
 </resources>

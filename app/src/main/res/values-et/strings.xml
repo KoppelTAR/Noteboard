@@ -3,7 +3,6 @@
     <string name="app_name">NoteBoard</string>
     <string name="error">Viga, %1$s</string>
     <string name="confirmEmail">\" Konto aktiveerimiseks kinnitage oma emaili aadress \"</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="verifyEmail">Palun kinnitage oma emaili aadress</string>
     <string name="loginError">Viga sisselogimisel. Veenduge, et kõik sisselogimis andmed on õiged</string>
     <string name="emptyInput">Väljad on tühjad</string>
@@ -23,7 +22,7 @@
     <string name="passRezSuccess">Parooli taastamis emaili saatmine õnnestus</string>
     <string name="ToastRegiFailed">Registeerimine ebaõnnestus, tagasi pöördumine sisse logimis lehele</string>
     <string name="ConfPasstToast">Paroolid peavad üksteisega kattuma</string>
-    <string name="PassLenghtToast">Parool peab koosnema vähemalt 6 tähemärgist</string>
+    <string name="PassLenghtToast">Parool peab koosnema vähemalt kuuest tähemärgist</string>
     <string name="ValidEmailToast">Peab olema kehtiv emaili aadress</string>
     <string name="FillUsernameToast">Palun sisestage kasutajanimi</string>
     <string name="RegiSuccess">Registeerimine õnnestus</string>
@@ -116,4 +115,12 @@
     <string name="DeletionConfTitle">Kinnita kustutamine</string>
     <string name="findPostTitle">leia postitus</string>
     <string name="deleteAccountTitle">Kasutaja kustutamine</string>
+    <string name="share">JAGA</string>
+    <string name="postShared">Teiega on jagatud NoteBoardi postitust! \n  %s \n  %s</string>
+    <string name="codeShared">Teiega on jagatud NoteBoardi jagamiskoodi! Teie kood on: \n  %s</string>
+    <string name="sms_sent">SMS saadetud!</string>
+    <string name="share_through_sms">JAGA LÄBI SMSi</string>
+    <string name="enter_a_number_to_send_the_sms_to">Sisestage number, kuhu saadetakse SMS</string>
+    <string name="share_post">jaga postitust</string>
+    <string name="share_code">jaga jagamiskoodi</string>
 </resources>

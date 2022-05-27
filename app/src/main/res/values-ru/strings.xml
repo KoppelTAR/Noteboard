@@ -3,7 +3,6 @@
     <string name="app_name">NoteBoard</string>
     <string name="error">Еррор, %1$s</string>
     <string name="confirmEmail">\"Подтвердите е-мейл\"</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="verifyEmail">Подтвердите е-мейл</string>
     <string name="loginError">неверные данные</string>
     <string name="emptyInput">Пустые поля</string>
@@ -103,17 +102,25 @@
     <string name="invalid_password">неверный пароль</string>
     <string name="deleted_user">[удален аккаунт]</string>
     <string name="refresh">ОБНОВИТЬ</string>
-    <string name="editPostContentEditText">Content</string>
-    <string name="BtnEditPostSaveChanges">Save changes</string>
-    <string name="TitleEditTextPostEdit">Title</string>
-    <string name="are_you_sure">Are you sure you want to delete this post?</string>
-    <string name="yes">yes</string>
-    <string name="no">no</string>
-    <string name="EditedChangesSaved">Changes saved</string>
-    <string name="PostDeleted">post successfully deleted!</string>
-    <string name="errorDeletingPost">Error deleting post</string>
-    <string name="EditingTitle">Editing</string>
-    <string name="DeletionConfTitle">Confirm delete</string>
-    <string name="findPostTitle">find a post</string>
-    <string name="deleteAccountTitle">User deletion</string>
+    <string name="editPostContentEditText">Содержание</string>
+    <string name="BtnEditPostSaveChanges">Сохранить изменения</string>
+    <string name="TitleEditTextPostEdit">заглавие</string>
+    <string name="are_you_sure">Вы уверены, что хотите поста?</string>
+    <string name="yes">да</string>
+    <string name="no">нет</string>
+    <string name="EditedChangesSaved">Сохранить изменения</string>
+    <string name="PostDeleted">пост удалено!</string>
+    <string name="errorDeletingPost">не могу удалить пост</string>
+    <string name="EditingTitle">редактирование</string>
+    <string name="DeletionConfTitle">подтвердить удаление</string>
+    <string name="findPostTitle">пост поиска</string>
+    <string name="deleteAccountTitle">удаление пользователя</string>
+    <string name="share">Поделиться</string>
+    <string name="postShared">NoteBoard постjamro было поделиться с вами! \n  %s \n  %s</string>
+    <string name="codeShared">NoteBoard код было поделиться с вами! код: \n  %s</string>
+    <string name="sms_sent">смс отправлено!</string>
+    <string name="share_through_sms">поделиться с смс</string>
+    <string name="enter_a_number_to_send_the_sms_to">введите номер для отправки смс</string>
+    <string name="share_post">поделиться пост</string>
+    <string name="share_code">поделиться код</string>
 </resources>

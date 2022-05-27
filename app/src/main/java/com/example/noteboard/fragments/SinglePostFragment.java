@@ -76,6 +76,15 @@ public class SinglePostFragment extends Fragment {
         if (item.getItemId() == R.id.menuSettings){
             Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_settingsFragment);
         }
+        if(item.getItemId() == R.id.menuShare){
+            Bundle bundle = new Bundle();
+            bundle.putString("title",title);
+            bundle.putString("content",content);
+            bundle.putLong("sharingcode",sharingCode);
+            bundle.putString("author", author);
+            bundle.putString("type",getArguments().getString("type"));
+            Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_smsFragment,bundle);
+        }
         if (item.getItemId() == R.id.menuUser){
             Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_userFragment);
         }
