@@ -124,4 +124,5 @@
     <string name="enter_a_number_to_send_the_sms_to">Enter a number to send the SMS to</string>
     <string name="share_post">share post</string>
     <string name="share_code">share code</string>
+    <string name="smsTitle">Share</string>
 </resources>
