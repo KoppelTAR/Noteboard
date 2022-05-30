@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.noteboard.R;
 import com.example.noteboard.viewmodels.MainViewModel;
@@ -84,7 +85,11 @@ public class UserDetailsFragment extends Fragment {
         userDetailsViewModel.showCurrentUserUsername(username);
 
         updateDataBtn.setOnClickListener(view1 -> {
-            userDetailsViewModel.updateData(email,username,confirmPassword, String.valueOf(getActivity().getResources().getConfiguration().locale));
+            if (username.length() <= 0 && username.length() > 20) {
+                Toast.makeText(getActivity(), getActivity().getString(R.string.FillUsernameToast), Toast.LENGTH_LONG).show();
+            } else {
+                userDetailsViewModel.updateData(email,username,confirmPassword, String.valueOf(getActivity().getResources().getConfiguration().locale));
+            }
         });
 
         deleteUserBtn.setOnClickListener(view1 -> {

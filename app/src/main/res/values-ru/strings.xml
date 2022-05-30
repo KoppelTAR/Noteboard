@@ -25,7 +25,7 @@
     <string name="ConfPasstToast">пароли должны быть одинаковыми</string>
     <string name="PassLenghtToast">пароль должен быть не менее 6 символов</string>
     <string name="ValidEmailToast">неверный е-мейл</string>
-    <string name="FillUsernameToast">Введите имя пользователя</string>
+    <string name="FillUsernameToast">Имя пользователя должно содержать от 1 до 20 символов.</string>
     <string name="RegiSuccess">Регистрация удалась</string>
     <string name="LoginFailedToast">вы должны подтвердить новый е-мейл</string>
     <string name="EnterEmailToast">пожалуйста, введите е-мейл</string>

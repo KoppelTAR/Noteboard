@@ -24,7 +24,7 @@
     <string name="ConfPasstToast">Confirm password must match the password</string>
     <string name="PassLenghtToast">A password must at least 6 characters</string>
     <string name="ValidEmailToast">Must be a valid email</string>
-    <string name="FillUsernameToast">Fill out username field</string>
+    <string name="FillUsernameToast">Username must be between 1 and 20 characters</string>
     <string name="RegiSuccess">Registration Successful</string>
     <string name="LoginFailedToast">Login failed, please verify email.</string>
     <string name="EnterEmailToast">Please enter your email.</string>

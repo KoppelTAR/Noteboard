@@ -25,7 +25,7 @@
     <string name="ConfPasstToast">Paroolid peavad üksteisega kattuma</string>
     <string name="PassLenghtToast">Parool peab koosnema vähemalt 6 tähemärgist</string>
     <string name="ValidEmailToast">Peab olema kehtiv emaili aadress</string>
-    <string name="FillUsernameToast">Palun sisestage kasutajanimi</string>
+    <string name="FillUsernameToast">kasutajanimi peab olema vahemikus 1 kuni 20 tähemärki </string>
     <string name="RegiSuccess">Registeerimine õnnestus</string>
     <string name="LoginFailedToast">Sisselogimine ebaõnnestus, palun kinnitage emaili aadress</string>
     <string name="EnterEmailToast">Palun sisesta oma email.</string>
