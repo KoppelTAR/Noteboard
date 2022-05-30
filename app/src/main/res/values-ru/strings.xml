@@ -116,12 +116,14 @@
     <string name="findPostTitle">пост поиска</string>
     <string name="deleteAccountTitle">удаление пользователя</string>
     <string name="share">Поделиться</string>
-    <string name="postShared">NoteBoard постjamro было поделиться с вами! \n  %s \n  %s</string>
+    <string name="postShared">NoteBoard пост было поделиться с вами! \n  %s \n  %s</string>
     <string name="codeShared">NoteBoard код было поделиться с вами! код: \n  %s</string>
     <string name="sms_sent">смс отправлено!</string>
     <string name="share_through_sms">поделиться с смс</string>
     <string name="enter_a_number_to_send_the_sms_to">введите номер для отправки смс</string>
     <string name="share_post">поделиться пост</string>
     <string name="share_code">поделиться код</string>
-    <string name="smsTitle">Share</string>
+    <string name="smsTitle">поделиться</string>
+    <string name="sms_permission">Эта функция использует разрешение SMS для работы.</string>
+    <string name="sms_permission_2">Для этой функции требуется доступ с разрешением SMS.</string>
 </resources>

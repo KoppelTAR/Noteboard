@@ -125,4 +125,6 @@
     <string name="share_post">share post</string>
     <string name="share_code">share code</string>
     <string name="smsTitle">Share</string>
+    <string name="sms_permission">This feature uses the SMS permission in order to work.</string>
+    <string name="sms_permission_2">Need access to the SMS permission in order to use this feature.</string>
 </resources>

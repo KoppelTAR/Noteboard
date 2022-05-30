@@ -123,5 +123,7 @@
     <string name="enter_a_number_to_send_the_sms_to">Sisestage number, kuhu saadetakse SMS</string>
     <string name="share_post">jaga postitust</string>
     <string name="share_code">jaga jagamiskoodi</string>
-    <string name="smsTitle">Share</string>
+    <string name="smsTitle">Jaga</string>
+    <string name="sms_permission">SMSiga postituse jagamiseks on vajalik õigus SMSi saatmiseks.</string>
+    <string name="sms_permission_2">Ilma SMSi saatmise õiguseta ei saa postitust jagada.</string>
 </resources>

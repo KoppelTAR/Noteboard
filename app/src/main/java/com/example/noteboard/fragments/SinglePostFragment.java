@@ -1,10 +1,13 @@
 package com.example.noteboard.fragments;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -15,9 +18,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.noteboard.PostsRepository;
 import com.example.noteboard.R;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.auth.User;
 
 import java.util.Objects;
@@ -77,13 +82,29 @@ public class SinglePostFragment extends Fragment {
             Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_settingsFragment);
         }
         if(item.getItemId() == R.id.menuShare){
-            Bundle bundle = new Bundle();
-            bundle.putString("title",title);
-            bundle.putString("content",content);
-            bundle.putLong("sharingcode",sharingCode);
-            bundle.putString("author", author);
-            bundle.putString("type",getArguments().getString("type"));
-            Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_smsFragment,bundle);
+            if(ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.SEND_SMS)
+                    == PackageManager.PERMISSION_GRANTED){
+                Bundle bundle = new Bundle();
+                bundle.putString("title",title);
+                bundle.putString("content",content);
+                bundle.putLong("sharingcode",sharingCode);
+                bundle.putString("author", author);
+                bundle.putString("type",getArguments().getString("type"));
+                Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_smsFragment,bundle);
+            }
+            else{
+                if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.SEND_SMS)){
+                    Snackbar.make(getView().findViewById(R.id.singlePostLayout), getString(R.string.sms_permission),Snackbar.LENGTH_INDEFINITE)
+                            .setAction(android.R.string.ok, view1 -> {
+                                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.SEND_SMS}, 100);
+                            }).show();
+                }
+                else{
+                    Toast.makeText(getContext(), getString(R.string.sms_permission_2), Toast.LENGTH_LONG).show();
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.SEND_SMS}, 100);
+                }
+            }
+
         }
         if (item.getItemId() == R.id.menuUser){
             Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_userFragment);
