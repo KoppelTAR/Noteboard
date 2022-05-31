@@ -14,7 +14,9 @@
         android:layout_marginTop="@dimen/singlePostTitleMarginTop"
         android:layout_marginEnd="@dimen/singlePostTitleMarginEnd"
         android:textAllCaps="true"
+        android:textColor="#000000"
         android:textSize="@dimen/singlePostTitleTextSize"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -72,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/singlePostTitleMarginStart"
         android:layout_marginBottom="2dp"
-        android:text="copy"
+        android:text="@string/copy"
         app:icon="@drawable/ic_content_copy"
         app:layout_constraintBottom_toTopOf="@+id/scrollView3"
         app:layout_constraintStart_toEndOf="@+id/sharingCodeText" />

@@ -116,4 +116,6 @@
     <string name="DeletionConfTitle">Kinnita kustutamine</string>
     <string name="findPostTitle">leia postitus</string>
     <string name="deleteAccountTitle">Kasutaja kustutamine</string>
+    <string name="copyToClip">Kood kopeeritud lõikelauale</string>
+    <string name="copy">kopeeri</string>
 </resources>

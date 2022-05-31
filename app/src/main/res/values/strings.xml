@@ -115,4 +115,6 @@
     <string name="DeletionConfTitle">Confirm delete</string>
     <string name="findPostTitle">find a post</string>
     <string name="deleteAccountTitle">User deletion</string>
+    <string name="copyToClip">Copied code to clipboard</string>
+    <string name="copy">copy</string>
 </resources>
