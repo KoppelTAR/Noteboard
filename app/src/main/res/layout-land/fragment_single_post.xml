@@ -11,8 +11,6 @@
         android:id="@+id/sharingCodeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
         android:textSize="@dimen/singlePostUsernameTextSizeLandscape"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usernameText" />
@@ -21,11 +19,7 @@
         android:id="@+id/titleText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/singlePostTitleMarginStart"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="@dimen/singlePostTitleMarginEnd"
         android:textAllCaps="true"
-        android:textColor="#000000"
         android:textSize="@dimen/singlePostTitleTextSizeLandscape"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,8 +30,6 @@
         android:id="@+id/usernameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/singlePostUsernameMarginStart"
-        android:layout_marginTop="12dp"
         android:textSize="@dimen/singlePostUsernameTextSizeLandscape"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleText" />
@@ -46,10 +38,6 @@
         android:id="@+id/scrollView4"
         android:layout_width="match_parent"
         android:layout_height="@dimen/zero"
-        android:layout_marginStart="@dimen/scrollViewMarginStartAndEnd"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="@dimen/scrollViewMarginStartAndEnd"
-        android:layout_marginBottom="@dimen/scrollViewMarginTopAndBottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,10 +60,10 @@
         android:id="@+id/copyBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:text="@android:string/copy"
         app:icon="@drawable/ic_content_copy"
         app:layout_constraintBottom_toTopOf="@+id/scrollView4"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/sharingCodeText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
