@@ -2,6 +2,9 @@ package com.example.noteboard.fragments;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +20,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +36,9 @@ public class SinglePostFragment extends Fragment {
     TextView ContentTextView;
     TextView TitleTextView;
     TextView UsernameTextView;
+    TextView sharingCodeTextView;
+
+    Button copyBtn;
 
     //%s
 
@@ -49,6 +56,8 @@ public class SinglePostFragment extends Fragment {
         ContentTextView = view.findViewById(R.id.contentText);
         TitleTextView = view.findViewById(R.id.titleText);
         UsernameTextView = view.findViewById(R.id.usernameText);
+        sharingCodeTextView = view.findViewById(R.id.sharingCodeText);
+
 
         if (getArguments() != null) {
             content = getArguments().getString("content");
@@ -58,8 +67,25 @@ public class SinglePostFragment extends Fragment {
 
             ContentTextView.setText(content);
             TitleTextView.setText(title);
+            sharingCodeTextView.setText(sharingCode.toString());
             PostsRepository.findAndSetUsername(UsernameTextView,author,getContext());
+        } else {
+            Toast.makeText(getActivity(), getActivity().getString(R.string.error,"Viewing data"), Toast.LENGTH_SHORT).show();
+
+            Bundle bundle = new Bundle();
+            bundle.putString("type",getArguments().getString("type"));
+
+            Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_mainFragment,bundle);
         }
+
+        copyBtn = view.findViewById(R.id.copyBtn);
+        copyBtn.setOnClickListener(view1 -> {
+            ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("sharing code", sharingCode.toString());
+            clipboard.setPrimaryClip(clip);
+            Toast.makeText(getActivity(), R.string.copyToClip, Toast.LENGTH_SHORT).show();
+        });
+
         return view;
     }
 
@@ -78,18 +104,19 @@ public class SinglePostFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Bundle bundle = new Bundle();
+        bundle.putString("type",getArguments().getString("type"));
+
         if (item.getItemId() == R.id.menuSettings){
             Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_settingsFragment);
         }
         if(item.getItemId() == R.id.menuShare){
             if(ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.SEND_SMS)
                     == PackageManager.PERMISSION_GRANTED){
-                Bundle bundle = new Bundle();
                 bundle.putString("title",title);
                 bundle.putString("content",content);
                 bundle.putLong("sharingcode",sharingCode);
                 bundle.putString("author", author);
-                bundle.putString("type",getArguments().getString("type"));
                 Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_smsFragment,bundle);
             }
             else{
@@ -106,22 +133,18 @@ public class SinglePostFragment extends Fragment {
             }
 
         }
-        if (item.getItemId() == R.id.menuUser){
+        else if (item.getItemId() == R.id.menuUser){
             Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_userFragment);
         }
-        if (item.getItemId() == R.id.menuEdit){ //TODO send bundle to edit + nav
-            Bundle bundle = new Bundle();
+        else if (item.getItemId() == R.id.menuEdit){ //TODO send bundle to edit + nav
             bundle.putString("title",title);
             bundle.putString("content",content);
             bundle.putLong("sharingcode",sharingCode);
             bundle.putString("author", author);
-            bundle.putString("type",getArguments().getString("type"));
             Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_editPostFragment, bundle);
         }
-        if (item.getItemId() == android.R.id.home){
-            Bundle typeBundle = new Bundle();
-            typeBundle.putString("type",getArguments().getString("type"));
-            Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_mainFragment,typeBundle);
+        else if (item.getItemId() == android.R.id.home){
+            Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_mainFragment,bundle);
         }
         return false;
     }

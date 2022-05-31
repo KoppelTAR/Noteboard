@@ -24,7 +24,7 @@
     <string name="ConfPasstToast">Confirm password must match the password</string>
     <string name="PassLenghtToast">A password must at least 6 characters</string>
     <string name="ValidEmailToast">Must be a valid email</string>
-    <string name="FillUsernameToast">Fill out username field</string>
+    <string name="FillUsernameToast">Username must be between one and twenty characters</string>
     <string name="RegiSuccess">Registration Successful</string>
     <string name="LoginFailedToast">Login failed, please verify email.</string>
     <string name="EnterEmailToast">Please enter your email.</string>
@@ -127,4 +127,6 @@
     <string name="smsTitle">Share</string>
     <string name="sms_permission">This feature uses the SMS permission in order to work.</string>
     <string name="sms_permission_2">Need access to the SMS permission in order to use this feature.</string>
+    <string name="copyToClip">Copied code to clipboard</string>
+    <string name="copy">copy</string>
 </resources>

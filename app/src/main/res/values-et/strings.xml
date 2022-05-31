@@ -3,6 +3,7 @@
     <string name="app_name">NoteBoard</string>
     <string name="error">Viga, %1$s</string>
     <string name="confirmEmail">\" Konto aktiveerimiseks kinnitage oma emaili aadress \"</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="verifyEmail">Palun kinnitage oma emaili aadress</string>
     <string name="loginError">Viga sisselogimisel. Veenduge, et kõik sisselogimis andmed on õiged</string>
     <string name="emptyInput">Väljad on tühjad</string>
@@ -24,7 +25,7 @@
     <string name="ConfPasstToast">Paroolid peavad üksteisega kattuma</string>
     <string name="PassLenghtToast">Parool peab koosnema vähemalt kuuest tähemärgist</string>
     <string name="ValidEmailToast">Peab olema kehtiv emaili aadress</string>
-    <string name="FillUsernameToast">Palun sisestage kasutajanimi</string>
+    <string name="FillUsernameToast">kasutajanimi peab olema vahemikus üks kuni kakskümmend tähemärki </string>
     <string name="RegiSuccess">Registeerimine õnnestus</string>
     <string name="LoginFailedToast">Sisselogimine ebaõnnestus, palun kinnitage emaili aadress</string>
     <string name="EnterEmailToast">Palun sisesta oma email.</string>
@@ -126,4 +127,6 @@
     <string name="smsTitle">Jaga</string>
     <string name="sms_permission">SMSiga postituse jagamiseks on vajalik õigus SMSi saatmiseks.</string>
     <string name="sms_permission_2">Ilma SMSi saatmise õiguseta ei saa postitust jagada.</string>
+    <string name="copyToClip">Kood kopeeritud lõikelauale</string>
+    <string name="copy">kopeeri</string>
 </resources>

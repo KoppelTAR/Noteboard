@@ -67,7 +67,7 @@ public class RegistrationFragment extends Fragment {
             if (email.matches(emailPattern)
                     && password.length() >= 6
                     && confPassword.equals(password)
-                    && Username.length() > 0) {
+                    && Username.length() > 0 && Username.length() < 20) {
 
                 //creates user and saves data by default firebase logs the user in after creating account
                 RegistrationView.userRegistration(Username,email,password,String.valueOf(getActivity().getResources().getConfiguration().locale));
