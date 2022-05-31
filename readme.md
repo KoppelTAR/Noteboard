@@ -1,5 +1,7 @@
 # Noteboard :scroll:
 
+## By Jarmo Troska, Egert Arr, Kaspar Koppel
+
 
 ## Content
 
