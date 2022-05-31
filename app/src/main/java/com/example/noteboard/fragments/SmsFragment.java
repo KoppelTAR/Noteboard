@@ -40,18 +40,6 @@ public class SmsFragment extends Fragment {
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.smsTitle);
         setHasOptionsMenu(true);
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        view.findViewById(R.id.btnSendPost).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!Utils.isEditTextEmpty(numberEditText, getContext())){
-                        String SMS_post = getString(R.string.postShared);
-                        String title = getArguments().getString("title");
-                        String content= getArguments().getString("content");
-                        viewModel.sendSMS(numberEditText.getText().toString(), String.format(SMS_post,title,content));
-                        Toast.makeText(getContext(), getContext().getString(R.string.sms_sent),Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
         view.findViewById(R.id.btnSendCode).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
