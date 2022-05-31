@@ -40,15 +40,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnSendPost"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/share_post"
-        app:layout_constraintBottom_toTopOf="@+id/btnSendCode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/btnSendCode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
