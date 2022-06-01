@@ -16,8 +16,13 @@ public class CreatePostViewModel extends AndroidViewModel {
         postsRepository = new PostsRepository(application);
     }
 
-    public void createPost(String postTitle, String postContent){
-        postsRepository.createPost(postTitle, postContent);
+    public String createPost(String postTitle, String postContent){
+        String docID = postsRepository.createPost(postTitle, postContent);
+        return docID;
+    }
+
+    public boolean isInDatabase(String docid) {
+        return postsRepository.isInDatabase(docid);
     }
 
 
