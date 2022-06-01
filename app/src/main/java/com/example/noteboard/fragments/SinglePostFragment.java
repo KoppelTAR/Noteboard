@@ -1,5 +1,7 @@
 package com.example.noteboard.fragments;
 
+import static androidx.fragment.app.FragmentManager.TAG;
+
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.content.ClipData;
@@ -12,8 +14,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,9 +30,15 @@ import android.widget.Toast;
 
 import com.example.noteboard.PostsRepository;
 import com.example.noteboard.R;
+import com.example.noteboard.viewmodels.MainViewModel;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.auth.User;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class SinglePostFragment extends Fragment {
@@ -37,6 +47,7 @@ public class SinglePostFragment extends Fragment {
     TextView TitleTextView;
     TextView UsernameTextView;
     TextView sharingCodeTextView;
+    TextView lastEditTextView;
 
     Button copyBtn;
 
@@ -47,6 +58,8 @@ public class SinglePostFragment extends Fragment {
     Long sharingCode;
     String author;
 
+    MainViewModel viewModel;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -55,6 +68,7 @@ public class SinglePostFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_single_post,container,false);
         ContentTextView = view.findViewById(R.id.contentText);
         TitleTextView = view.findViewById(R.id.titleText);
+        lastEditTextView = view.findViewById(R.id.textViewLastEdit);
         UsernameTextView = view.findViewById(R.id.usernameText);
         sharingCodeTextView = view.findViewById(R.id.sharingCodeText);
 
@@ -64,6 +78,12 @@ public class SinglePostFragment extends Fragment {
             title = getArguments().getString("title");
             sharingCode = getArguments().getLong("sharingcode");
             author = getArguments().getString("author");
+
+
+
+
+            viewModel.showLastEdit(lastEditTextView,getArguments().getString("editedBy"),new Date(getArguments().getLong("editedAt")));
+
 
             ContentTextView.setText(content);
             TitleTextView.setText(title);
@@ -92,6 +112,7 @@ public class SinglePostFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         setHasOptionsMenu(true);
     }
 

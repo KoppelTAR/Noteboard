@@ -128,4 +128,9 @@
     <string name="sms_permission_2">Для этой функции требуется доступ с разрешением SMS.</string>
     <string name="copyToClip">Скопировал код в буфер обмена</string>
     <string name="copy">копировать</string>
+    <string name="lastEdit">последний раз редактировалось %s %s </string>
+    <string name="just_now">сеичас!</string>
+    <string name="hours_ago">"%s час(ы) назад"</string>
+    <string name="days_ago">"%s ден(ы) назад"</string>
+    <string name="minutes_ago">"%s минут(ы) назад"</string>
 </resources>

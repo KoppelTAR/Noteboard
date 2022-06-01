@@ -58,6 +58,8 @@ public class MainFragment extends Fragment {
                 bundle.putString("content",post.getContent());
                 bundle.putLong("sharingcode",post.getSharingCode());
                 bundle.putString("author",post.getPostAuthor());
+                bundle.putLong("editedAt",post.getEditedAt().toDate().getTime());
+                bundle.putString("editedBy",post.getEditedBy());
 
                 mainViewModel.clearPosts();
                 Navigation.findNavController(getView()).navigate(R.id.action_mainFragment_to_singlePostFragment,bundle);

@@ -13,6 +13,7 @@ import com.example.noteboard.models.Post;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainViewModel extends AndroidViewModel {
 
@@ -53,4 +54,6 @@ public class MainViewModel extends AndroidViewModel {
     public void showPosts(){
         postsRepository.getPosts();
     }
+
+    public void showLastEdit(TextView textView, String uid, Date lastEdit){postsRepository.setLastEditor(textView,uid,lastEdit);}
 }

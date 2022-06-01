@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public class PostsRepository {
 
@@ -67,7 +68,8 @@ public class PostsRepository {
                 post.put("title",postTitle);
                 post.put("sharingCode", currentMs);
                 post.put("postAuthor", firebaseAuth.getCurrentUser().getUid());
-                post.put("editedAt", Calendar.getInstance().getTime());
+                post.put("editedAt", Timestamp.now());
+                post.put("editedBy", firebaseAuth.getCurrentUser().getUid());
                 docRefPost.set(post).addOnSuccessListener(aVoid -> Log.i(TAG, String.valueOf(R.string.UserDataWasSaved)));
 
                 userDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -133,7 +135,8 @@ public class PostsRepository {
         DocumentReference docRefPost = db.collection("posts").document(id.toString());
         docRefPost.update("content",content);
         docRefPost.update("title",title);
-        docRefPost.update("editedAt", Calendar.getInstance().getTime());
+        docRefPost.update("editedAt", Timestamp.now());
+        docRefPost.update("editedBy", firebaseAuth.getCurrentUser().getUid());
         docRefPost.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -170,14 +173,13 @@ public class PostsRepository {
                                         DocumentSnapshot object = (DocumentSnapshot) list.get(i);
                                         if (object.getLong("sharingCode") != null) {
                                             Timestamp time = (Timestamp) object.get("editedAt");
-                                            long dv = Long.valueOf(time.getSeconds())*1000;
-                                            Date df = new Date(dv);
+                                            /*long dv = Long.valueOf(time.getSeconds())*1000;
+                                            Date df = new Date(dv);*/
                                             Long s = object.getLong("sharingCode");
                                             Post post = new Post();
                                             post.setPostAuthor(object.getString("postAuthor"));
                                             post.setTitle(object.getString("title"));
-                                            post.setEditedAt(df);
-
+                                            post.setEditedAt(object.getTimestamp("editedAt"));
                                             post.setSharingCode(s);
                                             post.setContent(object.getString("content"));
 
@@ -213,6 +215,49 @@ public class PostsRepository {
         }
     }
 
+    public void setLastEditor(TextView textView, String uid, Date editTime){
+        DocumentReference userDocRef = db.collection("users").document(uid);
+        userDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                String username;
+                if(task.getResult().getString("username")==null){
+                    username = application.getString(R.string.deleted_user);
+                }
+                else{
+                    username = task.getResult().getString("username");
+                }
+                Map<TimeUnit,Long> editTimeDiff = Utils.getDiffBetweenDates(new Date(),editTime);
+
+                if(editTimeDiff.get(TimeUnit.DAYS) == 0
+                        && editTimeDiff.get(TimeUnit.HOURS) == 0
+                        && editTimeDiff.get(TimeUnit.MINUTES) == 0){
+                    textView.setText(String.format(application.getString(R.string.lastEdit),username,application.getString(R.string.just_now)));
+                }
+                else if(editTimeDiff.get(TimeUnit.DAYS) == 0
+                        && editTimeDiff.get(TimeUnit.HOURS) == 0
+                        && editTimeDiff.get(TimeUnit.MINUTES) < 0){
+                    textView.setText(String.format(application.getString(R.string.lastEdit),username,
+                            String.format(application.getString(R.string.minutes_ago),
+                                    String.valueOf(Math.abs(editTimeDiff.get(TimeUnit.MINUTES))))));
+                }
+                else if(editTimeDiff.get(TimeUnit.DAYS) == 0
+                        && editTimeDiff.get(TimeUnit.HOURS) < 0){
+                    textView.setText(String.format(application.getString(R.string.lastEdit),username,
+                            String.format(application.getString(R.string.hours_ago),
+                                    String.valueOf(Math.abs(editTimeDiff.get(TimeUnit.HOURS))))));
+                }
+                else if(editTimeDiff.get(TimeUnit.DAYS)<0){
+                    textView.setText(String.format(application.getString(R.string.lastEdit),username,
+                            String.format(application.getString(R.string.days_ago),
+                                    String.valueOf(Math.abs(editTimeDiff.get(TimeUnit.DAYS))))));
+                }
+
+
+            }
+        });
+    }
+
     public static void findAndSetUsername(TextView textView, String uid, Context context){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference userDocRef = db.collection("users").document(uid);
@@ -227,7 +272,6 @@ public class PostsRepository {
                 if(username == null){
                     textView.setText(String.format(context.getString(R.string.byAuthor),context.getString(R.string.deleted_user)));
                 }
-                
             }
         });
     }
@@ -292,14 +336,12 @@ public class PostsRepository {
                                     for (int i = 0; i < listOwned.size(); i++) {
                                         DocumentSnapshot object = (DocumentSnapshot) listOwned.get(i);
                                         if (object.getLong("sharingCode") != null) {
-                                            Timestamp time = (Timestamp) object.get("editedAt");
-                                            long dv = Long.valueOf(time.getSeconds())*1000;
-                                            Date df = new Date(dv);
                                             Long s = object.getLong("sharingCode");
                                             Post post = new Post();
+                                            post.setEditedBy(object.getString("editedBy"));
                                             post.setPostAuthor(object.getString("postAuthor"));
                                             post.setTitle(object.getString("title"));
-                                            post.setEditedAt(df);
+                                            post.setEditedAt(object.getTimestamp("editedAt"));
 
                                             post.setSharingCode(s);
                                             post.setContent(object.getString("content"));
@@ -325,14 +367,12 @@ public class PostsRepository {
 
                                         DocumentSnapshot object = (DocumentSnapshot) listShared.get(i);
                                         if (object.getLong("sharingCode") != null) {
-                                            Timestamp time = (Timestamp) object.get("editedAt");
-                                            long dv = Long.valueOf(time.getSeconds())*1000;
-                                            Date df = new Date(dv);
                                             Long s = object.getLong("sharingCode");
                                             Post post = new Post();
+                                            post.setEditedBy(object.getString("editedBy"));
                                             post.setPostAuthor(object.getString("postAuthor"));
                                             post.setTitle(object.getString("title"));
-                                            post.setEditedAt(df);
+                                            post.setEditedAt(object.getTimestamp("editedAt"));
 
                                             post.setSharingCode(s);
                                             post.setContent(object.getString("content"));
