@@ -31,7 +31,7 @@ public class LoginFragment extends Fragment {
         Application var = getActivity().getApplication();
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         loginViewModel.getUserMutableLiveData().observe(this, firebaseUser -> {
-            if (firebaseUser != null && firebaseUser.isEmailVerified()) {
+            if (firebaseUser != null) {
                 if(getView()!=null){
                     Bundle args = new Bundle();
                     args.putString("type","all");

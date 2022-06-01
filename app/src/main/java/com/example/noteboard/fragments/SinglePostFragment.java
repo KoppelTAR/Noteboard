@@ -108,7 +108,12 @@ public class SinglePostFragment extends Fragment {
         bundle.putString("type",getArguments().getString("type"));
 
         if (item.getItemId() == R.id.menuSettings){
-            Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_settingsFragment);
+            bundle.putString("settings","single");
+            bundle.putString("title",title);
+            bundle.putString("content",content);
+            bundle.putLong("sharingcode",sharingCode);
+            bundle.putString("author", author);
+            Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_settingsFragment,bundle);
         }
         if(item.getItemId() == R.id.menuShare){
             if(ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.SEND_SMS)
@@ -136,7 +141,7 @@ public class SinglePostFragment extends Fragment {
         else if (item.getItemId() == R.id.menuUser){
             Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_userFragment);
         }
-        else if (item.getItemId() == R.id.menuEdit){ //TODO send bundle to edit + nav
+        else if (item.getItemId() == R.id.menuEdit){
             bundle.putString("title",title);
             bundle.putString("content",content);
             bundle.putLong("sharingcode",sharingCode);

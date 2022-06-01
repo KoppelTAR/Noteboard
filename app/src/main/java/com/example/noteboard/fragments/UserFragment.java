@@ -69,7 +69,9 @@ public class UserFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menuSettings){
             mainViewModel.clearPosts();
-            Navigation.findNavController(getView()).navigate(R.id.action_userFragment_to_settingsFragment);
+            Bundle bundle = new Bundle();
+            bundle.putString("settings","user");
+            Navigation.findNavController(getView()).navigate(R.id.action_userFragment_to_settingsFragment,bundle);
         }
         return false;
     }
