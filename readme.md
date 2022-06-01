@@ -71,7 +71,7 @@ Voilà! You now have a virtual device ready to run applications!
 
 ### machine state diagram
 
-![Image](machine state.png)
+![Image](machine-state.png)
 
 ### package dependency diagram
 
