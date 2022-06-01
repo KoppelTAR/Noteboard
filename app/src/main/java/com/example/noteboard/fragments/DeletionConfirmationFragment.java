@@ -59,7 +59,7 @@ public class DeletionConfirmationFragment extends Fragment {
         });
         no.setOnClickListener(view1 -> {
             bundle.putString("title",getArguments().getString("title"));
-            bundle.putString("content",getArguments().getString("title"));
+            bundle.putString("content",getArguments().getString("content"));
             bundle.putLong("sharingcode",getArguments().getLong("sharingcode"));
             bundle.putString("author", getArguments().getString("author"));
             Navigation.findNavController(getView()).navigate(R.id.action_deletionConfirmationFragment_to_editPostFragment,bundle);

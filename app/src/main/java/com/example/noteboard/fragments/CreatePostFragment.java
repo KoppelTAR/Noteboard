@@ -66,7 +66,7 @@ public class CreatePostFragment extends Fragment {
         if (item.getItemId() == android.R.id.home){
             Bundle args = new Bundle();
             args.putString("type",getArguments().getString("type"));
-            Navigation.findNavController(getView()).navigate(R.id.action_createPostFragment_to_mainFragment,args);
+            Navigation.findNavController(getView()).navigate(R.id.action_createPostFragment_to_mainFragment2,args);
         }
         return super.onOptionsItemSelected(item);
     }

@@ -61,7 +61,7 @@ public class UserDetailsFragment extends Fragment {
         }
         if (item.getItemId() == R.id.menuUser){
             mainViewModel.clearPosts();
-            Navigation.findNavController(getView()).navigate(R.id.action_userDetailsFragment_to_userFragment);
+            Navigation.findNavController(getView()).navigate(R.id.action_userDetailsFragment_to_userFragment2);
         }
 
         if (item.getItemId() == android.R.id.home){

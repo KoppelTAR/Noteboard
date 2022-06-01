@@ -82,7 +82,7 @@ public class UserFragment extends Fragment {
         userViewModel.getLoggedOutMutableLiveData().observe(getViewLifecycleOwner(), loggedOut ->{
             if(loggedOut){
                 if(getView() != null) Navigation.findNavController(getView())
-                        .navigate(R.id.action_userFragment_to_loginFragment);
+                        .navigate(R.id.action_userFragment_to_loginFragment2);
             }
         });
 

@@ -102,7 +102,7 @@ public class RegistrationFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home){
-            Navigation.findNavController(getView()).navigate(R.id.action_registrationFragment_to_loginFragment);
+            Navigation.findNavController(getView()).navigate(R.id.action_registrationFragment_to_loginFragment2);
         }
         return super.onOptionsItemSelected(item);
     }
