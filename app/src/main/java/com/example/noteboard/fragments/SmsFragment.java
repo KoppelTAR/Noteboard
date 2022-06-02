@@ -59,6 +59,8 @@ public class SmsFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home){
             Bundle bundle = new Bundle();
+            bundle.putLong("editedAt",getArguments().getLong("editedAt"));
+            bundle.putString("editedBy",getArguments().getString("editedBy"));
             bundle.putString("title",getArguments().getString("title"));
             bundle.putString("content",getArguments().getString("content"));
             bundle.putLong("sharingcode",getArguments().getLong("sharingcode"));

@@ -215,8 +215,19 @@ public class PostsRepository {
         }
     }
 
-    public void setLastEditor(TextView textView, String uid, Date editTime){
-        DocumentReference userDocRef = db.collection("users").document(uid);
+    public void setPostContent(Long postId, TextView title, TextView content){
+        db.collection("posts").document(postId.toString()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                title.setText(task.getResult().getString("title"));
+                content.setText(task.getResult().getString("content"));
+            }
+        });
+    }
+
+    public void setLastEditor(TextView textView, String userUID, Long postId){
+        DocumentReference userDocRef = db.collection("users").document(userUID);
+        DocumentReference postDocRef = db.collection("posts").document(postId.toString());
         userDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -227,32 +238,37 @@ public class PostsRepository {
                 else{
                     username = task.getResult().getString("username");
                 }
-                Map<TimeUnit,Long> editTimeDiff = Utils.getDiffBetweenDates(new Date(),editTime);
 
-                if(editTimeDiff.get(TimeUnit.DAYS) == 0
-                        && editTimeDiff.get(TimeUnit.HOURS) == 0
-                        && editTimeDiff.get(TimeUnit.MINUTES) == 0){
-                    textView.setText(String.format(application.getString(R.string.lastEdit),username,application.getString(R.string.just_now)));
-                }
-                else if(editTimeDiff.get(TimeUnit.DAYS) == 0
-                        && editTimeDiff.get(TimeUnit.HOURS) == 0
-                        && editTimeDiff.get(TimeUnit.MINUTES) < 0){
-                    textView.setText(String.format(application.getString(R.string.lastEdit),username,
-                            String.format(application.getString(R.string.minutes_ago),
-                                    String.valueOf(Math.abs(editTimeDiff.get(TimeUnit.MINUTES))))));
-                }
-                else if(editTimeDiff.get(TimeUnit.DAYS) == 0
-                        && editTimeDiff.get(TimeUnit.HOURS) < 0){
-                    textView.setText(String.format(application.getString(R.string.lastEdit),username,
-                            String.format(application.getString(R.string.hours_ago),
-                                    String.valueOf(Math.abs(editTimeDiff.get(TimeUnit.HOURS))))));
-                }
-                else if(editTimeDiff.get(TimeUnit.DAYS)<0){
-                    textView.setText(String.format(application.getString(R.string.lastEdit),username,
-                            String.format(application.getString(R.string.days_ago),
-                                    String.valueOf(Math.abs(editTimeDiff.get(TimeUnit.DAYS))))));
-                }
+                postDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        Map<TimeUnit,Long> editTimeDiff = Utils.getDiffBetweenDates(new Date(),task.getResult().getTimestamp("editedAt").toDate());
 
+                        if(editTimeDiff.get(TimeUnit.DAYS) == 0
+                                && editTimeDiff.get(TimeUnit.HOURS) == 0
+                                && editTimeDiff.get(TimeUnit.MINUTES) == 0){
+                            textView.setText(String.format(application.getString(R.string.lastEdit),username,application.getString(R.string.just_now)));
+                        }
+                        else if(editTimeDiff.get(TimeUnit.DAYS) == 0
+                                && editTimeDiff.get(TimeUnit.HOURS) == 0
+                                && editTimeDiff.get(TimeUnit.MINUTES) < 0){
+                            textView.setText(String.format(application.getString(R.string.lastEdit),username,
+                                    String.format(application.getString(R.string.minutes_ago),
+                                            String.valueOf(Math.abs(editTimeDiff.get(TimeUnit.MINUTES))))));
+                        }
+                        else if(editTimeDiff.get(TimeUnit.DAYS) == 0
+                                && editTimeDiff.get(TimeUnit.HOURS) < 0){
+                            textView.setText(String.format(application.getString(R.string.lastEdit),username,
+                                    String.format(application.getString(R.string.hours_ago),
+                                            String.valueOf(Math.abs(editTimeDiff.get(TimeUnit.HOURS))))));
+                        }
+                        else if(editTimeDiff.get(TimeUnit.DAYS)<0){
+                            textView.setText(String.format(application.getString(R.string.lastEdit),username,
+                                    String.format(application.getString(R.string.days_ago),
+                                            String.valueOf(Math.abs(editTimeDiff.get(TimeUnit.DAYS))))));
+                        }
+                    }
+                });
 
             }
         });
