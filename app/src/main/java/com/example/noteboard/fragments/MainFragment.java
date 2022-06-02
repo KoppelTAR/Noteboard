@@ -112,7 +112,10 @@ public class MainFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menuSettings){
             mainViewModel.clearPosts();
-            Navigation.findNavController(getView()).navigate(R.id.action_mainFragment_to_settingsFragment);
+            Bundle bundle = new Bundle();
+            bundle.putString("settings","main");
+            bundle.putString("type",getArguments().getString("type"));
+            Navigation.findNavController(getView()).navigate(R.id.action_mainFragment_to_settingsFragment,bundle);
         }
         if (item.getItemId() == R.id.menuRefresh){
             mainViewModel.clearPosts();

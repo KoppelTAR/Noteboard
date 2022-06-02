@@ -27,7 +27,7 @@ public class LoginViewModel extends AndroidViewModel {
     }
 
     public MutableLiveData<FirebaseUser> getUserMutableLiveData() {
-        return authRepository.getUserMutableLiveData();
+        return userMutableLiveData;
     }
 
 }

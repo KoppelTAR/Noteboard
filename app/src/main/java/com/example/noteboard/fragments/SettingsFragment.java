@@ -134,7 +134,31 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home){
-            Navigation.findNavController(getView()).navigate(R.id.action_settingsFragment_to_userFragment);
+            if (getArguments().getString("settings").equals("user"))
+            {
+                Navigation.findNavController(getView()).navigate(R.id.action_settingsFragment_to_userFragment);
+            }
+            else if(getArguments().getString("settings").equals("main"))
+            {
+                Bundle bundle = new Bundle();
+                bundle.putString("type",getArguments().getString("type"));
+                Navigation.findNavController(getView()).navigate(R.id.action_settingsFragment_to_mainFragment,bundle);
+            }
+            else if(getArguments().getString("settings").equals("single"))
+            {
+                Bundle bundle = new Bundle();
+                bundle.putString("type",getArguments().getString("type"));
+                bundle.putString("title",getArguments().getString("title"));
+                bundle.putString("content",getArguments().getString("content"));
+                bundle.putLong("sharingcode",getArguments().getLong("sharingcode"));
+                bundle.putString("author",getArguments().getString("author"));
+                Navigation.findNavController(getView()).navigate(R.id.action_settingsFragment_to_singlePostFragment,bundle);
+            }
+            else if(getArguments().getString("settings").equals("details"))
+            {
+                Bundle bundle = new Bundle();
+                Navigation.findNavController(getView()).navigate(R.id.action_settingsFragment_to_userDetailsFragment,bundle);
+            }
         }
         return super.onOptionsItemSelected(item);
     }

@@ -50,6 +50,8 @@
         <entry key="..\:/Users/opilane/AndroidStudioProjects/TARpe20/aktsia-selts/app/src/main/res/menu/menu_singlepost.xml" value="0.559375" />
         <entry key="..\:/Users/opilane/AndroidStudioProjects/TARpe20/aktsia-selts/app/src/main/res/menu/menu_user.xml" value="0.559375" />
         <entry key="..\:/Users/opilane/AndroidStudioProjects/TARpe20/aktsia-selts/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.4185" />
+        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.121" />
+        <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/drawable/ic_content_copy.xml" value="0.121" />
         <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout-land/fragment_single_post.xml" value="0.25" />
         <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/activity_main.xml" value="0.24954710144927536" />
         <entry key="..\:/Users/opilane/AndroidStudioProjects/aktsia-selts/app/src/main/res/layout/fragment_deletion_confirmation.xml" value="0.1527777777777778" />
@@ -65,24 +67,16 @@
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/drawable/ic_find.xml" value="0.2985" />
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2985" />
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/drawable/ic_note.xml" value="0.2985" />
-        <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/layout-land/fragment_single_post.xml" value="0.3148148148148148" />
-<<<<<<< HEAD
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/layout-land/fragment_single_post.xml" value="0.33" />
-=======
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/layout-land/fragment_sms.xml" value="0.3148148148148148" />
->>>>>>> c62b13b28158085709f184fc2f6c96671758d510
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/layout-land/layout_main.xml" value="0.3148148148148148" />
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/layout/edit_post_fragment.xml" value="0.358695652173913" />
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/layout/fragment_create.xml" value="0.3605072463768116" />
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/layout/fragment_find_post.xml" value="0.358695652173913" />
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/layout/fragment_login.xml" value="0.358695652173913" />
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/layout/fragment_settings.xml" value="0.35280797101449274" />
-        <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/layout/fragment_single_post.xml" value="0.358695652173913" />
-<<<<<<< HEAD
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/layout/fragment_single_post.xml" value="0.33" />
-=======
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/layout/fragment_sms.xml" value="0.33" />
->>>>>>> c62b13b28158085709f184fc2f6c96671758d510
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/layout/fragment_user_posts.xml" value="0.35280797101449274" />
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/layout/layout_main.xml" value="0.35280797101449274" />
         <entry key="..\:/Users/opilane/Desktop/aktsia-selts/app/src/main/res/layout/main_fragment.xml" value="0.35280797101449274" />
