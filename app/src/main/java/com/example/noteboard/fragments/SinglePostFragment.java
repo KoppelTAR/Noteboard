@@ -1,5 +1,7 @@
 package com.example.noteboard.fragments;
 
+import static androidx.fragment.app.FragmentManager.TAG;
+
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.content.ClipData;
@@ -12,8 +14,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,9 +30,16 @@ import android.widget.Toast;
 
 import com.example.noteboard.PostsRepository;
 import com.example.noteboard.R;
+import com.example.noteboard.viewmodels.MainViewModel;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.auth.User;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class SinglePostFragment extends Fragment {
@@ -37,6 +48,7 @@ public class SinglePostFragment extends Fragment {
     TextView TitleTextView;
     TextView UsernameTextView;
     TextView sharingCodeTextView;
+    TextView lastEditTextView;
 
     Button copyBtn;
 
@@ -47,6 +59,8 @@ public class SinglePostFragment extends Fragment {
     Long sharingCode;
     String author;
 
+    MainViewModel viewModel;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -55,18 +69,16 @@ public class SinglePostFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_single_post,container,false);
         ContentTextView = view.findViewById(R.id.contentText);
         TitleTextView = view.findViewById(R.id.titleText);
+        lastEditTextView = view.findViewById(R.id.textViewLastEdit);
         UsernameTextView = view.findViewById(R.id.usernameText);
         sharingCodeTextView = view.findViewById(R.id.sharingCodeText);
 
 
         if (getArguments() != null) {
-            content = getArguments().getString("content");
-            title = getArguments().getString("title");
             sharingCode = getArguments().getLong("sharingcode");
             author = getArguments().getString("author");
-
-            ContentTextView.setText(content);
-            TitleTextView.setText(title);
+            viewModel.showLastEdit(lastEditTextView,getArguments().getString("editedBy"), sharingCode);
+            viewModel.setPostContent(sharingCode,TitleTextView,ContentTextView);
             sharingCodeTextView.setText(sharingCode.toString());
             PostsRepository.findAndSetUsername(UsernameTextView,author,getContext());
         } else {
@@ -92,6 +104,7 @@ public class SinglePostFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         setHasOptionsMenu(true);
     }
 
@@ -114,6 +127,8 @@ public class SinglePostFragment extends Fragment {
             if(ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.SEND_SMS)
                     == PackageManager.PERMISSION_GRANTED){
                 bundle.putString("title",title);
+                bundle.putLong("editedAt",getArguments().getLong("editedAt"));
+                bundle.putString("editedBy",getArguments().getString("editedBy"));
                 bundle.putString("content",content);
                 bundle.putLong("sharingcode",sharingCode);
                 bundle.putString("author", author);
@@ -136,8 +151,10 @@ public class SinglePostFragment extends Fragment {
         else if (item.getItemId() == R.id.menuUser){
             Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_userFragment);
         }
-        else if (item.getItemId() == R.id.menuEdit){ //TODO send bundle to edit + nav
+        else if (item.getItemId() == R.id.menuEdit){
             bundle.putString("title",title);
+            bundle.putLong("editedAt",getArguments().getLong("editedAt"));
+            bundle.putString("editedBy",getArguments().getString("editedBy"));
             bundle.putString("content",content);
             bundle.putLong("sharingcode",sharingCode);
             bundle.putString("author", author);

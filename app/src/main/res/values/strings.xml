@@ -129,4 +129,9 @@
     <string name="sms_permission_2">Need access to the SMS permission in order to use this feature.</string>
     <string name="copyToClip">Copied code to clipboard</string>
     <string name="copy">copy</string>
+    <string name="lastEdit">Last edited by %s %s</string>
+    <string name="just_now">just now!</string>
+    <string name="hours_ago">"%s hour(s) ago"</string>
+    <string name="days_ago">"%s day(s) ago"</string>
+    <string name="minutes_ago">"%s minute(s) ago"</string>
 </resources>

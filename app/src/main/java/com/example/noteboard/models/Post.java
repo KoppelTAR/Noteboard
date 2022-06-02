@@ -1,21 +1,18 @@
 package com.example.noteboard.models;
 
+import com.google.firebase.Timestamp;
+
 import java.util.Date;
 
 public class Post {
     private String title;
     private String content;
-    private Date editedAt;
+    private Timestamp editedAt;
     private Long sharingCode;
     private String postAuthor;
+    private String editedBy;
+    private String id;
 
-    public Post(String title, String content, Date editedAt, Long sharingCode, String postAuthor) {
-        this.title = title;
-        this.content = content;
-        this.editedAt = editedAt;
-        this.sharingCode = sharingCode;
-        this.postAuthor = postAuthor;
-    }
 
     public Post() {}
 
@@ -35,13 +32,6 @@ public class Post {
         this.content = content;
     }
 
-    public Date getEditedAt() {
-        return editedAt;
-    }
-
-    public void setEditedAt(Date editedAt) {
-        this.editedAt = editedAt;
-    }
 
     public Long getSharingCode() {
         return sharingCode;
@@ -57,5 +47,29 @@ public class Post {
 
     public void setPostAuthor(String postAuthor) {
         this.postAuthor = postAuthor;
+    }
+
+    public String getEditedBy() {
+        return editedBy;
+    }
+
+    public void setEditedBy(String editedBy) {
+        this.editedBy = editedBy;
+    }
+
+    public Timestamp getEditedAt() {
+        return editedAt;
+    }
+
+    public void setEditedAt(Timestamp editedAt) {
+        this.editedAt = editedAt;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

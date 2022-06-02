@@ -129,4 +129,9 @@
     <string name="sms_permission_2">Ilma SMSi saatmise õiguseta ei saa postitust jagada.</string>
     <string name="copyToClip">Kood kopeeritud lõikelauale</string>
     <string name="copy">kopeeri</string>
+    <string name="lastEdit">Viimati muutis %s %s</string>
+    <string name="just_now">kohe praegu!</string>
+    <string name="hours_ago">"%s tund(i) tagasi"</string>
+    <string name="days_ago">"%s päev(a) tagasi"</string>
+    <string name="minutes_ago">"%s minut(it) tagasi"</string>
 </resources>

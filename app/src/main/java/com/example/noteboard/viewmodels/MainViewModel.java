@@ -13,6 +13,7 @@ import com.example.noteboard.models.Post;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainViewModel extends AndroidViewModel {
 
@@ -42,6 +43,7 @@ public class MainViewModel extends AndroidViewModel {
         return loggedOutMutableLiveData;
     }
 
+    public void setPostContent(Long id, TextView title, TextView content){postsRepository.setPostContent(id,title,content);}
     public void showUserPosts(){postsRepository.getUserPosts();}
 
     public void clearPosts(){postsRepository.clearPosts();}
@@ -53,4 +55,6 @@ public class MainViewModel extends AndroidViewModel {
     public void showPosts(){
         postsRepository.getPosts();
     }
+
+    public void showLastEdit(TextView textView, String userUID, Long postId){postsRepository.setLastEditor(textView,userUID, postId);}
 }

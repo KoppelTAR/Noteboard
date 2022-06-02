@@ -51,6 +51,10 @@ public class AuthRepository {
         userMutableLiveData = new MutableLiveData<>();
     }
 
+    public static String getCurrentUserUID(){
+        return FirebaseAuth.getInstance().getCurrentUser().getUid();
+    }
+
     public void deleteCurrentUser(EditText confirmPassword, NavController navController){
         Thread workerThread = new Thread(new Runnable() {
             @Override

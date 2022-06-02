@@ -54,10 +54,10 @@ public class MainFragment extends Fragment {
             public void onItemClickListener(Post post) {
                 Bundle bundle = new Bundle();
                 bundle.putString("type", getArguments().getString("type"));
-                bundle.putString("title",post.getTitle());
-                bundle.putString("content",post.getContent());
                 bundle.putLong("sharingcode",post.getSharingCode());
                 bundle.putString("author",post.getPostAuthor());
+                bundle.putLong("editedAt",post.getEditedAt().toDate().getTime());
+                bundle.putString("editedBy",post.getEditedBy());
 
                 mainViewModel.clearPosts();
                 Navigation.findNavController(getView()).navigate(R.id.action_mainFragment_to_singlePostFragment,bundle);

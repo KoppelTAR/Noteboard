@@ -22,8 +22,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.noteboard.AuthRepository;
 import com.example.noteboard.R;
 import com.example.noteboard.viewmodels.EditPostViewModel;
+import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
@@ -35,9 +38,9 @@ public class EditPostFragment extends Fragment {
     EditText TitleEditText;
     Button Save;
 
-    String Title;
-    String Content;
+    String user;
     Long Id;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -51,12 +54,7 @@ public class EditPostFragment extends Fragment {
         Save = view.findViewById(R.id.btnSaveChanges);
 
         if (getArguments() != null) {
-            Title = getArguments().getString("title");
-            Content = getArguments().getString("content");
             Id = getArguments().getLong("sharingcode");
-
-            TitleEditText.setText(Title);
-            ContentEditText.setText(Content);
         }
 
         return view;
@@ -78,6 +76,8 @@ public class EditPostFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         EditViewmodel = new ViewModelProvider(this).get(EditPostViewModel.class);
+        EditViewmodel.setPostContent(getArguments().getLong("sharingcode"), TitleEditText, ContentEditText);
+        user = getArguments().getString("editedBy");
 
         Save.setOnClickListener(view1 -> {
             String ContentFinal = ContentEditText.getText().toString().trim();
@@ -86,6 +86,7 @@ public class EditPostFragment extends Fragment {
                 Toast.makeText(getContext(), R.string.emptyInput, Toast.LENGTH_SHORT).show();
             } else {
                 EditViewmodel.SaveChanges(TitleFinal,ContentFinal,Id);
+                user = AuthRepository.getCurrentUserUID();
             }
         });
     }
@@ -94,9 +95,11 @@ public class EditPostFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         Bundle bundle = new Bundle();
+        bundle.putLong("editedAt",getArguments().getLong("editedAt"));
+        bundle.putString("editedBy",user);
         bundle.putString("type",getArguments().getString("type"));
-        bundle.putString("title",Title);
-        bundle.putString("content",Content);
+        bundle.putString("title",TitleEditText.getText().toString().trim());
+        bundle.putString("content",ContentEditText.getText().toString().trim());
         bundle.putLong("sharingcode",Id);
         bundle.putString("author", getArguments().getString("author"));
 
