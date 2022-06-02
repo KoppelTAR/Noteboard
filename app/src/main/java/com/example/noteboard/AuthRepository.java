@@ -161,7 +161,6 @@ public class AuthRepository {
                     Map<String,Object> user = new HashMap<>();
                     user.put("username",username);
                     user.put("email",email);
-                    user.put("ownedPosts", posts);
                     user.put("sharedPosts", posts);
                     documentReference.set(user).addOnSuccessListener(aVoid -> Log.i(TAG, String.valueOf(R.string.UserDataWasSaved)))
                             .addOnFailureListener(e -> Log.e(TAG, application.getString(R.string.onFaliureDbError), e));

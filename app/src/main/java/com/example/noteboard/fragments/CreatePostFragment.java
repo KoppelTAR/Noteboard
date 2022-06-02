@@ -19,8 +19,10 @@ import com.example.noteboard.R;
 import com.example.noteboard.Utils;
 import com.example.noteboard.models.Post;
 import com.example.noteboard.viewmodels.CreatePostViewModel;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -69,34 +71,19 @@ public class CreatePostFragment extends Fragment {
     }
 
     private void addDataToFirestore(String courseName, String courseDescription, Date date, Long id, String courseDuration) {
-
-        // creating a collection reference
-        // for our Firebase Firetore database.
-        db = FirebaseFirestore.getInstance();
-        CollectionReference dbCourses = db.collection("posts");
-
-        // adding our data to our courses object class.
-        Post courses = new Post(courseName, courseDescription, date,id,courseDuration);
-
-        // below method is use to add data to Firebase Firestore.
-        dbCourses.add(courses).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        viewModel.createPost(courseName,courseDescription).addOnCompleteListener(new OnCompleteListener() {
             @Override
-            public void onSuccess(DocumentReference documentReference) {
-                // after the data addition is successful
-                // we are displaying a success toast message.
-                Toast.makeText(getActivity(), "Your Course has been added to Firebase Firestore", Toast.LENGTH_SHORT).show();
-                Bundle args = new Bundle();
-                args.putString("type",getArguments().getString("type"));
-                Navigation.findNavController(getView()).navigate(R.id.action_createPostFragment_to_mainFragment, args);
-                Toast.makeText(getContext(), getActivity().getString(R.string.postCreated), Toast.LENGTH_LONG).show();
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                // this method is called when the data addition process is failed.
-                // displaying a toast message when data addition is failed.
-                Toast.makeText(getActivity(), "Fail to add course \n" + e, Toast.LENGTH_SHORT).show();
+            public void onComplete(@NonNull Task task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getActivity(), "Your Course has been added to Firebase Firestore", Toast.LENGTH_SHORT).show();
+                    Bundle args = new Bundle();
+                    args.putString("type", getArguments().getString("type"));
+                    Navigation.findNavController(getView()).navigate(R.id.action_createPostFragment_to_mainFragment, args);
+                    Toast.makeText(getContext(), getActivity().getString(R.string.postCreated), Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(getActivity(), "Fail to add post \n", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
