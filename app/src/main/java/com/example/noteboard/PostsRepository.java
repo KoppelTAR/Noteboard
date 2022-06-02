@@ -355,11 +355,6 @@ public class PostsRepository {
         }
     }
 
-    public MutableLiveData<ArrayList<Post>> getPostLiveData() {
-        return postLiveData;
-    }
-
-
     public void DeletePost(Long id) {
         db.collection("posts").document(id.toString())
                 .delete()
@@ -377,4 +372,9 @@ public class PostsRepository {
                 });
 
     }
+
+    public MutableLiveData<ArrayList<Post>> getPostLiveData() {
+        return postLiveData;
+    }
+
 }

@@ -14,10 +14,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -78,12 +80,19 @@ public class SinglePostFragment extends Fragment {
             Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_mainFragment,bundle);
         }
 
-        copyBtn = view.findViewById(R.id.copyBtn);
-        copyBtn.setOnClickListener(view1 -> {
-            ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("sharing code", sharingCode.toString());
-            clipboard.setPrimaryClip(clip);
-            Toast.makeText(getActivity(), R.string.copyToClip, Toast.LENGTH_SHORT).show();
+        sharingCodeTextView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                        Log.i("TAG", "onTouch: ");
+                        ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                        ClipData clip = ClipData.newPlainText("sharing code", sharingCode.toString());
+                        clipboard.setPrimaryClip(clip);
+                        Toast.makeText(getActivity(), R.string.copyToClip, Toast.LENGTH_SHORT).show();
+
+
+                return false;
+            }
         });
 
         return view;
