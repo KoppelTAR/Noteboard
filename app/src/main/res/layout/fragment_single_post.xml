@@ -9,10 +9,10 @@
 
     <TextView
         android:id="@+id/textViewLastEdit"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="20sp"
+        android:textSize="@dimen/singlePostTextSize"
         app:layout_constraintBottom_toTopOf="@+id/titleText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
 
     <TextView
         android:id="@+id/usernameText"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
         android:textSize="@dimen/singlePostTitleTextSize"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
                 android:id="@+id/contentText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp" />
+                android:textSize="@dimen/singlePostTextSize" />
         </LinearLayout>
     </ScrollView>
 
@@ -66,9 +66,9 @@
         android:id="@+id/sharingCodeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="@dimen/singlePostTextSize"
         android:drawableRight="@drawable/ic_content_copy"
-        android:drawablePadding="8dp"
+        android:drawablePadding="@dimen/iconPadding"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usernameText" />
 

@@ -47,5 +47,7 @@
     <dimen name="registrationFragTexInputLayoutUsernameMarginTopLandscape">8dp</dimen>
     <dimen name="helloUserMarginLandscape">5dp</dimen>
     <dimen name="saveChangesBtnMarginStartAndEnd">38dp</dimen>
+    <dimen name="singlePostTextSize">20sp</dimen>
+    <dimen name="iconPadding">8dp</dimen>
 
 </resources>
