@@ -64,10 +64,9 @@
 
     <TextView
         android:id="@+id/sharingCodeText"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
         android:drawableRight="@drawable/ic_content_copy"
         android:drawablePadding="8dp"
         app:layout_constraintStart_toStartOf="parent"

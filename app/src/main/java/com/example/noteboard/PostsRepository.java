@@ -225,7 +225,14 @@ public class PostsRepository {
         });
     }
 
-    public void setLastEditor(TextView textView, String userUID, Long postId){
+    public void setLastEditor(TextView textView, String userUID, Long postId,String localeString){
+        String newlocale = localeString;
+        Locale locale = new Locale(newlocale);
+        Locale.setDefault(locale);
+        Configuration config = application.getResources().getConfiguration();
+        config.locale = locale;
+        application.getResources().updateConfiguration(config,
+                application.getResources().getDisplayMetrics());
         DocumentReference userDocRef = db.collection("users").document(userUID);
         DocumentReference postDocRef = db.collection("posts").document(postId.toString());
         userDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

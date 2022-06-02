@@ -152,6 +152,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 bundle.putString("content",getArguments().getString("content"));
                 bundle.putLong("sharingcode",getArguments().getLong("sharingcode"));
                 bundle.putString("author",getArguments().getString("author"));
+                bundle.putString("editedBy",getArguments().getString("editedBy"));
                 Navigation.findNavController(getView()).navigate(R.id.action_settingsFragment_to_singlePostFragment,bundle);
             }
             else if(getArguments().getString("settings").equals("details"))

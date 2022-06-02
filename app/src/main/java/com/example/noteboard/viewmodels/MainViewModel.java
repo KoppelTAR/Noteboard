@@ -56,5 +56,5 @@ public class MainViewModel extends AndroidViewModel {
         postsRepository.getPosts();
     }
 
-    public void showLastEdit(TextView textView, String userUID, Long postId){postsRepository.setLastEditor(textView,userUID, postId);}
+    public void showLastEdit(TextView textView, String userUID, Long postId,String locale){postsRepository.setLastEditor(textView,userUID, postId,locale);}
 }

@@ -59,6 +59,7 @@ public class SinglePostFragment extends Fragment {
     String title;
     Long sharingCode;
     String author;
+    String editedBy;
 
     MainViewModel viewModel;
 
@@ -74,11 +75,11 @@ public class SinglePostFragment extends Fragment {
         UsernameTextView = view.findViewById(R.id.usernameText);
         sharingCodeTextView = view.findViewById(R.id.sharingCodeText);
 
-
         if (getArguments() != null) {
             sharingCode = getArguments().getLong("sharingcode");
             author = getArguments().getString("author");
-            viewModel.showLastEdit(lastEditTextView,getArguments().getString("editedBy"), sharingCode);
+            viewModel.showLastEdit(lastEditTextView,getArguments().getString("editedBy"), sharingCode,String.valueOf(getActivity().getResources().getConfiguration().locale));
+            editedBy = getArguments().getString("editedBy");
             viewModel.setPostContent(sharingCode,TitleTextView,ContentTextView);
             sharingCodeTextView.setText(sharingCode.toString());
             PostsRepository.findAndSetUsername(UsernameTextView,author,getContext());
@@ -134,6 +135,7 @@ public class SinglePostFragment extends Fragment {
             bundle.putString("content",content);
             bundle.putLong("sharingcode",sharingCode);
             bundle.putString("author", author);
+            bundle.putString("editedBy",editedBy);
             Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_settingsFragment,bundle);
         }
         if(item.getItemId() == R.id.menuShare){
