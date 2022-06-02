@@ -114,18 +114,23 @@ public class PostsRepository {
                     docRefUser.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            ArrayList<DocumentReference> ownPosts = (ArrayList<DocumentReference>) task.getResult().get("ownedPosts");
                             ArrayList<DocumentReference> array = (ArrayList<DocumentReference>) task.getResult().get("sharedPosts");
-                            if (array.contains(docRefPost)) {
-                                Toast.makeText(context, context.getString(R.string.access_exists), Toast.LENGTH_SHORT).show();
-                            } else if (ownPosts.contains(docRefPost)) {
-                                Toast.makeText(context, context.getString(R.string.post_created_by_user), Toast.LENGTH_SHORT).show();
-                            } else {
-                                array.add(docRefPost);
-                                docRefUser.update("sharedPosts", array);
-                                postLiveData.setValue(postArrayList);
-                                Toast.makeText(context, context.getString(R.string.post_added), Toast.LENGTH_SHORT).show();
-                            }
+                            docRefPost.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    if (array.contains(docRefPost)) {
+                                        Toast.makeText(context, context.getString(R.string.access_exists), Toast.LENGTH_SHORT).show();
+                                    } else if (documentSnapshot.get("postAuthor").equals(firebaseAuth.getCurrentUser().getUid())) {
+                                        Toast.makeText(context, context.getString(R.string.post_created_by_user), Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        array.add(docRefPost);
+                                        docRefUser.update("sharedPosts", array);
+                                        postLiveData.setValue(postArrayList);
+                                        Toast.makeText(context, context.getString(R.string.post_added), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
                         }
                     });
                 }
@@ -174,6 +179,7 @@ public class PostsRepository {
                                             post.setTitle(doc.getString("title"));
                                             post.setEditedAt(doc.getTimestamp("editedAt"));
                                             post.setSharingCode(doc.getLong("sharingCode"));
+                                            post.setEditedBy(doc.getString("editedBy"));
                                             post.setContent(doc.getString("content"));
 
                                             postArrayList.add(post);
