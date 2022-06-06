@@ -10,8 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,21 +23,19 @@ import android.widget.Toast;
 import com.example.noteboard.AuthRepository;
 import com.example.noteboard.R;
 import com.example.noteboard.viewmodels.EditPostViewModel;
-import com.google.firebase.Timestamp;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
 public class EditPostFragment extends Fragment {
 
-    EditPostViewModel EditViewmodel;
+    EditPostViewModel editViewModel;
 
-    EditText ContentEditText;
-    EditText TitleEditText;
-    Button Save;
+    EditText contentEditText;
+    EditText titleEditText;
+    Button save;
 
     String user;
-    Long Id;
+    Long id;
 
 
     @Override
@@ -49,12 +45,12 @@ public class EditPostFragment extends Fragment {
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         View view = inflater.inflate(R.layout.edit_post_fragment, container, false);
 
-        ContentEditText = view.findViewById(R.id.ContentEditText);
-        TitleEditText = view.findViewById(R.id.TitleEditText);
-        Save = view.findViewById(R.id.btnSaveChanges);
+        contentEditText = view.findViewById(R.id.ContentEditText);
+        titleEditText = view.findViewById(R.id.titleEditText);
+        save = view.findViewById(R.id.btnSaveChanges);
 
         if (getArguments() != null) {
-            Id = getArguments().getLong("sharingcode");
+            id = getArguments().getLong("sharingcode");
         }
 
         return view;
@@ -75,17 +71,17 @@ public class EditPostFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        EditViewmodel = new ViewModelProvider(this).get(EditPostViewModel.class);
-        EditViewmodel.setPostContent(getArguments().getLong("sharingcode"), TitleEditText, ContentEditText);
+        editViewModel = new ViewModelProvider(this).get(EditPostViewModel.class);
+        editViewModel.setPostContent(getArguments().getLong("sharingcode"), titleEditText, contentEditText);
         user = getArguments().getString("editedBy");
 
-        Save.setOnClickListener(view1 -> {
-            String ContentFinal = ContentEditText.getText().toString().trim();
-            String TitleFinal = TitleEditText.getText().toString().trim();
+        save.setOnClickListener(view1 -> {
+            String ContentFinal = contentEditText.getText().toString().trim();
+            String TitleFinal = titleEditText.getText().toString().trim();
             if (TitleFinal.equals("") || ContentFinal.equals("")) {
                 Toast.makeText(getContext(), R.string.emptyInput, Toast.LENGTH_SHORT).show();
             } else {
-                EditViewmodel.SaveChanges(TitleFinal,ContentFinal,Id);
+                editViewModel.SaveChanges(TitleFinal,ContentFinal, id);
                 user = AuthRepository.getCurrentUserUID();
             }
         });
@@ -98,9 +94,9 @@ public class EditPostFragment extends Fragment {
         bundle.putLong("editedAt",getArguments().getLong("editedAt"));
         bundle.putString("editedBy",user);
         bundle.putString("type",getArguments().getString("type"));
-        bundle.putString("title",TitleEditText.getText().toString().trim());
-        bundle.putString("content",ContentEditText.getText().toString().trim());
-        bundle.putLong("sharingcode",Id);
+        bundle.putString("title", titleEditText.getText().toString().trim());
+        bundle.putString("content", contentEditText.getText().toString().trim());
+        bundle.putLong("sharingcode", id);
         bundle.putString("author", getArguments().getString("author"));
 
         if (item.getItemId() == android.R.id.home) {

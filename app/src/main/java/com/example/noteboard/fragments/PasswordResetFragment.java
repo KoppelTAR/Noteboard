@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,8 +31,7 @@ import java.util.Objects;
 
 public class PasswordResetFragment extends Fragment {
 
-    private com.example.noteboard.viewmodels.PasswordResetViewModel PasswordResetViewModel;
-    private final String TAG= "";
+    private PasswordResetViewModel PasswordResetViewModel;
     String email;
 
     public static boolean isAnyStringNullOrEmpty(String... strings) {
@@ -46,7 +46,7 @@ public class PasswordResetFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null){
-            email = getArguments().getString("Email");
+            email = getArguments().getString("email");
         }
     }
 
@@ -69,12 +69,17 @@ public class PasswordResetFragment extends Fragment {
         view.findViewById(R.id.btnResetPassword).setOnClickListener(view1 -> {
             email = Objects.requireNonNull(oldEmail.getText()).toString().trim();
             if (isAnyStringNullOrEmpty(email)) {
-                Log.i(TAG, String.valueOf(getActivity().getResources().getConfiguration().locale));
+                Log.i("TAG", String.valueOf(getActivity().getResources().getConfiguration().locale));
                 Toast.makeText(getContext(), getActivity().getString(R.string.EnterEmailToast),Toast.LENGTH_SHORT).show();
             }
+            else if (!Patterns.EMAIL_ADDRESS.matcher(oldEmail.getText().toString()).matches()) {
+                Toast.makeText(getContext(), getActivity().getString(R.string.ValidEmailToast),Toast.LENGTH_SHORT).show();
+            }
             else{
+                Bundle args = new Bundle();
+                args.putString("email", String.valueOf(oldEmail.getText()));
                 PasswordResetViewModel.resetPassword(email,String.valueOf(getActivity().getResources().getConfiguration().locale));
-                Navigation.findNavController(view).navigate(R.id.action_passwordResetFragment_to_loginFragment);
+                Navigation.findNavController(view).navigate(R.id.action_passwordResetFragment_to_loginFragment,args);
             }
         });
     }

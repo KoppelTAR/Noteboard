@@ -1,7 +1,5 @@
 package com.example.noteboard.fragments;
 
-import static androidx.fragment.app.FragmentManager.TAG;
-
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.content.ClipData;
@@ -25,7 +23,6 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,27 +30,18 @@ import com.example.noteboard.PostsRepository;
 import com.example.noteboard.R;
 import com.example.noteboard.viewmodels.MainViewModel;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.Timestamp;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.auth.User;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Objects;
 
 public class SinglePostFragment extends Fragment {
 
-    TextView ContentTextView;
-    TextView TitleTextView;
-    TextView UsernameTextView;
+    TextView contentTextView;
+    TextView titleTextView;
+    TextView usernameTextView;
     TextView sharingCodeTextView;
     TextView lastEditTextView;
 
-    Button copyBtn;
 
-    //%s
 
     String content;
     String title;
@@ -69,10 +57,10 @@ public class SinglePostFragment extends Fragment {
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(R.string.singlepost_title);
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         View view = inflater.inflate(R.layout.fragment_single_post,container,false);
-        ContentTextView = view.findViewById(R.id.contentText);
-        TitleTextView = view.findViewById(R.id.titleText);
+        contentTextView = view.findViewById(R.id.contentText);
+        titleTextView = view.findViewById(R.id.titleText);
         lastEditTextView = view.findViewById(R.id.textViewLastEdit);
-        UsernameTextView = view.findViewById(R.id.usernameText);
+        usernameTextView = view.findViewById(R.id.usernameText);
         sharingCodeTextView = view.findViewById(R.id.sharingCodeText);
 
         if (getArguments() != null) {
@@ -80,9 +68,9 @@ public class SinglePostFragment extends Fragment {
             author = getArguments().getString("author");
             viewModel.showLastEdit(lastEditTextView,getArguments().getString("editedBy"), sharingCode,String.valueOf(getActivity().getResources().getConfiguration().locale));
             editedBy = getArguments().getString("editedBy");
-            viewModel.setPostContent(sharingCode,TitleTextView,ContentTextView);
+            viewModel.setPostContent(sharingCode, titleTextView, contentTextView);
             sharingCodeTextView.setText(sharingCode.toString());
-            PostsRepository.findAndSetUsername(UsernameTextView,author,getContext());
+            PostsRepository.findAndSetUsername(usernameTextView,author,getContext());
         } else {
             Toast.makeText(getActivity(), getActivity().getString(R.string.error,"Viewing data"), Toast.LENGTH_SHORT).show();
 

@@ -16,13 +16,12 @@ import android.widget.Button;
 
 import com.example.noteboard.R;
 import com.example.noteboard.viewmodels.DeletionConfirmationViewModel;
-import com.example.noteboard.viewmodels.EditPostViewModel;
 
 import java.util.Objects;
 
 public class DeletionConfirmationFragment extends Fragment {
 
-    DeletionConfirmationViewModel Viewmodel;
+    DeletionConfirmationViewModel viewModel;
     Button yes;
     Button no;
 
@@ -43,7 +42,7 @@ public class DeletionConfirmationFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Viewmodel = new ViewModelProvider(this).get(DeletionConfirmationViewModel.class);
+        viewModel = new ViewModelProvider(this).get(DeletionConfirmationViewModel.class);
     }
 
     @Override
@@ -54,7 +53,7 @@ public class DeletionConfirmationFragment extends Fragment {
         bundle.putString("type",getArguments().getString("type"));
 
         yes.setOnClickListener(view1 -> {
-            Viewmodel.DeletePost(getArguments().getLong("sharingcode"));
+            viewModel.DeletePost(getArguments().getLong("sharingcode"));
             Navigation.findNavController(getView()).navigate(R.id.action_deletionConfirmationFragment_to_mainFragment,bundle);
         });
         no.setOnClickListener(view1 -> {

@@ -1,8 +1,6 @@
 package com.example.noteboard.fragments;
 
-import android.app.Application;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,23 +20,22 @@ import com.example.noteboard.R;
 import com.example.noteboard.viewmodels.RegistrationViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.util.Locale;
 import java.util.Objects;
 
 public class RegistrationFragment extends Fragment {
 
     TextInputEditText emailEditText;
-    TextInputEditText PasswordEditText;
-    TextInputEditText UsernameEditText;
-    TextInputEditText PasswordConfirmEditText;
+    TextInputEditText passwordEditText;
+    TextInputEditText usernameEditText;
+    TextInputEditText passwordConfirmEditText;
 
-    private RegistrationViewModel RegistrationView;
+    private RegistrationViewModel registrationView;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RegistrationView = new ViewModelProvider(this).get(RegistrationViewModel.class);
+        registrationView = new ViewModelProvider(this).get(RegistrationViewModel.class);
     }
 
 
@@ -52,17 +49,17 @@ public class RegistrationFragment extends Fragment {
 
         Button Register = view.findViewById(R.id.BtnRegister);
         Register.setOnClickListener(view1 -> {
-            emailEditText = requireView().findViewById(R.id.EmailEdit);
-            PasswordConfirmEditText = requireView().findViewById(R.id.ConfirmPasswordEdit);
-            PasswordEditText = requireView().findViewById(R.id.PasswordEdit);
-            UsernameEditText = requireView().findViewById(R.id.UsernameEdit);
+            emailEditText = requireView().findViewById(R.id.emailEdit);
+            passwordConfirmEditText = requireView().findViewById(R.id.confirmPasswordEdit);
+            passwordEditText = requireView().findViewById(R.id.passwordEdit);
+            usernameEditText = requireView().findViewById(R.id.usernameEdit);
 
             String emailPattern = "[a-zA-Z0-9._-]+@[a-z0-9]+\\.+[a-z]+";
 
             String email = Objects.requireNonNull(Objects.requireNonNull(emailEditText).getText()).toString().trim();
-            String password = Objects.requireNonNull(Objects.requireNonNull(PasswordEditText).getText()).toString().trim();
-            String confPassword = Objects.requireNonNull(Objects.requireNonNull(PasswordConfirmEditText).getText()).toString().trim();
-            String Username = Objects.requireNonNull(Objects.requireNonNull(UsernameEditText).getText()).toString().trim();
+            String password = Objects.requireNonNull(Objects.requireNonNull(passwordEditText).getText()).toString().trim();
+            String confPassword = Objects.requireNonNull(Objects.requireNonNull(passwordConfirmEditText).getText()).toString().trim();
+            String Username = Objects.requireNonNull(Objects.requireNonNull(usernameEditText).getText()).toString().trim();
 
             if (email.matches(emailPattern)
                     && password.length() >= 6
@@ -70,8 +67,8 @@ public class RegistrationFragment extends Fragment {
                     && Username.length() > 0 && Username.length() < 20) {
 
                 //creates user and saves data by default firebase logs the user in after creating account
-                RegistrationView.userRegistration(Username,email,password,String.valueOf(getActivity().getResources().getConfiguration().locale));
-                RegistrationView.logOut();
+                registrationView.userRegistration(Username,email,password,String.valueOf(getActivity().getResources().getConfiguration().locale));
+                registrationView.logOut();
                 navController.navigate(R.id.action_registrationFragment_to_loginFragment);
             }else {
 

@@ -34,7 +34,7 @@
                 app:helperText="@string/example_name">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/UsernameEdit"
+                    android:id="@+id/usernameEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_usernameRegFrag"
@@ -52,7 +52,7 @@
                 app:helperText="@string/example_mail">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/EmailEdit"
+                    android:id="@+id/emailEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_emailRegFrag"
@@ -67,10 +67,11 @@
                 android:layout_marginStart="@dimen/registrationFragTextInputLayoutMargin"
                 android:layout_marginTop="@dimen/registrationFragTextInputLayoutMarginTop"
                 android:layout_marginEnd="@dimen/registrationFragTextInputLayoutMargin"
-                app:helperText="@string/example_pass">
+                app:helperText="@string/example_pass"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/PasswordEdit"
+                    android:id="@+id/passwordEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_passwordRegFrag"
@@ -84,10 +85,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/registrationFragTextInputLayoutMargin"
                 android:layout_marginTop="@dimen/registrationFragTextInputLayoutMarginTop"
-                android:layout_marginEnd="@dimen/registrationFragTextInputLayoutMargin">
+                android:layout_marginEnd="@dimen/registrationFragTextInputLayoutMargin"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ConfirmPasswordEdit"
+                    android:id="@+id/confirmPasswordEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/confirm_passwordRegFrag"

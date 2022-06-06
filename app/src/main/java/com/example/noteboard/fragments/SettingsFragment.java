@@ -34,14 +34,12 @@ import java.util.Objects;
 public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     Switch night;
-    Button backBtn;
 
     ImageView en;
     ImageView ee;
     ImageView ru;
     TextView txtLang;
     TextView txtDark;
-    Button save;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

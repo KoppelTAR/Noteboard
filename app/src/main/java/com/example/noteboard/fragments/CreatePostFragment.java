@@ -39,7 +39,6 @@ public class CreatePostFragment extends Fragment {
 
     CreatePostViewModel viewModel;
 
-    private FirebaseFirestore db;
     private FirebaseAuth firebaseAuth;
 
     @Override

@@ -31,7 +31,7 @@ public class LoginFragment extends Fragment {
         Application var = getActivity().getApplication();
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         loginViewModel.getUserMutableLiveData().observe(this, firebaseUser -> {
-            if (firebaseUser != null) {
+            if (firebaseUser != null && firebaseUser.isEmailVerified()) {
                 if(getView()!=null){
                     Bundle args = new Bundle();
                     args.putString("type","all");
@@ -55,6 +55,9 @@ public class LoginFragment extends Fragment {
         Log.i("TAG", String.valueOf(requireActivity().getResources().getConfiguration().locale));
         EditText editTextEmail = view.findViewById(R.id.editTextEmail);
         EditText editTextPassword = view.findViewById(R.id.editTextPassword);
+        if (getArguments() != null){
+            editTextEmail.setText(getArguments().getString("email"));
+        }
         view.findViewById(R.id.btnLogin).setOnClickListener(view1 -> {
             if(!Utils.isEditTextEmpty(editTextEmail, getContext())
                     && !Utils.isEditTextEmpty(editTextPassword, getContext())){
@@ -64,7 +67,9 @@ public class LoginFragment extends Fragment {
         });
 
         view.findViewById(R.id.btnForgotPassword).setOnClickListener(view1 -> {
-            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_passwordResetFragment);
+            Bundle args = new Bundle();
+            args.putString("email", String.valueOf(editTextEmail.getText()));
+            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_passwordResetFragment,args);
         });
 
         view.findViewById(R.id.btnRegister).setOnClickListener(view1 -> {

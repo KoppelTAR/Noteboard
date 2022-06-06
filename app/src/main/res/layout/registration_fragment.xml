@@ -25,13 +25,14 @@
         android:layout_marginStart="@dimen/registrationFragTextInputLayoutMargin"
         android:layout_marginTop="@dimen/registrationFragTextInputLayoutMarginTop"
         android:layout_marginEnd="@dimen/registrationFragTextInputLayoutMargin"
+        app:passwordToggleEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ConfirmPasswordEdit"
+            android:id="@+id/confirmPasswordEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -47,13 +48,14 @@
         android:layout_marginStart="@dimen/registrationFragTextInputLayoutMargin"
         android:layout_marginTop="@dimen/registrationFragTextInputLayoutMarginTop"
         android:layout_marginEnd="@dimen/registrationFragTextInputLayoutMargin"
+        app:passwordToggleEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/PasswordEdit"
+            android:id="@+id/passwordEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -75,7 +77,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/EmailEdit"
+            android:id="@+id/emailEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -97,7 +99,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/UsernameEdit"
+            android:id="@+id/usernameEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enter_usernameRegFrag"
