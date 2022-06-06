@@ -16,6 +16,8 @@ public class FindPostViewModel extends AndroidViewModel {
         repository = new PostsRepository(application);
     }
 
+    public boolean postExists(String id){return repository.postExists(id);}
+
     public void findPost(String sharingCode, Context context){
         repository.addPostThroughCode(sharingCode, context);
     }

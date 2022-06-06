@@ -76,7 +76,7 @@ public class EditPostFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         EditViewmodel = new ViewModelProvider(this).get(EditPostViewModel.class);
-        EditViewmodel.setPostContent(getArguments().getLong("sharingcode"), TitleEditText, ContentEditText);
+        EditViewmodel.setPostContent(getArguments().getLong("sharingcode"), TitleEditText, ContentEditText,null,null,null);
         user = getArguments().getString("editedBy");
 
         Save.setOnClickListener(view1 -> {
@@ -104,6 +104,7 @@ public class EditPostFragment extends Fragment {
         bundle.putString("author", getArguments().getString("author"));
 
         if (item.getItemId() == android.R.id.home) {
+            bundle.putBoolean("anon",false);
             Navigation.findNavController(getView()).navigate(R.id.action_editPostFragment_to_singlePostFragment,bundle);
         }
         if (item.getItemId() == R.id.menuDelete) {

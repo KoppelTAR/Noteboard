@@ -31,6 +31,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_loginFragment_to_findPostFragment"
+            app:destination="@id/findPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/passwordResetFragment"
@@ -149,6 +152,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_singlePostFragment_to_findPostFragment"
+            app:destination="@id/findPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -316,6 +322,12 @@
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left"
             />
+        <action
+            android:id="@+id/action_findPostFragment_to_singlePostFragment"
+            app:destination="@id/singlePostFragment" />
+        <action
+            android:id="@+id/action_findPostFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/editPostFragment"

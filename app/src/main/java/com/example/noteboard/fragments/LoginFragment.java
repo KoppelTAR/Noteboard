@@ -63,6 +63,12 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        view.findViewById(R.id.btnFindPostAnon).setOnClickListener(view1 -> {
+            Bundle args = new Bundle();
+            args.putBoolean("anon",true);
+            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_findPostFragment, args);
+        });
+
         view.findViewById(R.id.btnForgotPassword).setOnClickListener(view1 -> {
             Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_passwordResetFragment);
         });
