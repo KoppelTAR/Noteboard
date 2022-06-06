@@ -2,6 +2,7 @@ package com.example.noteboard;
 
 import static android.content.ContentValues.TAG;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -55,7 +56,7 @@ public class AuthRepository {
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
-    public void deleteCurrentUser(EditText confirmPassword, NavController navController){
+    public void deleteCurrentUser(EditText confirmPassword, NavController navController, Activity activity){
         Thread workerThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -70,6 +71,11 @@ public class AuthRepository {
                             docRef.delete();
                             user.delete();
                             navController.navigate(R.id.action_deleteUserFragment_to_loginFragment);
+                            activity.runOnUiThread(new Runnable() {
+                                public void run() {
+                                    Toast.makeText(application.getApplicationContext(), R.string.account_deleted,Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -80,7 +86,6 @@ public class AuthRepository {
                 }
             }
         });
-        Toast.makeText(application.getApplicationContext(), R.string.account_deleted,Toast.LENGTH_SHORT).show();
         workerThread.start();
     }
 

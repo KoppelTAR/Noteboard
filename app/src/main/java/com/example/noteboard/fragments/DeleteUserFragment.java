@@ -47,7 +47,7 @@ public class DeleteUserFragment extends Fragment {
 
 
         deleteUser.setOnClickListener(view1 -> {
-            viewModel.deleteCurrentUser(confirmPassword,Navigation.findNavController(view));
+            viewModel.deleteCurrentUser(confirmPassword,Navigation.findNavController(view),getActivity());
         });
 
 

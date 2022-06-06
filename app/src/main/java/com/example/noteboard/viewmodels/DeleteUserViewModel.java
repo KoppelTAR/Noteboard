@@ -1,5 +1,6 @@
 package com.example.noteboard.viewmodels;
 
+import android.app.Activity;
 import android.app.Application;
 import android.widget.EditText;
 
@@ -16,7 +17,7 @@ public class DeleteUserViewModel extends AndroidViewModel {
         authRepository = new AuthRepository(application);
     }
 
-    public void deleteCurrentUser(EditText confirmPassword, NavController navController){
-        authRepository.deleteCurrentUser(confirmPassword, navController);
+    public void deleteCurrentUser(EditText confirmPassword, NavController navController, Activity activity){
+        authRepository.deleteCurrentUser(confirmPassword, navController, activity);
     }
 }

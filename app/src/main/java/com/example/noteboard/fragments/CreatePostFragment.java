@@ -74,7 +74,6 @@ public class CreatePostFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(getActivity(), "Your Course has been added to Firebase Firestore", Toast.LENGTH_SHORT).show();
                     Bundle args = new Bundle();
                     args.putString("type", getArguments().getString("type"));
                     Navigation.findNavController(getView()).navigate(R.id.action_createPostFragment_to_mainFragment, args);
