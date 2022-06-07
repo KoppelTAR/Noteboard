@@ -50,15 +50,7 @@ public class FindPostFragment extends Fragment {
                     findPostViewModel.findPost(postCode.getText().toString(),getContext());
                 }
                 else if(getArguments().getBoolean("anon")){
-                    if(findPostViewModel.postExists(postCode.getText().toString())){
-                        Bundle args = new Bundle();
-                        args.putLong("sharingcode",Long.parseLong(postCode.getText().toString()));
-                        args.putBoolean("anon",true);
-                        Navigation.findNavController(getView()).navigate(R.id.action_findPostFragment_to_singlePostFragment, args);
-                    }
-                    else{
-                        Toast.makeText(getContext(), getString(R.string.invalid_code), Toast.LENGTH_SHORT).show();
-                    }
+                    findPostViewModel.showAnonPost(postCode.getText().toString(), getView());
                 }
             }
         });

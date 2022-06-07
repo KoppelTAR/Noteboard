@@ -71,6 +71,16 @@
         android:text="@string/forgotPassword"
         android:textSize="@dimen/loginFragmentLandscapeBtnTextSize" />
 
+        <Button
+            android:id="@+id/btnFindPostAnon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/find_post_with_sharing_code"
+            android:textSize="@dimen/loginFragmentLandscapeBtnTextSize"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
     </LinearLayout>
     </ScrollView>
 

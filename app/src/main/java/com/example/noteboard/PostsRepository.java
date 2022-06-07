@@ -5,12 +5,15 @@ import static android.content.ContentValues.TAG;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
+import androidx.navigation.Navigation;
 
 import com.example.noteboard.models.Post;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -99,14 +102,23 @@ public class PostsRepository {
         }
     }
 
-    public boolean postExists(String id){
-        try {
-            db.collection("posts").document(id);
-            return true;
-        } catch (Exception e) {
-            Toast.makeText(application, application.getString(R.string.invalid_code), Toast.LENGTH_SHORT).show();
-            return false;
-        }
+
+    public void showAnonPost(String id, View view){
+        db.collection("posts").document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                DocumentSnapshot snapshot = task.getResult();
+                if(snapshot.exists()){
+                    Bundle args = new Bundle();
+                    args.putLong("sharingcode",Long.parseLong(id));
+                    args.putBoolean("anon",true);
+                    Navigation.findNavController(view).navigate(R.id.action_findPostFragment_to_singlePostFragment, args);
+                }
+                else{
+                    Toast.makeText(application, application.getString(R.string.invalid_code), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     public void addPostThroughCode(String sharingCode, Context context) {
