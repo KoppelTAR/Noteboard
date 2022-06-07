@@ -3,6 +3,8 @@ package com.example.noteboard.fragments;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -106,7 +108,24 @@ public class EditPostFragment extends Fragment {
             Navigation.findNavController(getView()).navigate(R.id.action_editPostFragment_to_singlePostFragment,bundle);
         }
         if (item.getItemId() == R.id.menuDelete) {
-            Navigation.findNavController(getView()).navigate(R.id.action_editPostFragment_to_deletionConfirmationFragment,bundle);
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which){
+                        case DialogInterface.BUTTON_POSITIVE:
+                            editViewModel.DeletePost(getArguments().getLong("sharingcode"));
+                            Navigation.findNavController(getView()).navigate(R.id.action_editPostFragment_to_mainFragment,bundle);
+                            break;
+
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            break;
+                    }
+                }
+            };
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setMessage(R.string.are_you_sure).setPositiveButton(R.string.yes, dialogClickListener)
+                    .setNegativeButton(R.string.no, dialogClickListener).show();
         }
         return super.onOptionsItemSelected(item);
     }

@@ -22,4 +22,8 @@ public class EditPostViewModel extends AndroidViewModel {
     public void SaveChanges(String Title, String Content, Long Id) {
         postsRepository.SaveEditedPostChanges(Title,Content,Id);
     }
+
+    public void DeletePost(long id) {
+        postsRepository.DeletePost(id);
+    }
 }

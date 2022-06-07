@@ -5,6 +5,7 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.navigation.NavController;
 
 import com.example.noteboard.AuthRepository;
 
@@ -28,4 +29,5 @@ public class UserDetailsViewModel extends AndroidViewModel {
     public void resetPassword(){
         authRepository.sendPasswordResetEmailForCurrentUser();
     }
+
 }

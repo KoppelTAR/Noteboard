@@ -372,32 +372,12 @@
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left"/>
         <action
-            android:id="@+id/action_editPostFragment_to_deletionConfirmationFragment"
-            app:destination="@id/deletionConfirmationFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
-    </fragment>
-    <fragment
-        android:id="@+id/deletionConfirmationFragment"
-        android:name="com.example.noteboard.fragments.DeletionConfirmationFragment"
-        android:label="fragment_deletion_confirmation"
-        tools:layout="@layout/fragment_deletion_confirmation" >
-        <action
-            android:id="@+id/action_deletionConfirmationFragment_to_mainFragment"
+            android:id="@+id/action_editPostFragment_to_mainFragment"
             app:destination="@id/mainFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_deletionConfirmationFragment_to_editPostFragment"
-            app:destination="@id/editPostFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_right"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left"/>
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/smsFragment"
