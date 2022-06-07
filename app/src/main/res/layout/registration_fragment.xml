@@ -81,7 +81,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:hint="@string/enter_emailRegFrag" />
+            android:hint="@string/enter_emailRegFrag"
+            android:nextFocusDown="@id/passwordEdit"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
