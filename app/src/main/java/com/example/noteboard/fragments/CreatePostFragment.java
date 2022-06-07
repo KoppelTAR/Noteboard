@@ -56,21 +56,19 @@ public class CreatePostFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_create, container, false);
         EditText postContent = view.findViewById(R.id.editTextPostContent);
         EditText postTitle = view.findViewById(R.id.editTextPostTitle);
-        // creating a variable
-        // for firebasefirestore.
 
         view.findViewById(R.id.btnCreate).setOnClickListener(view1 -> {
             if(!Utils.isEditTextEmpty(postContent,getContext())
                     && !Utils.isEditTextEmpty(postTitle, getContext())){
-                firebaseAuth= FirebaseAuth.getInstance();
-                addDataToFirestore(postTitle.getText().toString(),postContent.getText().toString(), Calendar.getInstance().getTime(),Calendar.getInstance().getTimeInMillis(),firebaseAuth.getCurrentUser().getUid());
+                firebaseAuth = FirebaseAuth.getInstance();
+                addDataToFirestore(postTitle.getText().toString(),postContent.getText().toString());
             }
         });
         return view;
     }
 
-    private void addDataToFirestore(String courseName, String courseDescription, Date date, Long id, String courseDuration) {
-        viewModel.createPost(courseName,courseDescription).addOnCompleteListener(new OnCompleteListener() {
+    private void addDataToFirestore(String PostTitle, String PostContent) {
+        viewModel.createPost(PostTitle,PostContent).addOnCompleteListener(new OnCompleteListener() {
             @Override
             public void onComplete(@NonNull Task task) {
                 if (task.isSuccessful()) {
@@ -80,7 +78,7 @@ public class CreatePostFragment extends Fragment {
                     Toast.makeText(getContext(), getActivity().getString(R.string.postCreated), Toast.LENGTH_LONG).show();
                 }
                 else {
-                    Toast.makeText(getActivity(), "Fail to add post \n", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Failed to add post \n", Toast.LENGTH_SHORT).show();
                 }
             }
         });
