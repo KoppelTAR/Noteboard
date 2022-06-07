@@ -23,6 +23,8 @@ import android.widget.Toast;
 import com.example.noteboard.AuthRepository;
 import com.example.noteboard.R;
 import com.example.noteboard.viewmodels.EditPostViewModel;
+import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
@@ -100,6 +102,7 @@ public class EditPostFragment extends Fragment {
         bundle.putString("author", getArguments().getString("author"));
 
         if (item.getItemId() == android.R.id.home) {
+            bundle.putBoolean("anon",false);
             Navigation.findNavController(getView()).navigate(R.id.action_editPostFragment_to_singlePostFragment,bundle);
         }
         if (item.getItemId() == R.id.menuDelete) {

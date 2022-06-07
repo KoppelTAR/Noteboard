@@ -5,12 +5,15 @@ import static android.content.ContentValues.TAG;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
+import androidx.navigation.Navigation;
 
 import com.example.noteboard.models.Post;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -56,6 +59,8 @@ public class PostsRepository {
         postLiveData.setValue(postArrayList);
     }
 
+
+
     public Task createPost(String postTitle, String postContent) {
         Long currentMs = Calendar.getInstance().getTimeInMillis();
         Map<String, Object> post = new HashMap<>();
@@ -95,6 +100,25 @@ public class PostsRepository {
         } else {
             return false;
         }
+    }
+
+
+    public void showAnonPost(String id, View view){
+        db.collection("posts").document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                DocumentSnapshot snapshot = task.getResult();
+                if(snapshot.exists()){
+                    Bundle args = new Bundle();
+                    args.putLong("sharingcode",Long.parseLong(id));
+                    args.putBoolean("anon",true);
+                    Navigation.findNavController(view).navigate(R.id.action_findPostFragment_to_singlePostFragment, args);
+                }
+                else{
+                    Toast.makeText(application, application.getString(R.string.invalid_code), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     public void addPostThroughCode(String sharingCode, Context context) {
@@ -209,12 +233,30 @@ public class PostsRepository {
         }
     }
 
-    public void setPostContent(Long postId, TextView title, TextView content){
+    public void setPostContent(Long postId, TextView title, TextView content, TextView author, TextView lastEdit, TextView sharingCode){
         db.collection("posts").document(postId.toString()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 title.setText(task.getResult().getString("title"));
                 content.setText(task.getResult().getString("content"));
+                if(sharingCode!=null && lastEdit != null && author != null){
+                    sharingCode.setText(postId.toString());
+                    setLastEditor(lastEdit,task.getResult().getString("editedBy"),
+                            postId, String.valueOf(application.getResources().getConfiguration().locale));
+                    db.collection("users").document(task.getResult().getString("postAuthor")).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            String username = task.getResult().getString("username");
+                            if(username == null){
+                                author.setText(application.getString(R.string.deleted_user));
+                            }
+                            else{
+                                author.setText(String.format(application.getString(R.string.byAuthor),username));
+                            }
+                        }
+                    });
+                }
+
             }
         });
     }

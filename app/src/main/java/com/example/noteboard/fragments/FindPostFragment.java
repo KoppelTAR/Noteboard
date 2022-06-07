@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.noteboard.PostsRepository;
 import com.example.noteboard.R;
@@ -45,7 +46,12 @@ public class FindPostFragment extends Fragment {
 
         view.findViewById(R.id.btnFindPost).setOnClickListener(view1 -> {
             if(!Utils.isEditTextEmpty(postCode,getContext())){
-                findPostViewModel.findPost(postCode.getText().toString(),getContext());
+                if(!getArguments().getBoolean("anon")){
+                    findPostViewModel.findPost(postCode.getText().toString(),getContext());
+                }
+                else if(getArguments().getBoolean("anon")){
+                    findPostViewModel.showAnonPost(postCode.getText().toString(), getView());
+                }
             }
         });
 
@@ -55,7 +61,13 @@ public class FindPostFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home){
-            Navigation.findNavController(getView()).navigate(R.id.action_findPostFragment_to_userFragment);
+            if(!getArguments().getBoolean("anon")){
+                Navigation.findNavController(getView()).navigate(R.id.action_findPostFragment_to_userFragment);
+            }
+            if(getArguments().getBoolean("anon")){
+                Navigation.findNavController(getView()).navigate(R.id.action_findPostFragment_to_loginFragment);
+            }
+
         }
         return super.onOptionsItemSelected(item);
     }

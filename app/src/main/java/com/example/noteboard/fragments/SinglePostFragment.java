@@ -1,5 +1,7 @@
 package com.example.noteboard.fragments;
 
+import static androidx.fragment.app.FragmentManager.TAG;
+
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.content.ClipData;
@@ -65,19 +67,7 @@ public class SinglePostFragment extends Fragment {
 
         if (getArguments() != null) {
             sharingCode = getArguments().getLong("sharingcode");
-            author = getArguments().getString("author");
-            viewModel.showLastEdit(lastEditTextView,getArguments().getString("editedBy"), sharingCode,String.valueOf(getActivity().getResources().getConfiguration().locale));
-            editedBy = getArguments().getString("editedBy");
-            viewModel.setPostContent(sharingCode, titleTextView, contentTextView);
-            sharingCodeTextView.setText(sharingCode.toString());
-            PostsRepository.findAndSetUsername(usernameTextView,author,getContext());
-        } else {
-            Toast.makeText(getActivity(), getActivity().getString(R.string.error,"Viewing data"), Toast.LENGTH_SHORT).show();
-
-            Bundle bundle = new Bundle();
-            bundle.putString("type",getArguments().getString("type"));
-
-            Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_mainFragment,bundle);
+            viewModel.setPostContent(sharingCode,titleTextView,contentTextView,usernameTextView,lastEditTextView,sharingCodeTextView);
         }
 
         sharingCodeTextView.setOnTouchListener(new View.OnTouchListener() {
@@ -107,8 +97,10 @@ public class SinglePostFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_singlepost, menu);
-        super.onCreateOptionsMenu(menu, inflater);
+        if(!getArguments().getBoolean("anon")){
+            inflater.inflate(R.menu.menu_singlepost, menu);
+            super.onCreateOptionsMenu(menu, inflater);
+        }
     }
 
 
@@ -117,54 +109,61 @@ public class SinglePostFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putString("type",getArguments().getString("type"));
 
-        if (item.getItemId() == R.id.menuSettings){
-            bundle.putString("settings","single");
-            bundle.putString("title",title);
-            bundle.putString("content",content);
-            bundle.putLong("sharingcode",sharingCode);
-            bundle.putString("author", author);
-            bundle.putString("editedBy",editedBy);
-            Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_settingsFragment,bundle);
-        }
-        if(item.getItemId() == R.id.menuShare){
-            if(ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.SEND_SMS)
-                    == PackageManager.PERMISSION_GRANTED){
+        if(!getArguments().getBoolean("anon")){
+            if (item.getItemId() == R.id.menuSettings){
+                bundle.putString("settings","single");
+                bundle.putString("title",title);
+                bundle.putString("content",content);
+                bundle.putLong("sharingcode",sharingCode);
+                bundle.putString("author", author);
+                bundle.putString("editedBy",editedBy);
+                Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_settingsFragment,bundle);
+            }
+            if(item.getItemId() == R.id.menuShare){
+                if(ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.SEND_SMS)
+                        == PackageManager.PERMISSION_GRANTED){
+                    bundle.putString("title",title);
+                    bundle.putLong("editedAt",getArguments().getLong("editedAt"));
+                    bundle.putString("editedBy",getArguments().getString("editedBy"));
+                    bundle.putString("content",content);
+                    bundle.putLong("sharingcode",sharingCode);
+                    bundle.putString("author", author);
+                    Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_smsFragment,bundle);
+                }
+                else{
+                    if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.SEND_SMS)){
+                        Snackbar.make(getView().findViewById(R.id.singlePostLayout), getString(R.string.sms_permission),Snackbar.LENGTH_INDEFINITE)
+                                .setAction(android.R.string.ok, view1 -> {
+                                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.SEND_SMS}, 100);
+                                }).show();
+                    }
+                    else{
+                        Toast.makeText(getContext(), getString(R.string.sms_permission_2), Toast.LENGTH_LONG).show();
+                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.SEND_SMS}, 100);
+                    }
+                }
+
+            }
+            else if (item.getItemId() == R.id.menuUser){
+                Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_findPostFragment);
+            }
+            else if (item.getItemId() == R.id.menuEdit){
                 bundle.putString("title",title);
                 bundle.putLong("editedAt",getArguments().getLong("editedAt"));
                 bundle.putString("editedBy",getArguments().getString("editedBy"));
                 bundle.putString("content",content);
                 bundle.putLong("sharingcode",sharingCode);
                 bundle.putString("author", author);
-                Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_smsFragment,bundle);
+                Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_editPostFragment, bundle);
             }
-            else{
-                if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.SEND_SMS)){
-                    Snackbar.make(getView().findViewById(R.id.singlePostLayout), getString(R.string.sms_permission),Snackbar.LENGTH_INDEFINITE)
-                            .setAction(android.R.string.ok, view1 -> {
-                                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.SEND_SMS}, 100);
-                            }).show();
-                }
-                else{
-                    Toast.makeText(getContext(), getString(R.string.sms_permission_2), Toast.LENGTH_LONG).show();
-                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.SEND_SMS}, 100);
-                }
+            else if (item.getItemId() == android.R.id.home){
+                Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_mainFragment,bundle);
             }
-
-        }
-        else if (item.getItemId() == R.id.menuUser){
-            Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_userFragment);
-        }
-        else if (item.getItemId() == R.id.menuEdit){
-            bundle.putString("title",title);
-            bundle.putLong("editedAt",getArguments().getLong("editedAt"));
-            bundle.putString("editedBy",getArguments().getString("editedBy"));
-            bundle.putString("content",content);
-            bundle.putLong("sharingcode",sharingCode);
-            bundle.putString("author", author);
-            Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_editPostFragment, bundle);
         }
         else if (item.getItemId() == android.R.id.home){
-            Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_mainFragment,bundle);
+            Bundle args = new Bundle();
+            args.putBoolean("anon",true);
+            Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_findPostFragment, args);
         }
         return false;
     }

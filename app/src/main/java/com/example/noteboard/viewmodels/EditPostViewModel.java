@@ -17,9 +17,7 @@ public class EditPostViewModel extends AndroidViewModel {
         postsRepository = new PostsRepository(application);
     }
 
-    public void setPostContent(Long uid, TextView title,TextView content){
-        postsRepository.setPostContent(uid,title,content);
-    }
+    public void setPostContent(Long postId, TextView title, TextView content, TextView author, TextView lastEdit, TextView sharingCode){postsRepository.setPostContent(postId,title,content,author,lastEdit, sharingCode);}
 
     public void SaveChanges(String Title, String Content, Long Id) {
         postsRepository.SaveEditedPostChanges(Title,Content,Id);

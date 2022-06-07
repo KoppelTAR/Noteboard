@@ -43,7 +43,7 @@ public class MainViewModel extends AndroidViewModel {
         return loggedOutMutableLiveData;
     }
 
-    public void setPostContent(Long id, TextView title, TextView content){postsRepository.setPostContent(id,title,content);}
+    public void setPostContent(Long postId, TextView title, TextView content, TextView author, TextView lastEdit, TextView sharingCode){postsRepository.setPostContent(postId,title,content,author,lastEdit, sharingCode);}
     public void showUserPosts(){postsRepository.getUserPosts();}
 
     public void clearPosts(){postsRepository.clearPosts();}
