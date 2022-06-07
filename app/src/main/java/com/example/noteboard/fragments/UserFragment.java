@@ -89,7 +89,9 @@ public class UserFragment extends Fragment {
         });
 
         findPost.setOnClickListener(view1 -> {
-            Navigation.findNavController(getView()).navigate(R.id.action_userFragment_to_findPostFragment);
+            Bundle args = new Bundle();
+            args.putBoolean("anon",false);
+            Navigation.findNavController(getView()).navigate(R.id.action_userFragment_to_findPostFragment,args);
         });
 
         viewUserSettings.setOnClickListener(view1 -> {

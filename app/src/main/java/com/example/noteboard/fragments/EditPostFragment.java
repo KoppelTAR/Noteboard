@@ -74,7 +74,7 @@ public class EditPostFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         editViewModel = new ViewModelProvider(this).get(EditPostViewModel.class);
-        editViewModel.setPostContent(getArguments().getLong("sharingcode"), titleEditText, contentEditText);
+        editViewModel.setPostContent(getArguments().getLong("sharingcode"), titleEditText,contentEditText,null,null,null);
         user = getArguments().getString("editedBy");
 
         save.setOnClickListener(view1 -> {
