@@ -145,7 +145,7 @@ public class SinglePostFragment extends Fragment {
 
             }
             else if (item.getItemId() == R.id.menuUser){
-                Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_findPostFragment);
+                Navigation.findNavController(getView()).navigate(R.id.action_singlePostFragment_to_userFragment);
             }
             else if (item.getItemId() == R.id.menuEdit){
                 bundle.putString("title",title);
