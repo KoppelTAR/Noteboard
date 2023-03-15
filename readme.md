@@ -21,8 +21,6 @@ Noteboard is here to fix all those issues.
 Noteboard offers an extremely simple UI in 3 languages ( 🇪🇪, 🇷🇺, 🇬🇧 ) and 2 easy on the eye layouts (night layout, day layout) in the form of a bulletin board/noteboard to help you communicate with coworkers, friends or anyone else.
 
 
-[Back to content](#markdown-header-content)
-
 ## Testing with Android Studio
 
 ### Creating a virtual device
@@ -65,16 +63,3 @@ Voilà! You now have a virtual device ready to run applications!
 3. Press the "RUN" button or Shift+F10 to boot up the virtual device and launch the application.
 
 ![Image](readme_img_4.png)
-
-
-## Noteboard uml diagrams
-
-### machine state diagram
-
-![Image](machine-state.png)
-
-### package dependency diagram
-
-![Image](package diagram.png)
-
-[Back to content](#markdown-header-content)
